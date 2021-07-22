@@ -1,0 +1,87 @@
+
+
+<div class="wrapper wrapper-content" ng-controller="dailyLogsViewController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-6">
+            <h4 class="page_heading_title">{{cashierName}}</h4>
+            <ol class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li >
+                    <a ui-sref="sale.dailylogs">Logs List</a>
+                </li>
+                <li class="active">
+                    <strong>{{cashierName}}</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-6">
+            
+          
+            
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight" >
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="col-sm-6" ng-repeat="sdl in sessionDenominationList" ng-class="{'bgc7': sdl.status=='OPENED','bgc9': sdl.status=='CLOSED'}">
+                            <div class="table-responsive">
+                                <table class="table" ng-class="{'table-striped': sdl.status=='OPENED'}">
+                                    <thead>
+                                        <tr>
+                                            <th>Notes</th>
+                                            <th>Units</th>
+                                            <th>Amount</th>
+                                            <th>Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="sdal in sdl.list">
+                                           
+                                            <td>{{sdal.denominationAmount}}</td>
+                                            <td>{{sdal.units}}</td>
+                                            <td>{{sdal.calAmount}}</td>
+                                            <td>{{sdal.sessionDenominationType}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>  
+
+                            <div class="fwb f2 bdr1"><div class="col-sm-6 pd10"> {{sdl.status=='OPENED'? 'Opening': 'Closing'}} Amount</div><div class="col-sm-6 pd10">{{sdl.amount}}</div></div>
+                        </div>
+                    </div>          	            	
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

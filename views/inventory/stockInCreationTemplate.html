@@ -1,0 +1,197 @@
+
+
+<div class="wrapper wrapper-content" ng-controller="stockInCreationController">
+<div class="row wrapper border-bottom white-bg ">
+    <div class="col-lg-6">
+        <h4 class="page_heading_title">StockIn Creation</h4>
+        <ol class="breadcrumb">
+            <li>
+                        <a href="index.html">Home</a>
+                    </li>
+            <li >
+                <a ui-sref="stockIn.stockIninvoicelist">StockIn List</a>
+            </li>
+            <li class="active">
+                <strong>StockIn Creation</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-6">
+        
+      
+        
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" >
+
+   
+<div class="row">
+<div class="col-lg-12">
+<div class="ibox float-e-margins">
+<div class="ibox-title">
+         <div class="row">
+            <div class="col-sm-10">
+                 <h3>StockIn Creation
+    </h3>
+            </div>
+        </div>
+</div>
+<div class="ibox-content">
+	<div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Purchase Order</label> 
+                <select class="form-control">
+                    <option>select po</option>
+                    <option>select po</option>
+                    <option>select po</option>
+                    <option>select po</option>
+                </select>
+            </div>
+        </div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Supplier Name</label> 
+				<input type="text"  class="form-control">
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Orgin From</label> 
+				<input type="text"  class="form-control">
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4">
+            <div class="form-group">
+                <label>Stock Point</label> 
+                 <select class="form-control">
+                                            <option>select stock point</option>
+                                            <option>Store WareHouse</option>
+                                            <option>Shelf</option>
+                                        </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+			<div class="form-group">
+				<label>Ramark</label> 
+				<input type="textarea"  class="form-control">
+			</div>
+		</div>
+		
+	</div>
+
+
+
+
+<div class="row border-bottom">
+   <div class="col-sm-12"><h4 class="pull-left font-bold">Product</h4>
+</div> 
+</div>
+
+   <div class="col-sm-12 m-t-md">
+    <div class="col-lg-8"></div>
+   <div class="col-lg-4"> <input type="text" class="form-control pull-right" name="search" placeholder="search product..."></div>
+</div> 
+
+<div class="col-lg-12 border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;">
+	
+	<div class="col-lg-3 p-r-xxs p-l-xxs">Product</div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs">Barcode</div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs">Received qty</div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs">Damaged qty</div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs">Supply Price</div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs">Subtotal</div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs">Discount</div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs">Taxes</div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs">Charges</div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs">Remark</div>
+
+</div>
+
+<div class="col-lg-12 p-xs bg-default m-t-xs" style="background: #a9a9a914;">
+	<div class="col-lg-3 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+    <div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+	<div class="col-lg-1 p-r-xxs p-l-xxs">
+		<div class="col-lg-10 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+		<div class="col-lg-2 p-r-xxs p-l-xxs c-p"><i class="fa fa-trash-o icon-mid"></i></div>
+		</div>
+</div>
+              
+                <div class="col-lg-12 m-t-xs p-l-xxs p-r-xxs">
+                     	<div class="col-lg-4">
+                     		<button class="btn btn-sm btn-primary" ng-click="getRowAdded()"><i class="fa fa-plus m-r-xs"></i>Add Row</button>
+                     	</div>
+                     	<div class="col-lg-2 font-bold">Total</div>
+                     	<div class="col-lg-2 font-bold text-left">0</div>
+                     	<div class="col-lg-2"></div>
+                     	<div class="col-lg-2"></div>
+                     	<div class="col-lg-2"></div>
+                     	<div class="col-lg-2 font-bold text-left">0</div>
+                     	</div>
+
+
+
+
+
+
+
+
+
+                     	 <div class="row ">
+                            <div class="col-sm-12 text-center m-t-lg m-b-lg">
+                              <button class="btn btn-primary" type="submit">Save</button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                              
+                            </div>
+                        </div>               	            	
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

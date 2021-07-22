@@ -1,0 +1,14 @@
+parties
+-------
+
+customer
+--------
+id	 name	 party_type	  state  gstin_no	phone_no	email	 address	current_bal	   credit_period	credit_limit 
+
+company_id  payment_type
+
+
+
+Bank Details
+   
+

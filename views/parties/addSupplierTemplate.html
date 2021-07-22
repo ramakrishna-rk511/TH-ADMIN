@@ -1,0 +1,144 @@
+<div class="inmodal">
+    <div class="row" ng-controller="supplierController">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title bgc8">
+                    <h5 class="fc1">Supplier <span ng-if="!supplierNewObj.id">Creation</span><span ng-if="supplierNewObj.id">Update</span></h5>
+                    <a ng-click="close()" class="pull-right fc1"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="supplierForm">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Supplier Name :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="name" class="form-control" ng-model="supplierNewObj.name"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Phone No :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Phone No" class="form-control" ng-model="supplierNewObj.phoneNo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Company:</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control " name="companyId" ng-model="supplierNewObj.companyId">
+                                            <option value="">Select</option>
+                                            <option value="{{cmpnyObj.id}}" ng-repeat="cmpnyObj in companyArray" selected="supplierNewObj.companyId">{{cmpnyObj.entityName}}</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">GST No :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="GST No" class="form-control" ng-model="supplierNewObj.gstNo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">EmailId:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="email" class="form-control" ng-model="supplierNewObj.emailId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">State:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="state" class="form-control" ng-model="supplierNewObj.state">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Payment Type :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control " name="account" ng-model="supplierNewObj.paymentType">
+                                            <option value="Card">Card</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Cheque">Cheque</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Party Type :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control" name="partyType" ng-model="supplierNewObj.partyType">
+                                            <option value="Supplier">Supplier</option>
+                                            <option value="Consumer">Consumer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Credit Period :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="creditPeriod" ng-model="supplierNewObj.creditPeriod">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Credit Limit :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="" class="form-control" ng-model="supplierNewObj.creditLimit"> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                        <div class="row">
+                           <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Address :</label>
+                                    <div class="col-lg-8">
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  ng-model="supplierNewObj.address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Status :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control " name="account" ng-model="supplierNewObj.isActive">
+                                            <option value="true">Active</option>
+                                            <option value="false">InActive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mgt10">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="supplierForm.$invalid" ng-click="createOrUpdateSupplier(supplierNewObj)"><span ng-if="!supplierNewObj.id" >Save</span><span ng-if="supplierNewObj.id">Update</span></button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

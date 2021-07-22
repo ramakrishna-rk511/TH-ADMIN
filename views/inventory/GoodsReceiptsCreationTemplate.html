@@ -1,0 +1,410 @@
+<div class="wrapper wrapper-content pd0" ng-controller="grnCreationController">
+  <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+    <div class="col-lg-6">
+        <h4 class="page_heading_title fc1 fwb"> GRN</h4>
+        <ol class="breadcrumb fc1">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li >
+                <a ui-sref="inventory.grn">GRN List</a>
+            </li>
+            <li class="active">
+                <strong> GRN</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-6"> 
+      <div class="col-sm-12 text-right m-t-md">
+        <button class="btn btn-w-m btn-warning" type="submit" ng-click="saveGrn(grncreationObj)">Save</button>
+        <button class="btn btn-w-m btn-warning" ng-click="goBack()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight pd0">
+    <!-- <div class="row"> -->
+      <div class="col-lg-12 pd0">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <div class="row">
+
+              <div class="col-lg-4">
+                <div class="form-group col-lg-12">
+                  <label class="col-sm-4 m-t-sm">Received By : </label> 
+                  <div class="col-sm-6">
+                    <select class="form-control" name="receivedBy" placeholder="Received By" ng-model="grncreationObj.receivedBy" required="">
+                      <option value="" ng-selected="">Select...</option>
+                      <option ng-repeat="bul in branchUserListObj" value="{{bul.id}}">{{bul.name}}</option>
+                    </select>
+                  </div>
+                </div> 
+                <div class="col-lg-12 m-t-sm">
+                  <div class="form-group">
+                    <label class="col-sm-4 m-t-sm">Stock Location : </label> 
+                    <div class="col-sm-6">
+                      <select class="form-control" name="stockrname" placeholder="Stock Location" ng-model="grncreationObj.stockPointId" >
+                        <option value="" ng-selected="">Select a stock point</option>
+                        <option ng-repeat="spl in stockPointList" value="{{spl.id}}">{{spl.name}}</option>
+                      </select>
+                    </div>
+                  </div> 
+                </div> 
+              </div>
+              <div class="col-lg-4"></div>
+              <div class="col-lg-4">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="col-sm-4 m-t-sm">Receiver Mode : </label> 
+                    <div class="col-sm-6">
+                      <select class="form-control" name="receivermode" placeholder="Receiver Mode" ng-model="grncreationObj.grnType" required="" ng-change="receiverMode(grncreationObj)">
+                        <option value="" ng-selected="">Select a receiver mode</option>
+                        <option value="PURCHASE">PURCHASE</option>
+                        <option value="TRANSFER">TRANSFER</option>
+                        <option value="ADHOC">AD-HOC</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 m-t-sm">
+                  <div class="form-group" ng-if="grncreationObj.grnType=='TRANSFER'">
+                    <label class="col-sm-4 m-t-sm">Stock Transfer : </label> 
+                    <div class="col-sm-6">
+                      <select class="form-control" name="stockrname" placeholder="Stock Transfer" ng-model="grncreationObj.stockTransfer_id" required="" ng-change="getReceiverData(grncreationObj.stockTransfer_id,grncreationObj.grnType)">
+                        <option value="" ng-selected="">Select a transfer</option>
+                        <option ng-repeat="stl in stockTransferList" value="{{stl.id}}">{{stl.code}} ({{stl.fromBranchName}} - {{stl.toBranchName}})</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group" ng-if="grncreationObj.grnType=='PURCHASE'">
+                    <label class="col-sm-4 m-t-sm">Purchase Order :</label> 
+                    <div class="col-sm-6">
+                      <select class="form-control" name="stockrname" placeholder="Purchase order" ng-model="grncreationObj.purchase_order_id" required="" ng-change="getReceiverData(grncreationObj.purchase_order_id,grncreationObj.grnType)">
+                        <option value="" ng-selected="">Select a purchase order</option>
+                        <option ng-repeat="pol in purchaseOrderList" value="{{pol.id}}">{{pol.partyName}} - {{pol.orderedDate}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group" ng-if="grncreationObj.grnType=='ADHOC'">
+                    <label class="col-lg-4 m-t-sm">Party Name:</label> 
+                    <div class="col-lg-6">
+                      <select class="form-control" ng-model="grncreationObj.partyId">
+                        <option value="" ng-selected="">Select party name</option>
+                        <option value="{{pl.id}}" ng-repeat="pl in partyListObj">{{pl.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-lg-12 m-t-sm">
+                </div> -->
+              </div>
+              <!-- <div class="col-lg-4">
+                <div class="form-group">
+                  <label>To Branch</label> 
+                          <input class="form-control" name="suppliername" placeholder="Supplier Name" ng-model="grncreationObj.companyBranchId" />
+                  </div>
+                  </div>
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label>Remarks</label> 
+                  <input class="form-control" name="remarks" placeholder="remarks" ng-model="grncreationObj.remarks" />
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+
+                    <!-- Product List -->
+
+          <!-- <div class="col-sm-12 col-lg-12 border-bottom  m-t-xl">
+            <div class="col-sm-10">
+              <h4 class="pull-left font-bold" style="font-size: 18px;">Product</h4>
+            </div> 
+            <div class="col-sm-2">
+              <button class="btn btn-primary btn-w-m m-r-md" type="submit" ng-click="saveGrn(grncreationObj)">Save</button>
+              <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+            </div>
+          </div> -->
+
+          <table style="width: 100%;" class="m-t-xl">
+            <thead class="items_list_head">
+              <tr class="border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;background: #ffffff;">
+                <th class="p-xs">#</th>
+                <!-- <th class="p-xs">Stock Point</th> -->
+                <th class="p-xs" style="width: 20%;">Product</th>
+                <th class="p-xs">Batch</th>
+                <th class="p-xs">Ordered Qty</th>
+                <th class="p-xs">MRP</th>
+                <th class="p-xs">Received Qty</th>
+                <th class="p-xs">UOM</th>
+                <th class="p-xs">Damaged Qty</th>
+                <th class="p-xs">Purchase Price</th>
+                <th class="p-xs">Tax</th>
+                <th class="p-xs">Final Price</th>
+                <th class="p-l-lg">Expiry Date</th>
+                <th class="p-xs">Remarks</th>
+                <th class="p-xs"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="gpl in grnProductsListArr" style="background: #a9a9a914;" class="bg-default items_list">
+                <td class="p-xs text-center">
+                    {{$index+1}}
+                </td>
+                <!-- <td><input type="text" name="" class="form-control"></td> -->
+                <td>
+                  <!-- <select class="product_grn_view" aria-labelledby="select2-chosen-1" ng-model="gpl.productSkuId">
+                    <option ng-repeat="sp in skuProductSearchData" value="{{sp.id}}">{{sp.name}}</option>
+                  </select> -->
+                  <input type="text" name="" class="form-control" ng-model="gpl.productSkuName" ng-keyup="productsSearch(gpl.productSkuName,$index)" required="" />
+                  <div class="product_grn_list_{{$index}} hide product_grn_view">
+                    <ul>
+                      <li ng-repeat="sp in skuProductSearchData | filter : gpl.productSkuName" ng-click="selectedProduct(sp,$parent.$index)">{{sp.name}}</li>
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" name="" class="form-control input_margin" ng-model="gpl.batchName" ng-if="!newbatch">
+                  <select class="form-control input_margin" ng-if="newbatch && batchData.length>0" ng-model="gpl.batchId">
+                    <option value="" ng-selected="">Select Batch</option>
+                    <option ng-repeat="bd in batchData" value="{{bd.id}}">{{bd.name}} - {{bd.batchCode}}</option>
+                  </select>
+                  <div class="text-center"><a ng-click="newbatch =! newbatch"> {{newbatch?'new batch':'batch list'}}</a></div>
+                </td>
+                <td><input type="text" name="" class="form-control" ng-model="gpl.orderedUnits"></td>
+                <td><input type="text" name="" class="form-control" ng-model="gpl.mrp" required=""></td>
+                <td><input type="text" name="" class="form-control" ng-model="gpl.receivedUnits"></td>
+                <td>
+                  <select ng-model="gpl.uomId" class="p-xxs" required="">
+                    <option value="" ng-selected="">Select Unit Of Measurement</option>
+                    <option ng-repeat="uoml in unitOfMeasurementList" value="{{uoml.id}}" ng-selected="gpl.uomId==uoml.id">{{uoml.unitName}}</option>
+                  </select>
+                </td>
+                <td><input type="text" name="" class="form-control" ng-model="gpl.damagedUnits"></td>
+                <!-- <td><input type="text" name="" class="form-control" ng-model="gpl.units"></td> -->
+                <td><input type="text" name="" class="form-control" ng-model="gpl.purchasePrice" required="" ng-change="getProductPrice($index,gpl)"></td>
+                <td>
+                  <select ng-model="gpl.isTaxInclusive" class="p-xxs" required="">
+                    <option value="" ng-selected="">Select Tax Inclusive</option>
+                    <option value="true" ng-selected="gpl.isTaxInclusive == true">True</option>
+                    <option value="false" ng-selected="gpl.isTaxInclusive == false">False</option>
+                  </select>
+                </td>
+                <td><input type="text" name="" class="form-control" ng-model="gpl.finalPrice" required=""></td>
+                <td>
+                  <div class="col-lg-12 input-daterange" id="datepickerexpirydate">
+                    <input type="text" class="form-control" ng-model="gpl.expiryDate" name="datepickerexpirydate" required=""/>
+                  </div>
+                </td>
+                <td><input type="text" name="" class="form-control" ng-model="gpl.remarks"></td>
+                <td ng-click="removeRow($index)"><i class="fa fa-trash-o icon-mid cp"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        
+          <div class="col-lg-12 m-t-xs p-l-xxs p-r-xxs">
+            <div class="col-lg-2">
+                <button class="btn btn-sm btn-primary" ng-click="addgrnRowAdded()"><i class="fa fa-plus m-r-xs"></i>Add Row</button>
+            </div>
+            <div class="col-lg-2 font-bold text-center">
+              
+            </div>
+            <div class="col-lg-8 font-bold"></div>
+          </div>
+          <div class="inline col-lg-12 p-xs" style="background: #ffffff;">                 
+            <div class="row m-t-sm">
+              <div class="col-lg-4">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">PaymentType :</label>
+                    <div class="col-lg-7">
+                      <select class="form-control input_style" ng-model="grncreationObj.paymentType">
+                        <option value="" ng-selected="">Payment Type</option>
+                        <option value="CASH">CASH</option>
+                        <option value="CARD">CARD</option>
+                        <option value="ADDACCOUNT"><i class="fa fa-plus"></i> ADD ACCOUNT</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">Description :</label>
+                    <div class="col-lg-7">
+                      <input type="text" placeholder="Description" class="form-control input_style" ng-model="grncreationObj.description"/> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">Ref No. :</label>
+                    <div class="col-lg-7">
+                      <input type="text" placeholder="" class="form-control input_style" ng-model="grncreationObj.refNo"> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">Ref Doc :</label>
+                    <div class="col-lg-7">
+                      <input type="file" placeholder="" class="form-control input_style" ng-model="grncreationObj.rerefDocumentLocationfNo"> 
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="p-l-md m-t-lg">*Note: MRP inclusive of tax.</div> -->
+              </div>
+              <div class="col-lg-4"></div>
+              <div class="col-lg-4">
+                <!-- <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">SubTotal :</label>
+                    <div class="col-lg-6 p-r-xxs p-l-xxs">
+                      <input type="number" placeholder="" class="form-control input_style" ng-model="grncreationObj.subTotal" number-to-string/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Tax :</label>
+                    <div class="col-lg-6 p-r-xxs p-l-xxs">
+                      <input type="number" placeholder="" class="form-control input_style" ng-model="grncreationObj.taxAmount" number-to-string/> 
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Total :</label>
+                    <div class="col-lg-6 p-r-xxs p-l-xxs">
+                      <input type="number" placeholder="" class="form-control input_style" ng-model="grncreationObj.totalAmount" number-to-string/> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-4 m-t-xs control-label">Advance Amount :</label>
+                    <div class="col-lg-6 p-r-xxs p-l-xxs">
+                      <input type="number" placeholder="" class="form-control input_style" ng-model="grncreationObj.paidAmount" number-to-string/> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 m-t-xs">
+                  <div class="form-group">
+                    <label class="col-lg-4 m-t-xs control-label">Balance :</label>
+                    <div class="col-lg-6 p-r-xxs p-l-xxs">
+                      <input type="number" placeholder="" class="form-control input_style" ng-model="grncreationObj.dueAmount" number-to-string/> 
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+
+              <!-- <div class="col-lg-4">
+                
+              </div>
+              <div class="col-lg-2 "></div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4">
+              </div> -->
+            </div>
+            <!-- <div class="row m-t-xs">
+              <div class="col-lg-4">
+              </div>
+              <div class="col-lg-2 "></div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4">
+                
+              </div>
+            </div> 
+            <div class="row m-t-xs">
+              <div class="col-lg-4">
+              </div>
+              <div class="col-lg-2 "></div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4">
+                
+              </div>
+            </div>  
+            <div class="row"></div>  -->
+          </div>  
+        </div>
+      </div>
+    <!-- </div> -->
+  </div>
+</div>
+
+
+  
+
+<style type="text/css">
+    .items_list td input, .items_list td select{
+        margin: 10px;
+        width: 90%;
+    }
+    .select2.select2-container{
+        width: 250px !important;
+    }
+    .product_grn_view{
+        width: 20% !important;
+        padding: 6px !important;
+    }
+    .daterangepicker.dropdown-menu{
+        /*display: block;*/
+    }
+
+    .input_margin{
+      margin-bottom: 0px !important;
+      margin-left: 0px !important;
+      margin-top: 15px !important;
+    }
+
+  .product_grn_view{
+    z-index: 1;
+    position: absolute;
+    background: #fff;
+    height: 300px;
+    overflow-y: scroll;
+    box-shadow: 2px 2px 2px 2px #ddd;
+  }
+  .product_grn_view ul{
+    padding: 0px;
+  }
+  .product_grn_view ul li{
+    list-style: none;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+</style>
+
+
+<script type="text/javascript">
+    // alert('ll')
+  //   setTimeout(function(){
+  // },1000);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

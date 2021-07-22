@@ -1,0 +1,138 @@
+<div ng-controller="profileController">
+
+	<div class="row wrapper border-bottom page_heading1 bgc8">
+	    <div class="col-lg-10">
+	        <h4 class="page_heading_title fc1 fwb">Profile</h4>
+	    </div>
+	</div>
+
+	<div ng-init="taabselector = 'profile'">
+		<!-- <div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<div class="pd10">
+					<a ng-click="taabselector = 'profile'">Profile</a>
+				</div>		
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+				<div class="pd10">
+					<a ng-click="taabselector = 'password'">Change password</a>
+				</div>		
+			</div>
+		</div> -->
+		<!-- <ul class="nav nav-tabs">
+          	<li>
+  				<a class="active" ng-click="taabselector = 'profile'">Profile</a>
+			</li>
+      		<li >
+  				<a ng-click="taabselector = 'password'">Change password</a>
+			</li>
+		</ul> -->
+		<ul class="nav nav-tabs admin_profile pdt15">
+            <li class="active">
+            	<a data-toggle="tab" ng-click="taabselector = 'profile'">Profile</a>
+            </li>
+            <li>
+            	<a data-toggle="tab" ng-click="taabselector = 'password'">Change Password</a>
+            </li>
+        </ul>
+		
+		
+
+
+
+
+		<div ng-if="taabselector == 'profile'">
+			<div class="row pdt15">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<div class="form-group pdb5">
+		                <label class="control-label fwb">Company Name.</label>
+		                <div class="pos_rel">
+		                    <!-- <input type="text" placeholder="User Name" class="form-control bgc7 fwb"/>  -->
+		                    <input type="text" placeholder="COMPANYNAME" class="form-control bgc7 fwb" disabled="" ng-model="profileObj.companyName" /> 
+		                </div>
+		            </div>	
+		            <div class="form-group pdb5">
+		                <label class="control-label fwb">Company Branch Name.</label>
+		                <div class="pos_rel">
+		                    <!-- <input type="text" placeholder="User Name" class="form-control bgc7 fwb"/>  -->
+		                    <input type="text" placeholder="Company Branch Name" class="form-control bgc7 fwb" disabled="" ng-model="profileObj.companyBranchName" /> 
+		                </div>
+		            </div>	
+					<div class="form-group pdb5">
+		                <label class="control-label fwb">User Name.</label>
+		                <div class="pos_rel">
+		                    <!-- <input type="text" placeholder="User Name" class="form-control bgc7 fwb"/>  -->
+		                    <input type="text" placeholder="RAMAKRISHNA" class="form-control bgc7 fwb" disabled=""  ng-model="profileObj.userName" /> 
+		                </div>
+		            </div>
+					<div class="form-group pdb5">
+		                <label class="control-label fwb">Mobile No.</label>
+		                <div class="pos_rel">
+		                    <!-- <input type="text" placeholder="Mobile No" class="form-control bgc7 fwb" />  -->
+		                    <input type="text" placeholder="+91 9000730409" class="form-control bgc7 fwb" disabled=""  ng-model="profileObj.phoneNo" /> 
+		                </div>
+		            </div>
+					<div class="form-group pdb5">
+		                <label class="control-label fwb">Email Id</label>
+		                <div class="pos_rel">
+		                    <!-- <input type="text" placeholder="Mobile No" class="form-control bgc7 fwb"/>  -->
+		                    <input type="text" placeholder="ramuramakrishna511@gmail.com" class="form-control bgc7 fwb" disabled=""  ng-model="profileObj.email" /> 
+		                </div>
+		            </div>
+		            <div class="form-group pdb5">
+		                <label class="control-label fwb">User Type</label>
+		                <div class="pos_rel">
+		                    <!-- <input type="text" placeholder="Mobile No" class="form-control bgc7 fwb"/>  -->
+		                    <input type="text" placeholder="ramuramakrishna511@gmail.com" class="form-control bgc7 fwb" disabled=""  ng-model="profileObj.type" /> 
+		                </div>
+		            </div>
+	        	</div>
+	        	</div>
+        	</div>
+        	<!-- <div class="row pdl10">
+	        	<div class="col-sm-2 pd10">
+	                <button type="button" class="btn btn-w-m btn-primary ttu">EDIT</button>
+	            </div>
+	        </div> -->
+
+		</div>
+		<div ng-if="taabselector == 'password'">
+			<div class="row pdt15">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">	
+					<div class="form-group pdb5">
+		                <label class="control-label fwb">Old Password</label>
+		                <div class="pos_rel">
+		                    <input type="password" placeholder="Enter Old Passeord" class="form-control bgc7 fwb" ng-model="profilePasswordObj.password"/> 
+		                </div>
+		            </div>
+					<div class="form-group pdb5">
+		                <label class="control-label fwb">New Password</label>
+		                <div class="pos_rel">
+		                    <input type="password" placeholder="Enter New Password" class="form-control bgc7 fwb" ng-model="profilePasswordObj.newPassword"/> 
+		                </div>
+		            </div>
+					<div class="form-group pdb5">
+		                <label class="control-label fwb">Confirm Password</label>
+		                <div class="pos_rel">
+		                    <input type="password" placeholder="Enter Confirm Password" class="form-control bgc7 fwb" ng-model="profilePasswordObj.confirmPassword"/> 
+		                </div>
+		            </div>
+	        	</div>
+        	</div>
+        	<div class="row">
+	        	<div class="col-sm-2">
+	                <button type="button" class="btn btn-w-m btn-primary ttu" ng-click="passwordChange(profilePasswordObj)">PROCEED</button>
+	            </div>
+	        </div>
+		</div>
+	</div>
+	<div ng-include="'views/common/footer.html'"></div>
+</div>
+
+
+<style type="text/css">
+	.admin_profile > li.active > a, .admin_profile > li.active > a:hover, .admin_profile > li.active > a:focus{
+		background-color: #48d09b;
+		color: #ffffff;
+	}
+</style>

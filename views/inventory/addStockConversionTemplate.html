@@ -1,0 +1,387 @@
+<div class="wrapper wrapper-content pd0" ng-controller="stockConversionCreationController">
+	<div class="row wrapper border-bottom white-bg bgc8 page_heading1">
+		<div class="col-lg-6">
+			<h4 class="page_heading_title fc1 fwb">Stock Conversion Creation</h4>
+			<ol class="breadcrumb fc1 p-t-xs p-b-xs">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li>
+					<a ui-sref="inventory.stockconversion">Stock Conversion List</a>
+				</li>
+				<li class="active">
+					<strong>Stock Conversion Creation</strong>
+				</li>
+			</ol>
+		</div>
+		<div class="col-lg-6">
+			<div class="col-sm-12 text-right m-t-md">
+			        <button class="btn btn-w-m btn-warning" type="submit" ng-click="saveConversion()">Save</button>
+			        <button class="btn btn-w-m btn-danger" type="submit" ng-click="goBack()">Cancel</button>
+			        <!-- <button class="btn btn-white" ng-click="cancel()">Cancel</button> -->
+		      </div> 
+			<!-- <button class="btn btn-primary  btn-w-m" ng-click="saveConversion()">Save</button>
+			<button class="btn btn-white" ng-click="cancel()">Cancel</button> -->
+		</div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight pd0">
+
+		<!-- <div class="row mg0">
+			<div class="coi-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+			<div class="coi-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<div class="pdt7">
+					<label>From Batch</label>
+					<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+						<option value="" ng-selected>Select From Batch</option>
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>From Product SKU</label>
+					<select class="form-control" ng-model="value.fromSku" placeholder="Select Products">
+						<option value="" ng-selected>Select From Product SKU</option>
+						<option ng-repeat="scp in stockConversionProducts" value="{{scp.id}}">{{scp.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>From SKU Qty</label>
+					<input type="text" class="form-control" placeholder="Enter Product Quantity" ng-model="value.fromSkuQty" />
+				</div>
+				<div class="pdt7">
+					<label>From SKU Units</label>
+					<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+						<option value="" ng-selected>Select From SKU Units</option>
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>From SKU UOM</label>
+					<select class="form-control" ng-model="value.fromSkuUom" placeholder="Select UOM">
+						<option value="" ng-selected>Select From SKU UOM</option>
+						<option ng-repeat="scu in stockConversionUOMs" value="{{scu.id}}">{{scu.unitName}} - {{scu.shortName}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>From Stock Point</label>
+					<select class="form-control" ng-model="value.fromStockPoint" placeholder="Select Stock Point">
+						<option value="" ng-selected>Select From Stock Point</option>
+						<option ng-repeat="scsp in stockConversionStockPoint" value="{{scsp.id}}">{{scsp.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>QTY</label>
+					<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>UOM Id</label>
+					<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+			</div>
+			<div class="coi-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<div class="pdt7">
+					<label>To Batch</label>
+					<select class="form-control" ng-model="value.toBatch">
+						<option value="" ng-selected>Select To Batch</option>
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>To Product SKU</label>
+					<select class="form-control" ng-model="value.toSku">
+						<option value="" ng-selected>Select To Product SKU</option>
+						<option ng-repeat="scp in stockConversionProducts" value="{{scp.id}}">{{scp.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>To SKU Qty</label>
+					<input type="text" class="form-control" placeholder="Enter To SKU Qty" ng-model="value.toSkuQty" />
+				</div>
+				<div class="pdt7">
+					<label>To SKU Units</label>
+					<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+						<option value="" ng-selected>Select To SKU Units</option>
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>To SKU UOM</label>
+					<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>To Stock Point</label>
+					<select class="form-control" ng-model="value.toStockPoint" placeholder="Select Stock Point">
+						<option value="" ng-selected>Select To Stock Point</option>
+						<option ng-repeat="scsp in stockConversionStockPoint" value="{{scsp.id}}">{{scsp.name}}</option>  
+					</select>
+				</div>
+				<div class="pdt7">
+					<label>Units</label>
+					<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+						<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+					</select>
+				</div>
+			</div>
+			
+		</div> -->
+		<div class="row mg0 pd10">
+			<div class="col-lg-3">
+				<label>Branch</label>
+				<select class="form-control" ng-model="stockConveObj.fromBranch" ng-change="branchChange(stockConveObj.fromBranch)">
+                    <option value="" ng-selected>Select Branch</option>
+					<option ng-repeat="cb in companyBranchList" value="{{cb.id}}">{{cb.entityName}}</option>  
+				</select>
+			</div>
+			<!-- <div class="col-lg-3">
+				<label>To Branch</label>
+				<select class="form-control" ng-model="stockConveObj.toBranch">
+					<option ng-repeat="cb1 in companyBranchList" value="{{cb1.id}}" ng-selected="stockConveObj.fromBranch==cb1.id">{{cb1.entityName}}</option>  
+				</select>
+			</div> -->
+			<div class="col-lg-3">
+				<label>Type</label>
+				<select class="form-control bgc7 fwb" ng-model="stockConveObj.type" required="">
+                    <option value="" ng-selected>Select Type</option>
+                    <option value="STOCKCONVERION">STOCKCONVERSION</option>
+                </select>
+			</div>
+		</div>
+
+		<div class="row mg0">
+			<div class="col-lg-12 ibox-content" ng-repeat="(key,value) in stockConveObj.stockLogItemsModels track by $index">
+					<div class="remove_conver" ng-click="removeRow($index)"><a><i class="fa fa-trash"></i></a></div>
+						<div class="col-lg-12 border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;">
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">From Branch</div> -->
+							<div class="col-lg-3 p-r-xxs p-l-xxs">From SKU</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From Batch</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">From SKU QTY</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From SKU UOM</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">Stock Point</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From Unit</div>
+						</div>
+						<div class="col-lg-12 bg-default m-t-xs p-xs" style="background: #a9a9a914;">
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" ng-model="value.fromBranch"/>
+							</div> -->
+							<div class="col-lg-3 p-r-xxs p-l-xxs">
+								<!-- <select class="form-control" ng-model="value.fromProductSku" ng-change="getFromSkuProdData(value.fromProductSku,$index)">
+									<option ng-repeat="scp in stockConversionProducts" value="{{scp}}" >{{scp.name}}</option>  
+								</select> -->
+								<input type="text" name="" class="form-control" ng-model="value.fromProductSkuName" ng-keyup="productsSearch(value.fromProductSkuName,'p0'+$index,$index)"/>
+                                <div class="stock_conversion_list_p0{{$index}} hide stock_conversion_view">
+                                    <ul>
+                                        <li ng-repeat="sp in stockConversionProducts | filter : value.fromProductSkuName" ng-click="selectedProduct(sp,$parent.$index,'fromProductSku','p0'+$parent.$index)">{{sp.name}} - {{sp.brandName}} - {{sp.outOffStock?'0.0': sp.stockAvb +''+ sp.stockAvbUnitName}}</li>
+                                    </ul>
+                                </div>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.fromBatch">
+									<option value="" ng-selected="">Select Batch Name</option>
+									<option ng-repeat="scb in fromstockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" ng-model="value.fromSkuQty" />
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.fromSkuUom">
+									<option ng-repeat="scu in stockConversionUOMs" value="{{scu.id}}">{{scu.unitName}} - {{scu.shortName}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.fromStockPoint">
+									<option value="" ng-selected="">Select Stock Point</option>
+									<option ng-repeat="scsp in stockConverStockPoint" value="{{scsp.id}}">{{scsp.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<div class="input-group" style="display: flex;">
+									<input type="text" class="form-control" ng-model="value.fromSkuUnits" placeholder="Enter Units"  />
+	                                <div class="input-group-append" ng-if="value.fromStock">
+                                    	<span class="input-group-addon" style="padding: 8px;font-size: 16px;">{{value.fromStock}}</span>
+                                    </div>
+                                </div>
+							</div>
+						</div>
+						<!-- <div class="row">
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label>Quantity</label> 
+									<input type="text"  class="form-control">
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label>Unit of Measurement</label> 
+									<input type="text"  class="form-control">
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label>Batch No</label> 
+									<input type="text"  class="form-control">
+								</div>
+							</div>
+						</div> -->
+						<!-- <div class="row border-bottom">
+							<div class="col-sm-12"><h4 class="pull-left font-bold">Conversion Product</h4></div> 
+						</div> -->
+						<div class="col-lg-12 border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;">
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">To Branch</div> -->
+							<div class="col-lg-3 p-r-xxs p-l-xxs">To SKU</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">To Batch</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">To SKU QTY</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">To SKU UOM</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">Stock Point</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">To Unit</div><!-- 
+							<div class="col-lg-1 p-r-xxs p-l-xxs">Tax/unit</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">Total Amount</div> -->
+						</div>
+
+						<div class="col-lg-12 p-xs bg-default m-t-xs" style="background: #a9a9a914;">
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" ng-model="value.toBranch"/>
+							</div> -->
+							<div class="col-lg-3 p-r-xxs p-l-xxs">
+								<!-- <select class="form-control" ng-model="value.toProductSku" placeholder="Select Products" ng-change="getToSkuProdData(value.toProductSku,$index)">
+									<option ng-repeat="scp in stockConversionProducts" value="{{scp}}">{{scp.name}}</option>  
+								</select> -->
+								<input type="text" name="" class="form-control" ng-model="value.toProductSkuName" ng-keyup="productsSearch(value.toProductSkuName,'0'+$index,$index)"/>
+                                <div class="stock_conversion_list_0{{$index}} hide stock_conversion_view">
+                                    <ul>
+                                        <li ng-repeat="sp in stockConversionProducts | filter : value.toProductSkuName" ng-click="selectedProduct(sp,$parent.$index,'toProductSku','0'+$parent.$index)">{{sp.name}} - {{sp.brandName}} - {{sp.outOffStock?'0.0': sp.stockAvb +''+ sp.stockAvbUnitName}}</li>
+                                    </ul>
+                                </div>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.toBatch" placeholder="Select Batch">
+									<option value="" ng-selected="">Select Batch Name</option>
+									<option ng-repeat="scb in tostockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" placeholder="Enter Product Quantity" ng-model="value.toSkuQty" />
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.toSkuUom" placeholder="Select UOM">
+									<option ng-repeat="scu in stockConversionUOMs" value="{{scu.id}}">{{scu.unitName}} - {{scu.shortName}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.toStockPoint" placeholder="Select Stock Point">
+									<option value="" ng-selected="">Select Stock Point</option>
+									<option ng-repeat="scsp in stockConverStockPoint" value="{{scsp.id}}">{{scsp.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<div class="input-group" style="display: flex;">
+								<input type="text" class="form-control" placeholder="Enter Units" ng-model="value.toSkuUnits" />
+	                                <div class="input-group-append" ng-if="value.toStock">
+                                    	<span class="input-group-addon" style="padding: 8px;font-size: 16px;">{{value.toStock}}</span>
+                                    </div>
+                                </div>
+							</div>
+							<!-- <div class="col-lg-1 p-r-xxs p-l-xxs">
+								<div class="col-lg-10 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+								<div class="col-lg-2 p-r-xxs p-l-xxs c-p"><i class="fa fa-trash-o icon-mid"></i></div>
+							</div> -->
+						</div>
+						<!-- <div class="row">
+							<div class="col-sm-12 text-center m-t-lg m-b-lg">
+							
+							</div>
+						</div>  -->              	            	
+					<!-- </div> -->
+				<!-- </div> -->
+			</div>
+
+			<div class="col-lg-12 m-t-xs p-l-xxs p-r-xxs">
+				<div class="col-lg-4">
+					<button class="btn btn-sm btn-primary" ng-click="newRowAdded()"><i class="fa fa-plus m-r-xs"></i>Add Row</button>
+				</div>
+				<!-- <div class="col-lg-2 font-bold">Total</div>
+				<div class="col-lg-2 font-bold text-left">0</div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2 font-bold text-left">0</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<style type="text/css">
+	.remove_conver{
+		position: absolute;
+		right: 10px;
+		width: 4%;    
+		text-align: center;
+	    font-size: 18px;
+	    top: 5px;
+		padding: 2px 20px;
+	    background: #fff;
+	    border-radius: 33px;
+	    box-shadow: 1px 1px 6px -1px #000;
+	    cursor: pointer;
+	}
+	.remove_conver i{
+		color: #F44336;
+	}
+
+	.stock_conversion_view {
+	}
+
+	.stock_conversion_view {
+	    z-index: 1;
+	    padding: 6px !important;
+	    position: absolute;
+	    background: #fff;
+	    width: 98% !important;
+	    height: 300px;
+	    overflow-y: scroll;
+	    box-shadow: 2px 2px 2px 2px #ddd;
+	}
+
+	.stock_conversion_view ul {
+	    padding: 0px;
+	}
+
+	.stock_conversion_view ul li {
+	    list-style: none;
+	    padding: 10px;
+	    cursor: pointer;
+	    border-bottom: 1px solid #ddd;
+	}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

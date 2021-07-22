@@ -1,0 +1,48 @@
+
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="unitOfMeasurementController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">Unit Of Measurement List</h4>
+            <ol class="breadcrumb fc1">
+                <li>
+                    <a href="#/dashboard/home"><strong>Home</strong></a>
+                </li>
+                <li class="active">
+                    <strong>Unit Of Measurement List</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2 text-right">
+            <button type="button" ng-click="addOrUpdateUnitOfMeasurementModal()" class="btn m-t-sm btn-warning ttu"><i class="fa fa-plus m-r-xs"></i> Add</button>
+        </div>
+    </div>
+    <div class="row" ng-init="getUOMList()">
+        <div class="col-lg-12 pd0">
+            <div class="ibox float-e-margins">
+                <!-- <div class="ibox-title">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>Unit Of Measurement List</h3>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div> -->
+                <div class="ibox-content">
+
+                    <table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id="UOMTable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Parent Unit Name</th>
+                            <th>Shor tName</th>
+                            <th>Conversion</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

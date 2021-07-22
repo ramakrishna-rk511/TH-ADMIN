@@ -1,0 +1,85 @@
+Purchase Order
+==============
+
+As a part of application, we can also request quote from suppliers/vendors which involves
+
+--> From a screen of purchase order, we can select vendor there by selecting multiple line items, After submitting the information will sends a mail with a link along with credentials for that particular request.
+--> From the above action, the selected vendor will receive a mail with a link clicking that shows a form with prefilled information of all the line items along with a quanties, where he can enter the price that he can quote for and also the quantities if needed submitting that form will in turn notifies our company user to review the price and if the deal closes that purchase order saves with the appropriate shipping information from vendor side.
+--> At the time of delivering the particular purchase order we receive that goods from GRN screen which we specified in inventory module  
+
+
+With out any steps among the first two, we can also receive selecting products manually in GRN will also created a purchase order, there by their approvals.
+
+These screens will also contain shipping information in the above screens
+
+
+
+purchase_order
+-------------
+id
+order_code
+created_date
+user_created
+supplier_id(party id)
+quoted_sub_total_amount
+quoted_tax_perc
+quoted_tax_amount
+quoted_margin_perc
+quoted_margin_amount
+quoted_shipping_cost
+quoted_total_amount
+sub_total
+tax_perc
+tax_amount
+margin_perc
+shipping_cost
+total_amount
+payment_mode [cash, card,online payments]
+payment_ref_no
+received_personal
+approved_personal
+approved_status
+shipping_method
+description
+paid_amount
+due_amount
+description
+payment_type[credit,cod,consignment]
+payment_status[paid,unpaid]
+
+
+purchase_order_items
+--------------------
+id
+purchase_order_id
+item_sku
+quantity
+unit_of_measurement
+units
+quoted_quantity
+available_quantity
+shipped_quantity
+received_quantity
+quoted_price
+landing_cost
+tax_perc
+tax_amount
+damaged_quantity
+
+
+purchase_order_item_tax
+-----------------------
+purchase_order_items_id
+tax_id
+tax_name
+tax_perc
+tax_value
+
+
+purchase_order_tax
+-------------------
+purchase_order_id
+tax_id
+tax_perc
+tax_amount
+tax_type(Item tax or shipping tax or etc,.)

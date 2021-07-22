@@ -1,0 +1,92 @@
+<div class="inmodal">
+       <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title bgc8">
+                    <h5 class="fc1">Timing Slot <span ng-if="!timingSlotData.id">Creation</span><span ng-if="timingSlotData.id">Update</span></h5>
+                   <a ng-click="close()" class="pull-right fc1"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="ibox-content" ng-init="getcompanyBranchList()">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="expenseTypeForm">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 text-center control-label ">Branch Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb" ng-model="timingSlotData.companyBranchId" required>
+                                            <option ng-repeat="cl in companyBranchList" value="{{cl.id}}">{{cl.entityName}}</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="form-group">
+                                <label class="col-lg-4 text-center control-label ">Orders Limit <span class="text-danger">*</span> :</label>
+                                <div class="col-lg-8">
+                                    <input type="text" placeholder="Orders Limit.." class="form-control" ng-model="timingSlotData.ordersLimit" required>
+                                    <div ng-show="stateForm.$submitted || stateForm.name.$touched">
+                                        <div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <!--  -->
+                                <div class="form-group pt20">
+                                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"> Start Time : </label>
+                                    <div class="col-lg-8 input-group" style="width: 64%;padding-left: 15px;" clock-picker data-autoclose="true" ng-class="{'has-error':timingForm.startTime.$invalid &amp;&amp; !timingForm.startTime.$pristine}">
+                                        <input type="text" class="form-control fs12" ng-model="timingSlotData.startTime" ng-pattern="/^\d{0,9}(\:\d{1,9})?$/" placeholder="SELECT END TIME" name="startTime" required disabled  />
+                                        <span class="input-group-addon input-group-btn">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group pt20">
+                                    <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"> End Time : </label>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 input-group" style="width: 64%;padding-left: 15px;" clock-picker data-autoclose="true" ng-class="{'has-error':timingForm.endTime.$invalid &amp;&amp; !timingForm.endTime.$pristine}">
+                                        <input type="text" class="form-control fs12" ng-model="timingSlotData.endTime" ng-pattern="/^\d{0,9}(\:\d{1,9})?$/" placeholder="SELECT END TIME" name="endTime" required disabled  />
+                                        <span class="input-group-addon input-group-btn">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 text-center control-label">Status : <span class="text-danger">* </span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb" name="account" ng-model="timingSlotData.isActive" required>
+                                            <option value="">select status...</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">InActive</option>
+                                        </select>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="expenseTypeForm.$invalid" ng-click="createOrUpdateTimingSlot(timingSlotData)"><span ng-if="!timingSlotData.id" >Save</span><span ng-if="timingSlotData.id">Update</span></button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                            </div>
+                            <!-- <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="expenseTypeForm.$invalid" ng-click="createOrUpdateTimimgslot(timingSlotData)"><span ng-if="!expensesTypeData.id" >Save</span><span ng-if="expensesTypeData.id">Update</span></button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                            </div> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style type="text/css">
+    .clockpicker-popover{
+        z-index: 99999;
+    }
+</style>

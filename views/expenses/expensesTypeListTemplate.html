@@ -1,0 +1,120 @@
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="expensesTypeController">
+  <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+      <div class="col-lg-10">
+          <h4 class="page_heading_title fwb fc1">Expenses Type</h4>
+          <ol class="breadcrumb fc1">
+               <li><a href="index.html">Home</a></li>
+              <li class="active">
+                  <strong>Expenses Type List</strong>
+              </li>
+          </ol>
+      </div>
+      <div class="col-lg-2">
+          <button type="button" ng-click="addExpensesModalTemplate()" class="btn btn-w-m btn-warning m-t-sm">Add Expenses Type</button>
+      </div>
+  	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- <div class="ibox float-e-margins"> -->
+					<!-- <div class="ibox-title">
+					 	<div class="row">
+							<div class="col-sm-10">
+								 <h3>Expenses List</h3>
+							</div>
+							<div class="col-sm-2">
+								 <button type="button" ng-click="addExpensesModalTemplate()" class="btn btn-w-m btn-primary">Add Expenses</button>
+							</div>
+						</div>
+					</div> -->
+				<div class="ibox-content">
+
+					<table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id='expensesTypeList'>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Status</th>
+								<!-- <th>Ref Document</th> -->
+								<th></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addExpensesTypeModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bgc8">
+                    <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+                    <div class="row">
+                        <div class="col-sm-11 text-center">
+                            <label class="control-label fc1 ttu fwb"> ExpenseType Creation</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" name="Expensetypeform">
+						<div class="row">
+							<div class="form-group">
+								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center control-label">Name :</label>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<input type="text" placeholder="Enter expense type name" class="form-control" ng-model="typeObj.name" required="" /> 
+								</div>
+							</div>
+							<div class="form-group" >
+								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center control-label">Description :</label>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<textarea placeholder="desc.." class="form-control" ng-model="typeObj.description" required=""> </textarea>
+								</div>
+							</div>
+						</div>
+						<!-- </div>	 -->
+					</form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="text-center mgt10">
+                                <button type="button" class="btn btn-w-m btn-primary" ng-disabled="Expensetypeform.$invalid" ng-click="saveExpenseType(typeObj)">Proceed</button>
+								<button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="OfferConfigListController">
+	<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+		<div class="col-lg-10 col-md-10 col-sm-10 col-sm-12 pn pl25">
+			<h4 class="text-uppercase fontpro text-danger pl30 fc1">Offers Config</h4>
+			<ol class="breadcrumb fc1">
+				<li>
+					<a href="./#/home/dashboard">Home</a>
+				</li>
+				<li class="active">
+					<strong>Offers Config</strong>
+				</li>
+			</ol>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-sm-12 pn pr25">
+			<!-- <div class="pull-right pr30">
+				<a ui-sref="offer.offerconfigcreation">
+					<i class="fa fa-plus text-danger" aria-hidden="true"></i><span class="text-danger"> ADD OFFERS CONFIG</span>
+				</a>
+			</div> -->
+    		<a class="btn btn-w-m btn-warning m-t-sm ttu" ui-sref="offer.offerconfigcreation"><i class="fa fa-chevron-left m-r-xs" aria-hidden="true"></i>ADD OFFERS CONFIG</a>
+		</div>
+	</div>
+	<!-- <div class="wrapper"> -->
+	<div class="row">
+		<!-- <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div> -->
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="ibox-content bn dt mt20">
+				<table class="table table-striped table-bordered table-hover dataTables-example" id="offersConfigTable" style="width:100%;">
+					<thead>
+						<tr>
+							
+							<th>Offer Name</th>
+							<th>Coupon code</th>
+							<th>Max Uses</th>
+							<th>Max Uses Per Customer</th>
+							<th>Priority Code</th>
+							<th>Towards</th>
+							<th>Status</th>
+							<th>Action</th>
+							<!-- <th>Details</th> -->
+						</tr>
+					</thead>
+					<!-- <tbody >
+						<tr>
+							
+							<td>dad</td>
+							<td>asdas</td>
+							<td>asd</td>
+							<td>adas</td>
+							<td>asd</td>
+							<td>adasd</td>
+							<td>asdsa</td>
+							<td>asda</td>
+							<td><a ui-sref="offer.offerconfigview">
+      			
+				      			<span class="text-danger"> View</span>
+				    		</a></td>
+						</tr>
+						
+					</tbody> -->
+							
+					<!-- <tfoot>
+						<tr>
+						</tr>
+					</tfoot> -->
+				</table>
+			<!-- <div class="tac" ng-show="noOfferConfig"><p class="fcr">No Offers Config are available</p></div> -->
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
+</div>

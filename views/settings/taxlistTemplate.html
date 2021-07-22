@@ -1,0 +1,350 @@
+<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+    <div class="col-lg-10">
+        <h4 class="page_heading_title fwb fc1">Taxes</h4>
+        <ol class="breadcrumb fc1">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li class="active">
+                <strong>Taxes</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ng-scope pd0" ng-controller="taxController">
+    <div class="row">
+        <div class="col-lg-12 pd0">
+            <div class="ibox float-e-margins">
+                <!-- <div class="ibox-title">
+                    <h5>Taxes</h5>
+                </div> -->
+                <div class="ibox-content">
+                    <div class="tabs-container">
+                        <tabset>
+                            <tab heading="Tax Group">
+                                <div class="panel-body">
+                                <!-- <div class="panel-body" ng-init="getTaxGroupList()"> -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ibox float-e-margins">
+                                                <div class="row">
+                                                    <div class="col-sm-5 m-b-xs"></div>
+                                                    <div class="col-sm-4 m-b-xs"></div>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group pull-right" >
+                                                            <button type="button" ng-click="addTaxGroupModalTemplate()" class="btn btn-sm  btn-primary"> Add TaxGroup</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <table class="table table-striped table-bordered table-hover dataTables-example" data-table="" id="taxGroupTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <th>Amount Type</th>
+                                                                <th>Status</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="Tax Rate">
+                                <div class="panel-body" ng-init="getTaxRateList()">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ibox float-e-margins">
+                                                <div class="row">
+                                                    <div class="col-sm-5 m-b-xs"></div>
+                                                    <div class="col-sm-4 m-b-xs"></div>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group pull-right" >
+                                                            <button type="button" ng-click="addOrUpdateTaxRate()" class="btn btn-sm  btn-primary ttu"> Add TaxRate</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <table class="table table-striped table-bordered table-hover dataTables-example" data-table="" id="taxRateTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <th>Rate</th>
+                                                                <th>Status</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="HSN Code">
+                                <div class="panel-body" ng-init="getHsnCodeList()">
+                                    <div class="row" ng-init="hsnTaxGrpList()">
+                                        <div class="col-lg-12">
+                                            <div class="ibox float-e-margins">
+                                                <div class="row">
+                                                    <div class="col-sm-5 m-b-xs"></div>
+                                                    <div class="col-sm-4 m-b-xs"></div>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group pull-right" >
+                                                            <button type="button" ng-click="addOrUpdateHsnCode()" class="btn btn-sm  btn-primary"> Add HSN Code</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <table class="table table-striped table-bordered table-hover dataTables-example" data-table="" id="hsnCodeTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>HSN Code</th>
+                                                                <th>HSN Desc</th>
+                                                                <th>Tax Group</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addTaxGroupModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg"">
+            <div class="modal-content">
+                <div class="modal-header bgc8">
+                    <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+                    <div class="row">
+                        <div class="col-sm-11 text-center">
+                            <label class="control-label fc1 ttu fwb"> Tax Group </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="taxGroupForm">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Name <span class="text-danger">*</span> :</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" ng-model="taxGroupData.taxGroupName" name="taxGroupName" required>
+                                    <div ng-show="taxGroupForm.$submitted || taxGroupForm.taxGroupName.$touched">
+                                        <div ng-show="taxGroupForm.taxGroupName.$error.required" class="text-danger">Unit name is required!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Status <span class="text-danger">*</span> :</label>
+                                <div class="col-lg-8">
+                                    <select class="form-control" ng-model="taxGroupData.isActive" required="">
+                                        <option value="" ng-selected>select...</option>
+                                        <option value="true" ng-selected="taxGroupData.isActive==true">Active</option>
+                                        <option value="false" ng-selected="taxGroupData.isActive==false">InActive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Tax Group On <span class="text-danger">*</span> :</label>
+                                <div class="col-lg-8 no-padding">
+                                    <label class="m-t-xs p-r-md"><input type="radio" ng-model="taxGroupData.amountType" name="amountType" value="p"> Rate </label>
+                                    <label class="m-t-xs p-r-md"><input type="radio" ng-model="taxGroupData.amountType" name="amountType" value="a"> Net amount </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Slabs <span class="text-danger">*</span> :</label>
+                                <div class="col-lg-8 no-padding">
+                                    <label class="m-t-xs p-r-md"><input type="radio" ng-model="taxGroupData.isSlabBased" name="isSlabBased" value="YES"> Yes </label>
+                                    <label class="m-t-xs p-r-md"><input type="radio" ng-model="taxGroupData.isSlabBased" name="isSlabBased" value="NO"> No </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" ng-show="taxGroupData.isSlabBased == 'NO'">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label p-t-sm p-l-xs">CGST <span class="text-danger">*</span> :</label>
+                                <div class="col-lg-8">
+                                    <select class="form-control" ng-model="taxGroupData.cgst">
+                                        <option value="" ng-selected="">select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label p-t-sm p-l-xs">SGST <span class="text-danger">*</span> :</label>
+                                <div class="col-lg-8">
+                                    <select class="form-control" ng-model="taxGroupData.sgst">
+                                        <option value="" ng-selected="">select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label p-t-sm p-l-xs">IGST :</label>
+                                <div class="col-lg-8">
+                                    <select class="form-control" ng-model="taxGroupData.igst">
+                                        <option value="" ng-selected="">select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label p-t-sm p-l-xs">CESS :</label>
+                                <div class="col-lg-8">
+                                    <select class="form-control" ng-model="taxGroupData.cess">
+                                        <option value="" ng-selected="">select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="taxGroupData.id" class="col-lg-12 col-md-12 col-sm-12">
+                            <hr>
+                            <div class="fwb p-xxs col-lg-12 col-md-12 col-sm-12" ng-repeat="tgrm in taxGroupData.taxGroupRateModels">
+                                <div class="col-lg-4 col-md-4 col-sm-4">{{tgrm['taxRateModel']['name']}}</div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <select class="form-control" ng-model="tgrm.isOptional">
+                                        <option value="" ng-selected="">select...</option>
+                                        <option value="true">TRUE</option>
+                                        <option value="false">FALSE</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <i class="fa fa-trash-o icon-mid"  ng-click="deleteTaxGroupRate(tgrm.id,$index)"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="taxGroupData.isSlabBased == 'YES'" style="margin-top: -15px;">
+                        <div class="col-lg-12 col-md-12 pull-right text-right"><a class="btn btn-primary btn-sm" ng-click="addSlab()" ng-show="taxGroupData.isSlabBased == 'YES'"><i class="fa fa-plus"></i> Slab</a></div>
+                        <div ng-repeat="slabsObj in slabsArray track by $index">
+                            <div class="col-lg-12 col-md-12 m-t-sm">
+                                <div class="col-lg-6 col-md-6"><b>Slab {{$index + 1}}</b></div>
+                                <div class="col-lg-6 col-md-6 text-right"><span class="fa fa-trash text-danger" style="font-size: 16px;" ng-if="$index != '0'" ng-click="removeSlab($index)"></span></div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label no-padding" style="margin-left: 18px;">Amount From <span class="text-danger">*</span></label>
+                                    <div class="col-lg-12">
+                                        <input type="text" class="form-control" ng-model="slabsObj.amountFrom" name="amountFrom">
+                                        <div ng-show="taxGroupForm.$submitted || taxGroupForm.amountFrom.$touched">
+                                            <div ng-show="taxGroupForm.amountFrom.$error.required" class="text-danger">Unit name is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label no-padding" style="margin-left: 18px;">Amount To <span class="text-danger">*</span></label>
+                                    <div class="col-lg-12">
+                                        <input type="text" class="form-control" ng-model="slabsObj.amountTo" name="amountTo" >
+                                        <div ng-show="taxGroupForm.$submitted || taxGroupForm.amountTo.$touched">
+                                            <div ng-show="taxGroupForm.amountTo.$error.required" class="text-danger">Unit name is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label no-padding" style="margin-left: 18px;">CGST <span class="text-danger">*</span></label>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" ng-model="slabsObj.cgst">
+                                            <option value="" ng-selected>select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label no-padding" style="margin-left: 18px;">SGST <span class="text-danger">*</span></label>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" ng-model="slabsObj.sgst">
+                                            <option value="" ng-selected>select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label no-padding" style="margin-left: 18px;">IGST <span class="text-danger">*</span></label>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" ng-model="slabsObj.igst">
+                                            <option value="" ng-selected>select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label no-padding" style="margin-left: 18px;">CESS</label>
+                                    <div class="col-lg-12">
+                                        <select class="form-control" ng-model="slabsObj.cess">
+                                            <option value="" ng-selected>select...</option>
+                                        <option value="{{tr.id}}" ng-repeat="tr in taxRateList">{{tr.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center m-t-sm">
+                            <button class="btn btn-primary" type="submit" ng-disabled="taxGroupForm.$invalid" ng-click="createTaxGroup(taxGroupData)">Save</button>
+                            <button class="btn btn-white" data-dismiss="modal">Cancel</button>
+                            <!-- <button class="btn btn-white" ng-click="modalClose()"  data-dismiss="modal">Cancel</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,176 @@
+
+<div class="wrapper wrapper-content pd0" ng-controller="companyBranchListController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">Company Branch</h4>
+            <ol class="breadcrumb fc1">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <strong>Company Branch List</strong>
+                </li>
+            </ol>
+        </div>
+        <!-- <div class="col-lg-6">
+            <div class="row m-t-xs">
+                <div class="col-lg-6"> 
+                 <div class="form-group" id="data_3">
+                <label class="font-noraml">Date Range</label>
+
+                <div class="input-group date">
+                   <input date-range-picker class="form-control date-picker" type="text" ng-model="app.daterange" />
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div></div> -->
+                <!-- <div class="col-lg-6">
+                      <div class="form-group" id="data_3">
+                <label class="font-noraml">Company Of</label>
+
+                <div class="input-group ">
+                   <select class="form-control m-b" name="account">
+                                    <option>Name</option>
+                                    <option>Department</option>
+                                    <option>GST No.</option>
+                                    <option>Expense</option>
+                                </select> 
+                    <span class="input-group-addon"><i class="fa fa-down"></i></span>
+                </div>
+            </div>
+                </div> -->
+            <!-- </div>
+          
+            
+        </div> -->
+
+        <div class="col-sm-2">
+             <button type="button" data-toggle="modal" ng-click="addOrUpdateCompanyBranch()" class="btn btn-w-m btn-warning m-t-sm ttu">Add Company Branch</button>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight pd0">
+        <div class="row">
+            <div class="col-lg-12 pd0">
+                <div class="ibox float-e-margins">
+                    <!-- <div class="ibox-title">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h3>Company Branch List</h3>
+                            </div>
+
+                            <div class="col-sm-2">
+                                 <button type="button" data-toggle="modal" ng-click="addOrUpdateCompanyBranch()" class="btn btn-w-m btn-warning ttu">Add Company Branch</button>
+                            </div>
+                        </div>      
+                    </div> -->
+                    <div class="ibox-content">
+                        <table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id="companyBranchTable">
+                            <thead>
+                            <tr>
+                                <!-- <th>Name</th> -->
+                                <th>Entity Name</th>
+                                <th>GST No.</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="addCompanyBranchModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bgc8">
+                    <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+                    <div class="row">
+                        <div class="col-sm-11 text-center">
+                            <label class="control-label fc1 ttu fwb"> Company Branch </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="companyBranchForm">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label fwb">Company Name</label>
+                                <div class="col-lg-4 pos_rel">
+                                    <select placeholder="Enter Company Name" class="form-control bgc7 fwb" ng-model="companyBranchCreationObj.companyId" required >
+                                        <option value="" ng-selected>Select company name</option>
+                                        <option ng-repeat="cl in companyList" value="{{cl.id}}" ng-selected="companyBranchCreationObj.companyId==cl.id">{{cl.name}}</option>
+                                    </select> 
+                                </div>
+                                <label class="col-lg-2 control-label fwb">Entity Name</label>
+                                <div class="col-lg-4 pos_rel">
+                                    <input type="text" placeholder="Enter Entity Name" class="form-control bgc7 fwb" ng-model="companyBranchCreationObj.entityName" required /> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label fwb">GST No.</label>
+                                <div class="col-lg-4 pos_rel">
+                                    <input type="text" placeholder="Enter GSTNo" class="form-control bgc7 fwb" ng-model="companyBranchCreationObj.gstNo" required /> 
+                                </div>
+                                <label class="col-lg-2 control-label fwb">Status</label>
+                                <div class="col-lg-4 pos_rel">
+                                    <select class="form-control bgc7 fwb" ng-model="companyBranchCreationObj.status" required="">
+                                        <option value="" ng-selected>Select status</option>
+                                        <option class="true" ng-selected="companyBranchCreationObj.status==true">True</option>
+                                        <option class="false" ng-selected="companyBranchCreationObj.status==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label fwb"> Branch Type</label>
+                                <div class="col-lg-4 pos_rel">
+                                    <select class="form-control bgc7 fwb" ng-model="companyBranchCreationObj.branchType" required="">
+                                        <option value="" ng-selected>Select branch type</option>
+                                        <option class="FRANCHISE">FRANCHISE</option>
+                                        <option class="OWN">OWN</option>
+                                    </select>
+                                </div>
+                                <label class="col-lg-2 fwb text-right"> Billing  Address</label>
+                                <div class="col-lg-4">
+                                    <textarea class="form-control bgc7 fwb" ng-model="companyBranchCreationObj.billingAddress" placeholder="Address"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="text-center mgt10">
+                                <button type="button" class="btn btn-w-m btn-primary" ng-disabled="companyBranchForm.$invalid" ng-click="addCompanyBranch(companyBranchCreationObj)">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<style type="text/css">
+    .modal-body{
+        max-height: calc(100% - 120px);
+        overflow-y: scroll;
+        padding: 20px 20px 20px 20px;
+    }
+</style>
+
+
+
+
+
+
+
+

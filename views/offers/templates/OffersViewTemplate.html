@@ -1,0 +1,117 @@
+<div class="row" ng-controller="OffersViewController">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title bb">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn pl30">
+				<h5 class="text-uppercase fontpro text-danger">{{offerName}}</h5>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn">
+				<div class="ibox-tools  text-center">
+    			<ol class="breadcrumb">
+    				<li>
+      				<a href="./#/home/dashboard">Home</a>
+    				</li>
+        			<li>
+          			<a ui-sref="offers.offersList">Offers List</a>
+        			</li>
+            	<li class="active">
+              	<strong> Offer Type</strong>
+            	</li>
+          </ol>
+    		</div>
+    	</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn pr25">
+				<div class="pull-right pr30">
+          <a ui-sref="offers.offersList">
+              <i class="fa fa-chevron-left text-danger" aria-hidden="true"></i>
+              <span class="text-danger"> Offers List</span>
+          </a>
+        </div>
+      </div>
+		</div>
+		<div class="row" ng-init="setInitialData()">
+  		<div>
+    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+      		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+      		<div class="ibox-content dt mt20  pt10 pb8">
+          	<form class="form-horizontal form-bordered">
+							<div class="row">
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6"> <b>Offer Name :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<input type="text" class="form-control" ng-hide="editOffers" ng-model="offerDetails.name" disabled />
+										<div class="form-control-static" ng-show="editOffers">{{offerDetails.name}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6"> <b>Offer Threshold Amout :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<input type="text" class="form-control" ng-hide="editOffers" ng-model="offerDetails.offerThreshold" disabled />
+										<div class="form-control-static" ng-show="editOffers">{{offerDetails.offerThreshold}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6"> <b>Measures :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<input type="text" class="form-control" ng-hide="editOffers" ng-model="offerDetails.unitOfMeasurement" disabled />
+										<div class="form-control-static" ng-show="editOffers">{{offerDetails.unitOfMeasurement}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6"> <b>Amount Type :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOffers" ng-model="offerDetails.amountType" disabled />
+										<div class="form-control-static" ng-show="editOffers">{{offerDetails.amountType}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6"> <b>Lessthan Threshold Amount :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOffers" ng-model="offerDetails.lessThanThreshold" disabled />
+										<div class="form-control-static" ng-show="editOffers">{{offerDetails.lessThanThreshold}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6"> <b>Graterthan Threshold Amount :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOffers" ng-model="offerDetails.greaterThanThreshold" disabled />
+										<div class="form-control-static" ng-show="editOffers">{{offerDetails.greaterThanThreshold}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6"> <b>Status :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<select class="select2_demo_2 form-control" ng-model="offerDetails.status" ng-hide="editOffers">
+											<option value="ACTIVE">Active</option>
+											<option value="INACTIVE">Inactive</option>
+										</select>
+										<div class="form-control-static" ng-show="editOffers">{{offerDetails.status}}</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+										<a  ng-click="offersEdit(offerDetails)" class="btn btn-outline btn-primary text-center" ng-show="editOffers">EDIT
+										</a>
+										<a ui-sref="offers.offersList" class="btn btn-outline btn-danger no_edit text-center" ng-show="editOffers">Close
+										</a>
+										<!-- <button class="btn btn-outline btn-primary" ng-if="offerDetails.publishable =='true'" ng-show="editOffers">Publish</button> -->
+										<button type="submit" class="btn btn-outline btn-success" style="margin-left:15px;" ng-hide="editOffers" ng-click="getUpdateOfferDetails(offerDetails)">Save</button>
+										<a class="btn btn-outline btn-danger" ng-click="cancelEdit(offerDetails)" ng-hide="editOffers">Cancel</a>
+									</div>
+								</div>
+							</div>
+						</div>
+          			</div>
+        		</div>
+        		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+      		</div>
+    	</div>
+	</div>
+</div>
+
+

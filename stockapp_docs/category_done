@@ -1,0 +1,11 @@
+
+
+category
+
+id		name			parent_category_id		is_active 	company_id
+c1		milk			null						1
+c2		butter			c1		    				1
+c3		fruits			null     	    			1
+c4      exotic fruits	c3							1
+
+	

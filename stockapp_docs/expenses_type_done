@@ -1,0 +1,13 @@
+Expenses_Types
+
+
+
+expenses_type
+
+id 		name  		desc 		is_active 		company_id
+1 		water bill	water bill	1				c1
+
+
+expense
+
+id  name   expens_type_id    ref_doc    

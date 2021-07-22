@@ -1,0 +1,94 @@
+<div ng-controller="usersMsgController">
+	<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+	    <div class="col-lg-8">
+	        <h4 class="page_heading_title fc1 fwb">Users message</h4>
+	        <ol class="breadcrumb fc1">
+	            <li>
+	                <a href="index.html">Home</a>
+	            </li>
+	            <li class="active">
+	                <strong>User Message</strong>
+	            </li>
+	        </ol>
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content" navigation-height>
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<form class="form-horizontal ng-pristine ng-valid ng-submitted" name="usersForm">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                	<div class="form-group">
+	                    <label class="col-lg-5 control-label fwb">Branch :</label>
+	                    <div class="col-lg-4 pos_rel">
+	                        <!-- <select placeholder="Company Branch name" class="form-control bgc7 fwb" ng-model="userMsgObj.branchs" required >
+	                            <option value="" ng-selected>SELECT BRANCH</option>
+	                            <option ng-repeat="cbl in companyBranchList" value="{{cbl.id}}" ng-selected>{{cbl.entityName}}</option>
+	                        </select>  -->
+	                        <select ng-model="userMsgObj.branchs" multiple chosen class="chosen-select form-control" ng-disabled="userMsgObj.moblileNumbers" ng-options="cbList.id as cbList.entityName for cbList in companyBranchLists" ng-change="dataChange('branch',userMsgObj.branchs)">
+                           </select>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+                        <label class="col-lg-5 control-label">Message</label>
+                        <div class="col-lg-4 pos_rel">
+                            <input type="text" placeholder="Enter Message" class="form-control" ng-model="userMsgObj.message" required /> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-5 control-label"> Mobile Numbers</label>
+                        <div class="col-lg-4">
+                            <!-- <select class="form-control" ng-model="userMsgObj.moblileNumbers">
+                            	<option value="" ng-selected>Select Mobile Number</option>
+                                <option value="{{list.phoneNo}}" ng-repeat="list in usrLst">{{list.name}}</option>
+                            </select> -->
+                            <select ng-model="userMsgObj.moblileNumbers" multiple chosen class="chosen-select form-control" ng-disabled="userMsgObj.branchs" ng-options="usrLst.phoneNo as usrLst.name+' - ('+ usrLst.phoneNo+')' for usrLst in userList" ng-change="dataChange('mobile',userMsgObj.moblileNumbers)">
+                           </select>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+						<label class="col-lg-2 control-label text-right">Mobile Numbers :</label>
+						<div class="col-lg-4">
+							<select multiple chosen class="chosen-select col-lg-12" tabindex="4" ng-model="userMsgObj.moblileNumbers" ng-change="getAttrVarients()" required="">
+								<option value="">Select Mobile Numbers</option>
+								<option value="{{list.name}}" ng-repeat="list in usrLst">{{list.name}}</option>
+							</select>
+						</div>
+					</div> -->
+                    <!-- <div class="form-group">
+                        <label class="col-lg-2 control-label"> Send To All</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" ng-model="userMsgObj.sendTo"  required="">
+                            	<option value="" ng-selected>Select All</option>
+                                <option value="ALL">ALL</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label class="col-lg-5 control-label"> Type</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" ng-model="userMsgObj.type"  required="">
+                            	<option value="" ng-selected>Select Type</option>
+                                <option value="TRANSACTIONAL">TRANSACTIONAL</option>
+                                <option value="PRAMOTIONAL">PROMOTIONAL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="text-center mgt10">
+                        <button type="button" class="btn btn-w-m btn-primary" ng-disabled="usersForm.$invalid" ng-click="sendSms(userMsgObj)">Proceed</button>
+                    </div>
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+
+
+<style type="text/css">
+		.search-field .default{
+			width: 200px !important;
+		}
+		.chosen-choices,.chosen-container.chosen-container-multi{
+			width: 400px !important;
+		}
+	</style>

@@ -1,0 +1,468 @@
+<div class="wrapper wrapper-content pd0" ng-controller="purchaseOrderUpdationController">
+  <div class="row wrapper border-bottom white-bg page_heading1 bgc8 ng-scope">
+    <div class="col-lg-6">
+      <h4 class="page_heading_title fc1 fwb">Purchase Order Updation</h4>
+      <ol class="breadcrumb fc1">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li >
+          <a ui-sref="purchase.purchaseorder">Purchase Order List</a>
+        </li>
+        <li class="active">
+          <strong>Purchase Order Updation</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-6"> 
+    	<!-- <div class="col-sm-12 text-right m-t-md">
+        <button class="btn btn-w-m btn-warning" type="submit" ng-click="updatePurchaseOrder(purchaseOrderObj)">Save</button>
+        <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+      </div> -->
+    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight pd0">
+		<div class="row">
+			<div class="col-lg-12 pd0">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="col-lg-12 m-t-xs">
+									<label class="col-lg-4">Party Name:</label> 
+									<div class="col-lg-6">
+										<select class="form-control input_style" ng-model="purchaseorderUpdationObj.partyId" required="">
+											<option value="" ng-selected="">Select party name</option>
+											<option value="{{pl.id}}" ng-repeat="pl in partyListObj" ng-selected="pl.name==purchaseorderUpdationObj.partyName">{{pl.name}}</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-12 m-t-md">
+									<label class="col-lg-4">Billing Address:</label> 
+									<div class="col-lg-6">
+                    <textarea placeholder="Billing Address" class="form-control fwb bgc7" ng-model="purchaseorderUpdationObj.billingAddress" rows="5" ng-required="true"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4"></div>
+							<div class="col-lg-4">
+								<!-- <div class="col-lg-12 m-t-xs">
+									<label class="col-lg-4 m-t-xs">Order No:</label>
+									<div class="col-lg-6">
+										<input type="text" class="form-control input_style" ng-model="purchaseorderUpdationObj.code" required="" />
+									</div>
+								</div> -->
+								<div class="col-lg-12 m-t-xs">
+									<label class="col-lg-4 m-t-xs">Order Date:</label> 
+									<div class="col-lg-6 input-daterange" id="datepickerorderdate">
+										<input type="text" class="form-control input_style" ng-model="purchaseorderUpdationObj.orderedDate" name="datepickerorderdate" required="" />
+									</div>
+								</div>
+								<div class="col-lg-12 m-t-xs">
+	                <label class="col-lg-4 m-t-xs">Due Date:</label> 
+									<div class="col-lg-6">
+	                	<input type="text" class="form-control input_style" name="datepickerduedate" ng-model="purchaseorderUpdationObj.estimatedDeliveryDate" required="" />
+	            		</div>
+            		</div>
+            		<div class="col-lg-12 m-t-xs">
+									<label class="col-lg-4 m-t-xs">State of Origin:</label> 
+            			<div class="col-lg-6">
+										<select class="form-control input_style" ng-model="purchaseorderUpdationObj.stateOfOrigin">
+		                  <option value="" ng-selected="">Select State of origin</option>            
+		                  <option  value="{{sl.name}}" ng-repeat="sl in stateListObj" ng-selected="purchaseorderUpdationObj.stateOfOrigin == sl.name">{{sl.name}}</option>
+		              	</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<!-- <div class="col-lg-12 border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;background: #ffffff;">
+							<div class="col-lg-1 p-r-xxs p-l-md">PRODUCT</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">COUNT</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">BATCH NO.</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">EXP DATE</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">MFG DATE</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">QTY</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">MRP</div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">UNIT</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">UNIT PRICE</div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">DISCOUNT</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">TAX</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">AMOUNT</div>
+						</div> -->
+						<!-- <div class="col-lg-12 p-xs bg-default m-t-xs" style="background: #a9a9a914;" ng-repeat="poa in purchaseOrderArra">
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<div class="col-lg-1" style="padding: 10px 0px;">{{$index+1}}</div>
+								<div class="col-lg-10" style="padding: 0px;">
+									<select class="form-control" ng-model="poa.product" required="">
+										<option value="" ng-selected="">Select product</option>            
+		                <option  value="{{sp.id}}" ng-repeat="sp in skuProductData">{{sp.name}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<input type="text" name="" class="form-control" ng-model="poa.count" />
+							</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<input type="text" name="" class="form-control" ng-model="poa.batchNo" />
+							</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<input type="text" name="" class="form-control" ng-model="poa.expDate" />
+							</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<input type="text" name="" class="form-control" ng-model="poa.mfgDate" />
+							</div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">
+						  	<input type="text" name="" class="form-control" ng-model="poa.quantity" />
+						  </div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">
+						  	<input type="text" name="" class="form-control" ng-model="poa.mrp" />
+						  </div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">
+						  	<input type="text" name="" class="form-control" ng-model="poa.unit" />
+						  </div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">
+						  	<input type="text" name="" class="form-control" ng-model="poa.price" />
+						  </div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">
+						  	<input type="text" name="" class="form-control" ng-model="poa.discount" />
+						  </div>
+						  <div class="col-lg-1 p-r-xxs p-l-xxs">
+						  	<input type="text" name="" class="form-control" ng-model="poa.tax" />
+						  </div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">
+								<div class="col-lg-10 p-r-xxs p-l-xxs">
+									<input type="text" name="" class="form-control" ng-model="poa.amount"/>
+								</div>
+								<div class="col-lg-2 p-r-xxs p-l-xxs c-p" ng-click="removeProduct($index)"><i class="fa fa-trash-o icon-mid"></i></div>
+							</div>
+						</div> -->  
+
+						<table>
+							<thead class="items_list_head">
+								<tr class="border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;background: #ffffff;">
+									<th class="">#</th>
+									<th style="width: 15%">PRODUCT</th>
+									<th class="">HSNCODE</th>
+									<!-- <th class="">BATCH NO.</th>
+									<th class="">EXP DATE</th>
+									<th class="">MFG DATE</th> -->
+									<th class="">QTY</th>
+									<th class="">UOM</th>
+									<th class="">MRP</th>
+								  <th class="">UNITS</th>
+									<th class="">PURCHASE PRICE</th>
+								  <!-- <th class="">DISCOUNT</th> -->
+									<th class="">TAX TYPE</th>
+									<th class="">TAX AMOUNT</th>
+									<th class="">TAX % </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="poa in purchaseOrderArra" style="background: #a9a9a914;" class=" bg-default items_list">
+									<td class="p-xs text-center">
+										{{$index+1}}
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.productSkuName" ng-keyup="productsSearch(poa.productSkuName,$index)"/>
+										<div class="product_purchase_list_{{$index}} hide product_purchase_view" ng-if="skuProductSearchData.length>0">
+											<ul>
+												<li ng-repeat="sp in skuProductSearchData | filter : poa.productSkuName" ng-click="selectedProduct(sp,$parent.$index)">{{sp.name}}</li>
+											</ul>
+										</div>
+
+										<!-- <select class="product_purchase_view" aria-labelledby="select2-chosen-1" ng-model="poa.productSkuId">
+											<option ng-repeat="sp in skuProductSearchData" value="{{sp.id}}">{{sp.name}}</option>
+										</select> -->
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.hsnCode" disabled="" />
+									</td>
+									<!-- <td>
+										<input type="text" name="" class="form-control" ng-model="poa.batchNo" />
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.expDate" />
+									</td> -->
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.quantity" />
+									</td>
+									<td>
+										<!-- <input type="text" name="" class="form-control" ng-model="poa.um" /> -->
+										<select ng-model="poa.uomId" class="p-xxs" style="width: 100%;">
+	                    <option value="" ng-selected="">Select Unit Of Measurement</option>
+	                    <option ng-repeat="uoml in unitOfMeasurementList" value="{{uoml.id}}">{{uoml.unitName}}</option>
+	                	</select>
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.finalUnitPrice" />
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.units" />
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.purchasepriceWithOutTax" />
+									</td>
+									<td>
+										<select ng-model="poa.isTaxInclude" class="p-xxs" style="width: 100%;">
+	                    <option value="" ng-selected="">Select Tax Type</option>
+	                    <option value="true">INCLUSIVE</option>
+	                    <option value="false">EXCLUSIVE</option>
+	                    <!-- <option ng-repeat="tga in taxGroupArray" value="{{tga.id}}">{{tga.unitName}}</option> -->
+	                	</select>
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.taxAmount" />
+									</td>
+									<td>
+										<input type="text" name="" class="form-control" ng-model="poa.taxPercent" />
+									</td>
+									<td><div class="c-p" ng-click="removeProduct($index)"><i class="fa fa-trash-o icon-mid"></i></div></td>
+								</tr>
+							</tbody>
+						</table>            
+	          <div class="col-lg-12 m-t-xs p-l-xxs p-r-xxs">
+	            <div class="col-lg-1">
+	            	<button class="btn btn-sm btn-primary" ng-click="newItemAdded()"><i class="fa fa-plus m-r-xs"></i>Add Row</button>
+	           	</div>
+	           	<!-- <div class="col-lg-1 font-bold">Total</div> -->
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1 font-bold text-center"></div>
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1 font-bold text-center"></div>
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1"></div>
+	           	<div class="col-lg-1 font-bold text-center"></div>
+	          </div>
+					</div>	
+					<!-- Payments Details -->     
+					<div class="inline col-lg-12 p-xs" style="background: #ffffff;">                 
+	  				<div class="row m-t-sm">
+	  					<div class="col-lg-4">
+	  						<div class="col-lg-12">
+	                <div class="form-group">
+	                  <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">PaymentType :</label>
+										<div class="col-lg-7">
+											<select class="form-control input_style" ng-model="purchaseorderUpdationObj.paymentType">
+												<option value="" ng-selected="">Payment Type</option>
+												<option value="CASH">CASH</option>
+												<option value="CARD">CARD</option>
+												<option value="ADDACCOUNT"><i class="fa fa-plus"></i> ADD ACCOUNT</option>
+											</select>
+										</div>
+	                </div>
+	              </div>
+	              <div class="col-lg-12 m-t-xs">
+	                <div class="form-group">
+	                  <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">Description :</label>
+										<div class="col-lg-7">
+											<input type="text" placeholder="Description" class="form-control input_style" ng-model="purchaseorderUpdationObj.description"/> 
+	                  </div>
+	                </div>
+	              </div>
+	            	<!-- <div class="col-lg-12 m-t-xs">
+	                <div class="form-group">
+	              	  <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">Ref No. :</label>
+	                  <div class="col-lg-7">
+	                  	<input type="text" placeholder="" class="form-control input_style" ng-model="purchaseorderUpdationObj.refNo"> 
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="col-lg-12 m-t-xs">
+	                <div class="form-group">
+	              	  <label class="col-lg-5 p-r-xxs p-l-xxs m-t-xs control-label">Ref Doc :</label>
+	                  <div class="col-lg-7">
+	                  	<input type="file" placeholder="" class="form-control input_style" ng-model="purchaseorderUpdationObj.rerefDocumentLocationfNo"> 
+	                  </div>
+	                </div>
+	              </div> -->
+	              <!-- <div class="p-l-md m-t-lg">*Note: MRP inclusive of tax.</div> -->
+	  					</div>
+	  					<div class="col-lg-4"></div>
+	  					<div class="col-lg-4">
+	  						<!-- <div class="col-lg-12 m-t-xs">
+	                <div class="form-group">
+	                	<label class="col-lg-4 control-label">SubTotal :</label>
+	            			<div class="col-lg-6 p-r-xxs p-l-xxs">
+	            				<input type="number" placeholder="" class="form-control input_style" ng-model="purchaseorderUpdationObj.subTotal" number-to-string/>
+	            			</div>
+	        				</div>
+	      				</div>
+	      				<div class="col-lg-12 m-t-xs">
+	                <div class="form-group">
+	                	<label class="col-lg-4 control-label">Tax :</label>
+	            			<div class="col-lg-6 p-r-xxs p-l-xxs">
+	            				<input type="number" placeholder="" class="form-control input_style" ng-model="purchaseorderUpdationObj.taxAmount" number-to-string/> 
+	            			</div>
+	        				</div>
+	      				</div> -->
+	            	<div class="col-lg-12 m-t-xs">
+	                <div class="form-group">
+	                	<label class="col-lg-4 control-label">Total :</label>
+	            			<div class="col-lg-6 p-r-xxs p-l-xxs">
+	            				<input type="text" placeholder="" class="form-control input_style" ng-model="purchaseorderUpdationObj.totalAmount"/> 
+	            			</div>
+	        				</div>
+	      				</div>
+	      				<!-- <div class="col-lg-12 m-t-xs">
+	              	<div class="form-group">
+	              		<label class="col-lg-4 m-t-xs control-label">Advance Amount :</label>
+										<div class="col-lg-6 p-r-xxs p-l-xxs">
+										 	<input type="number" placeholder="" class="form-control input_style" ng-model="purchaseorderUpdationObj.paidAmount" number-to-string/> 
+	                	</div>
+	          		  </div>
+	          		</div>
+	          		<div class="col-lg-12 m-t-xs">
+	               	<div class="form-group">
+			            	<label class="col-lg-4 m-t-xs control-label">Balance :</label>
+	                  <div class="col-lg-6 p-r-xxs p-l-xxs">
+	                  	<input type="number" placeholder="" class="form-control input_style" ng-model="purchaseorderUpdationObj.dueAmount" number-to-string/> 
+	                  </div>
+	          			</div>
+	              </div> -->
+
+	  					</div>
+
+
+
+
+
+	            <!-- <div class="col-lg-4">
+	              
+	            </div>
+	            <div class="col-lg-2 "></div>
+	            <div class="col-lg-2"></div>
+	            <div class="col-lg-4">
+	        		</div> -->
+	        	</div>
+						<!-- <div class="row m-t-xs">
+	            <div class="col-lg-4">
+	            </div>
+	            <div class="col-lg-2 "></div>
+	            <div class="col-lg-2"></div>
+	            <div class="col-lg-4">
+	              
+	            </div>
+	          </div> 
+	     			<div class="row m-t-xs">
+	            <div class="col-lg-4">
+	            </div>
+	            <div class="col-lg-2 "></div>
+	            <div class="col-lg-2"></div>
+	            <div class="col-lg-4">
+	          	  
+	            </div>
+	          </div>  
+	          <div class="row"></div>  -->
+          </div>               	            	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+  
+
+
+
+<style type="text/css">
+	.input_style{
+		border-radius: 5px;
+    box-shadow: 1px 1px 0px 0px #ddd;
+	}
+	.items_list td input{
+		margin: 10px;
+		width: 90%;
+	}
+	.items_list{
+		width: 100%;
+	}
+	.items_list_head tr th{
+		padding: 10px;
+	}
+	.items_list_head{
+		width: 100%;
+	}
+	table{
+		width: 100%;
+	}
+
+
+	.select2.select2-container{
+		width: 100% !important;
+	}
+	.product_purchase_view{
+		width: 20% !important;
+        padding: 6px !important;
+	}
+	.product_purchase_view{
+		z-index: 1;
+    position: absolute;
+    background: #fff;
+    width: 20%;
+    height: 300px;
+    overflow-y: scroll;
+    box-shadow: 2px 2px 2px 2px #ddd;
+	}
+	.product_purchase_view ul{
+		padding: 0px;
+	}
+	.product_purchase_view ul li{
+		list-style: none;
+		padding: 10px;
+		cursor: pointer;
+    border-bottom: 1px solid #ddd;
+	}
+</style>
+
+
+
+<script type="text/javascript">
+	$(function() {
+	  $('input[name="datepickerorderdate"]').daterangepicker({
+	    singleDatePicker: true,
+	    showDropdowns: true,
+	    minYear: 1901,
+	    maxYear: parseInt(moment().format('YYYY'),10)
+	  }, function(start, end, label) {
+	    var years = moment().diff(start, 'years');
+	    // alert("You are " + years + " years old!");
+	  });
+
+	  $('input[name="datepickerduedate"]').daterangepicker({
+	    singleDatePicker: true,
+	    showDropdowns: true,
+	    minYear: 1901,
+	    maxYear: parseInt(moment().format('YYYY'),10)
+	  }, function(start, end, label) {
+	    var years = moment().diff(start, 'years');
+	    // alert("You are " + years + " years old!");
+	  });
+
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

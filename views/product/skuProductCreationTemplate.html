@@ -1,0 +1,440 @@
+                        
+<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+    <div class="col-lg-10">
+        <h4 class="page_heading_title fc1 fwb">SkuProduct Creation</h4>
+        <ol class="breadcrumb fc1">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">
+                <strong>SkuProduct Creation</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="skuproductCreationController" navigation-height>
+    <div class="row">
+        <div class="col-lg-12 pd0">
+            <div class="ibox float-e-margins">
+                <!-- <div class="ibox-title">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>SkuProduct Creation</h3>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="ibox-content">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="skuskuproductForm">
+                        <div class="row border-bottom">
+                            <div class="col-sm-12"><h4 class="pull-left font-bold">Product </h4></div> 
+                        </div>
+                        <div class="row m-t-md">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label fwb">Product Name:</label>
+                                    <div class="col-lg-8">
+                                        <!-- <select class="form-control m-b" name="attribute" ng-model="skuProductNewObj.productId" required="">
+                                            <option value='' selected="">Select Product</option>
+                                            <option value="{{psk.id}}" ng-repeat="psk in productsList">{{psk.name}}</option>
+                                        </select> -->
+                                    
+
+
+                                    <input type="text" name="" class="form-control" ng-model="skuProductNewObj.productName" ng-keyup="productsSkuSearch(skuProductNewObj.productName)"/>
+                                    <div class="product_sku_list hide product_sku_view">
+                                        <ul>
+                                            <li ng-repeat="psk in productsList | filter : skuProductNewObj.productName" ng-click="selectedSkuProduct(psk)">{{psk.name}} - {{psk.brandName}}</li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-md border-bottom">
+                            <div class="col-sm-12">
+                                <h4 class="pull-left font-bold">Product Sku</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-md">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label text-right">Attribute :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b" name="attribute" ng-model="skuProductNewObj.attrType" required="">
+                                            <option value='' selected="">Select</option>
+                                            <option value="Units">Units</option>
+                                            <option value="Weight">Weight</option>
+                                            <option value="Pieces">Pieces</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label text-right">Value :</label>
+                                    <div class="col-lg-8">
+                                        <select multiple chosen class="chosen-select col-lg-12" tabindex="4" ng-model="skuProductNewObj.selectedAttrVal" ng-change="getAttrVarients()" required="">
+                                            <option value="">Select</option>
+                                            <option value="Small">Small</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Large">Large</option>
+                                            <option value="Gram">Gram</option>
+                                            <option value="Kg">Kg</option>
+                                            <option value="Ton">Ton</option>
+                                            <option value="1">1</option>
+                                            <option value="6">6</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-md ">
+                            <div class="col-lg-offset-1 col-sm-12">
+                                <button type="button" class="btn btn-default btn-sm">Add More Attribute</button>
+                            </div>
+                        </div>
+                        <!-- Variant Blocks -->
+                        <div class="row cust_block m-t-lg" ng-repeat="varientObj in skuVarientsArray">
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Variant Name:</label>
+                                    <input type="text" class="form-control" ng-model="varientObj.name" required="" placeholder="product name" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Variant Value</label>
+                                    <input type="text" class="form-control" ng-model="varientObj.attrValue" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>BarCode</label>
+                                    <input type="text" placeholder="BarCode" class="form-control" ng-model="varientObj.barcode" required="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>SKU :</label>
+                                    <input type="text" placeholder="Sku" class="form-control" ng-model="varientObj.skuCode" required="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>HSN Code :</label>
+                                    <!-- <select class="form-control m-b-xs" name="hsnCode" ng-model="varientObj.hsnCode" required="">
+                                        <option value="" selected="">Select HSN Code</option>
+                                        <option value="{{hsnCodeObj.id}}" ng-repeat="hsnCodeObj in hsnCodeArray">{{hsnCodeObj.hsncode}}</option>
+                                    </select> -->
+                                    <input type="text" placeholder="HSN Code" class="form-control" ng-model="varientObj.hsnCode" required="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Quantity</label>
+                                    <input type="text" placeholder="Quantity" class="form-control" ng-model="varientObj.quantity" required="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>MaxBuyableUnits</label>
+                                    <input type="text" placeholder="maxBuyableUnits" class="form-control" ng-model="varientObj.maxBuyableUnits" required="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Batch</label>
+                                    <select class="form-control m-b-xs" name="batchgroup" ng-model="varientObj.activeBatch" required="">
+                                        <option value="" selected="">Select Batch</option>
+                                        <option value="{{batches.id}}" ng-repeat="batches in batchSkuArray">{{batches.name}} - {{batches.batchCode}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Tax Group</label>
+                                    <select class="form-control m-b-xs" name="taxgroup" ng-model="varientObj.taxGroupId" required="">
+                                        <option value="" selected="">Select Tax Group</option>
+                                        <option value="{{taxGrp.id}}" ng-repeat="taxGrp in taxGroupArray">{{taxGrp.taxGroupName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Unit of measurement :</label>
+                                    <select class="form-control m-b-xs" name="uomId" ng-model="varientObj.uomId" required="">
+                                        <option value="" selected="">Select UOM</option>
+                                        <option value="{{uomObj.id}}" ng-repeat="uomObj in uomArray">{{uomObj.unitName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Stockable :</label>
+                                    <select class="form-control m-b-xs" name="is_stockable" ng-model="varientObj.is_stockable" required="">
+                                        <option value="" selected="">Select Stockable</option>
+                                        <option value="true">YES</option>
+                                        <option value="false">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Ecommerce Visible :</label>
+                                    <select class="form-control m-b-xs" name="Is_ecommerce_visible" ng-model="varientObj.is_ecommerce_visible" required="">
+                                        <option value="" selected="">Select Ecommerce Visible</option>
+                                        <option value="true">YES</option>
+                                        <option value="false">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Measurable Type :</label>
+                                    <select class="form-control m-b-xs" name="measurable_type" ng-model="varientObj.measurable_type" required="">
+                                        <option value="" selected="">Select Measurable Type</option>
+                                        <option value="FIXED">FIXED</option>
+                                        <option value="LOOSE">LOOSE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>POS Visible :</label>
+                                    <select class="form-control m-b-xs" name="is_pos_visible" ng-model="varientObj.isPosVisible" required="">
+                                        <option value="" selected="">Select POS Visible</option>
+                                        <option value="true">YES</option>
+                                        <option value="false">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Carry Bag :</label>
+                                    <select class="form-control m-b-xs" name="isCarrybag" ng-model="varientObj.isCarrybag" required="">
+                                        <option value="">Select Carry Bag</option>
+                                        <option value="true">YES</option>
+                                        <option value="false" selected="">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Tax Include :</label>
+                                    <select class="form-control m-b-xs" name="isTaxInclude" ng-model="varientObj.isTaxInclude" required="">
+                                        <option value="">Select Tax Include</option>
+                                        <option value="true">YES</option>
+                                        <option value="false" selected="">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10" style="margin-bottom: 0px !important;">
+                                    <label>Multiple Units :</label>
+                                    <select class="form-control m-b-xs" name="isMultipleUnit" ng-model="varientObj.isMultipleUnit" required="" ng-change="selectMultipleUnits($index,varientObj)">
+                                        <option value="">Select Multiple Unit</option>
+                                        <option value="true">YES</option>
+                                        <option value="false" selected="">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>MRP</label>
+                                    <input type="text" placeholder="MRP" class="form-control" ng-model="varientObj.mrp" required="">
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>RSP :</label>
+                                    <input type="text" placeholder="" class="form-control" ng-model="varientObj.rsp" required="">
+                                </div>
+                            </div> -->
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Selling Price</label>
+                                    <input type="text" placeholder="Selling Price" class="form-control" ng-model="varientObj.sellingPrice" required="">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Seo Title :</label>
+                                    <input type="text" placeholder="SEO Title" class="form-control" ng-model="varientObj.seoTitle" required="" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Seo Keywords</label>
+                                    <input type="text" placeholder="SEO Keywords" class="form-control" ng-model="varientObj.seoKeyword" required="" />
+                                </div>
+                            </div>
+                             <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Seo Description</label>
+                                    <textarea type="text" placeholder="Seo description" class="form-control fwb bgc7" ng-model="varientObj.seoDescription" ng-required="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group p-lr-10">
+                                    <label>Description</label>
+                                     <textarea type="text" placeholder="description" class="form-control fwb bgc7" ng-model="varientObj.description" ng-required="true"></textarea>
+                                    <div ng-show="skuproductForm.$submitted || skuproductForm.description.$touched">
+                                        <div ng-show="skuproductForm.description.$error.required" class="text-danger">Long Description is required!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                    <div class="form-group p-lr-10">
+                                        <label>Short Description</label>
+                                        <textarea type="text" placeholder="description" class="form-control fwb bgc7" ng-model="varientObj.shortDescription" required=""></textarea>
+                                        <!-- <div ng-show="skuproductForm.$submitted || skuproductForm.description.$touched">
+                                            <div ng-show="skuproductForm.description.$error.required" class="text-danger">Long Description is required!</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group p-lr-10">
+                                        <label>Keywords</label>
+                                        <textarea type="text" placeholder="keywords" class="form-control fwb bgc7" ng-model="varientObj.keywords" required=""></textarea>
+                                        <!-- <div ng-show="skuproductForm.$submitted || skuproductForm.description.$touched">
+                                            <div ng-show="skuproductForm.description.$error.required" class="text-danger">Long Description is required!</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group p-lr-10">
+                                        <label>Disclaimer</label>
+                                        <textarea type="text" placeholder="disclaimer" class="form-control fwb bgc7" ng-model="varientObj.disclaimer" ng-required="true"></textarea>
+                                        <!-- <div ng-show="skuproductForm.$submitted || skuproductForm.description.$touched">
+                                            <div ng-show="skuproductForm.description.$error.required" class="text-danger">Long Description is required!</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border-bottom">
+                                <div class="col-sm-12"><h4 class="pull-left font-bold">Product Images</h4></div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-md">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label fwb">Main Image:</label>
+                                            <div class="col-lg-8">
+                                                <input type="file" placeholder="Main Image" class="form-control" onchange="angular.element(this).scope().variantImage(this,this.id,'product')" id="sku_{{$index}}"> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <img src="{{varientObj.imageModels[0].imageurl}}" alt="Main Image"  width="200px" ng-if="varientObj.imageModels[0].imageurl"/>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="pd8">{{varientObj.imageModels[0].imageType}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-md" ng-repeat="pimage in varientObj['imageModels']" ng-if="varientObj['imageModels'].length>1 && pimage['imageType'] == 'SINGLEIMAGE'">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label fwb">Single Image:</label>
+                                            <div class="col-lg-8">
+                                                <input type="file" placeholder="Sub Image" class="form-control" onchange="angular.element(this).scope().variantImage(this,this.id,'product')" id="sku_{{$parent.$parent.$index}}"> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2" ng-if="varientObj['imageModels'][varientObj['imageModels'].length-1].imageurl&& pimage['imageType'] == 'SINGLEIMAGE'">
+                                        <img src="{{pimage.imageurl}}" alt="Sub Image" width="200px"/>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="pd8">{{pimage.imageType}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" ng-if="varientObj['imageModels'].length>=1">
+                                    <button type="button" class="btn btn-default btn-sm" ng-click="addSubImg($index)">Add Single Image</button>
+                                </div>
+                                <div ng-if="varientObj.isMultipleUnit=='true' && varientObj.psupModel.length>0">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border-bottom">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <h4 class="pull-left font-bold">Product Units</h4>
+                                        </div>
+                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <button type="button" class="btn btn-default btn-sm" ng-click="addNewUnit($index)"><i class="fa fa-plus"></i> More Units</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-md" ng-repeat="upmodel in varientObj.psupModel">
+                                        <div class="col-sm-2">
+                                            <div class="form-group p-lr-10">
+                                                <label>Unit Name :</label>
+                                                <input type="text" placeholder="Unit Name" class="form-control" ng-model="upmodel.name" required="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group p-lr-10">
+                                                <label>Max Units :</label>
+                                                <input type="text" placeholder="Max Units" class="form-control" ng-model="upmodel.maxBuyableUnits" required="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group p-lr-10">
+                                                <label>Quantity :</label>
+                                                <input type="text" placeholder="Quality" class="form-control" ng-model="upmodel.quantity" required="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group p-lr-10">
+                                                <label>Unit Selling Price :</label>
+                                                <input type="text" placeholder="Uniit Selling Price" class="form-control" ng-model="upmodel.sellingPrice" required="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group p-lr-10">
+                                                <label>Unit Mrp :</label>
+                                                <input type="text" placeholder="Unit MRP" class="form-control" ng-model="upmodel.mrp" required="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group p-lr-10">
+                                                <label>Status :</label>
+                                                <select class="form-control fwb bgc7 m-b-xs" name="status" ng-model="upmodel.isActive" required="">
+                                                    <option value='' selected="">Select status</option>
+                                                    <option value="true">Active</option>
+                                                    <option value="false">InActive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div> 
+                        <div class="form-group">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-t-sm text-center">
+                                <button class="btn btn-primary btn-w-m" type="submit" ng-disabled="skuproductForm.$invalid" ng-click="createSkuProduct()">Save</button>
+                                <button class="btn btn-white" ng-click="goBack()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style type="text/css">
+    .product_sku_view{
+        z-index: 1;
+    position: absolute;
+    background: #fff;
+    width: 94%;
+    height: 300px;
+    overflow-y: scroll;
+    box-shadow: 2px 2px 2px 2px #ddd;
+    }
+    .product_sku_view ul{
+        padding: 0px;
+    }
+    .product_sku_view ul li{
+        list-style: none;
+        padding: 10px;
+        cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    }
+</style>

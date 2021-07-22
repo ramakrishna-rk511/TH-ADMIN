@@ -1,0 +1,41 @@
+Tax
+---
+
+Tax Rate
+---------
+id		name		rate 		company_id
+1		cgst5%		5%
+2		sgst5%		5%
+3		igst10%		10%
+4		cess12%		12%
+5		cgst3.5%    3.5
+6		sgst3.5%	3.5	
+7 		sgst12% 	12%
+8 		cgst12% 	12%
+
+
+Tax Group
+---------
+id		name				slab_based	amount_type 			company_id
+tg1		gst10% + cess12%	N 				R(tax rate)
+tg2 	gst10% 				Y 				A
+tg3 	gst7% 				Y 				A
+tg4 	gst24% 				Y				A
+
+Tax Group Rates
+---------------
+id		tax_group_id	tax_rate_id		applicable_on	is_optional   from_amount	to_amount  company_id
+tgr1	tg1 			1				A 				N 					0				0
+tgr2	tg1 			2				A 				N 					0				0
+tgr3	tg1 			3				A 				Y					0 				0
+tgr4	tg1 			4				T 				N 					0 				0
+tgr5	tg2 			1 				A 				N 				10000 			25000
+tgr6  	tg2 			2 				A 				N 				10000			25000
+tgr7 	tg2 			3				A 				N 				10000 			25000
+tgr8 	tg3 			5				A 				N 				25000 			50000
+tgr9 	tg3 			6 				A 				N 				25000 			50000
+tgr10 	tg4 			
+
+
+
+Hsn Code

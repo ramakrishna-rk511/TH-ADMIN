@@ -1,0 +1,196 @@
+<div class="wrapper wrapper-content pd0" ng-controller="stockController">
+	<div class="row wrapper border-bottom white-bg page_heading1 bgc8 ng-scope ">
+	    <div class="col-lg-8">
+	        <h4 class="page_heading_title fc1 fwb">Stock</h4>
+	        <ol class="breadcrumb fc1">
+	            <li>
+	                <a href="index.html">Home</a>
+	            </li>
+	            <li class="active">
+	                <strong>Stock List</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-4 col-sm-12">
+	      <div class="row m-t-xs">
+	        <div class="col-lg-6 m-t-xs"> 
+	          <div class="form-group">
+	            <div class="input-group">
+	              <select class="form-control m-b" ng-model="filterobj">
+	                <option value="" ng-selected="">select a option</option>
+	                <option value="Brand">Brand</option>
+	                <option value="Category">Category</option>
+	              </select> 
+	              <span class="input-group-addon"><i class="fa fa-filter"></i></span>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-lg-6 m-t-xs"> 
+	          <div class="form-group" ng-if="filterobj == 'Brand'">
+	            <div class="input-group">
+	              <select class="form-control m-b" ng-model="stockPointFilter">
+	                <option value="" ng-selected="">select a brand</option>
+	                <option value="{{blo.id}}" ng-repeat="blo in brandsListObj">{{blo.name}}</option>
+	              </select> 
+	              <span class="input-group-addon"><i class="fa fa-database"></i></span>
+	            </div>
+	          </div>
+	          <div class="form-group" ng-if="filterobj == 'Category'">
+	            <div class="input-group">
+	              <select class="form-control m-b" ng-model="stockPointFilter">
+	                <option value="" ng-selected="">select a category</option>
+	                <option value="{{co.id}}" ng-repeat="co in categoriesObj">{{co.name}}</option>
+	              </select> 
+	              <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+	            </div>
+	          </div>
+	        </div> 
+	      </div> 
+	    </div> 
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight pd0">
+		<div class="row">
+	    <div class="col-lg-3">
+	        <div class="ibox float-e-margins">
+	            <div class="ibox-title">
+	                <span class="label label-success pull-right">Monthly</span>
+	                <h5>Current Stock</h5>
+	            </div>
+	            <div class="ibox-content">
+	                <h1 class="no-margins">{{stockRep['data'].length}}</h1>
+
+	                <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+	                <small>Total Stock</small>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-3">
+	        <div class="ibox float-e-margins">
+	            <div class="ibox-title">
+	                <span class="label label-info pull-right">Monthly</span>
+	                <h5>Current Stock Value</h5>
+	            </div>
+	            <div class="ibox-content">
+	                <h1 class="no-margins">{{stockRep['mrpTotal'] | number: 1}} / {{stockRep['spTotal'] | number: 1}}</h1>
+
+	                <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+	                <small>Total Stock value</small>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-3">
+	        <div class="ibox float-e-margins">
+	            <div class="ibox-title">
+	                <span class="label label-primary pull-right">Monthly</span>
+	                <h5>Damaged Stock</h5>
+	            </div>
+	            <div class="ibox-content">
+	                <h1 class="no-margins">106,120</h1>
+
+	                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+	                <small>count</small>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-3">
+	        <div class="ibox float-e-margins">
+	             <div class="ibox-title">
+	                <a class="label label-danger pull-right" ng-click="getAllNextDueAmountListByCustomer()">View All</a>
+	                <h5>Stock-In/Stock-out</h5>
+	            </div>
+	            <div class="ibox-content">
+	                <h1 class="no-margins">80,600/20011</h1>
+
+	                <div class="stat-percent font-bold text-danger">01/10/2020 <i class="fa fa-level-down"></i></div>
+	                <small>Stock count in units</small>
+	            </div>
+	        </div>
+	    </div>
+		</div>
+	    
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox float-e-margins">
+					<!-- <div class="ibox-title">
+		        <div class="row">
+	            <div class="col-sm-10">
+	              <h3>Stock List</h3>
+	            </div>
+		        </div>
+					</div> -->
+					<div class="ibox-content">
+						<table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id="stockTable">
+					    <thead>
+						    <tr>
+						        <!-- <th>No</th> -->
+						        <th>Product SKU</th>
+						        <th>BarCode</th>
+						        <th>Category</th>
+						        <th>Brand</th>
+						        <!-- <th>Unit</th> -->
+						        <th>Action</th>
+						    </tr>
+					    </thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style type="text/css">
+	td.details-control{
+		cursor: pointer;
+	}
+	td.details-control:before{
+		display: inline-block;
+	  font: normal normal normal 14px/1 FontAwesome;
+	  font-size: inherit;
+	  text-rendering: auto;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  transform: translate(0, 0);
+		content: '\f107';
+	}
+
+	tr.shown td.details-control:before{
+		display: inline-block;
+	  font: normal normal normal 14px/1 FontAwesome;
+	  font-size: inherit;
+	  text-rendering: auto;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  transform: translate(0, 0);
+    content: "\f106";
+	}
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<div class="row" ng-cloak="" ng-controller="productViewUpdateController">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pn">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title bb1">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn pl25">
+					<h5 class="text-uppercase fontpro text-danger pl30">{{prodName}}</h5>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn">
+					<div class="ibox-tools text-center">
+						<ol class="breadcrumb">
+							<li>
+								<a href="./#/home/dashboard">Home</a>
+							</li>
+							<li>
+								<a ui-sref="catalogue.productList">Products</a>
+							</li>
+						</ol>
+				  </div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pn pr25">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pr30">
+						<a ui-sref="catalogue.productList">
+			      	<i class="fa fa-chevron-left text-danger" aria-hidden="true"></i>
+			      	<span class="text-danger"> PRODUCTS</span>
+					  </a>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<a ng-click="editProductView()">
+			      	<span class="text-danger">EDIT PRODUCTS</span>
+					  </a>
+					</div>
+				</div>
+			</div>
+			<div class="wrapper wrapper-content animated fadeInRight pd0">
+        <div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel-body">
+							<div class="col-lg-4 col-md-4" style="border-top: 2px solid #dfdfdf;">
+                <div class="row" style="padding:10px;">
+                  <div class="col-lg-6 col-md-6 fwb">Brand</div>
+                  <div class="col-lg-6 col-md-6">{{singleProductData.brandName}}</div>
+                </div>
+                <div class="row" style="padding:10px;">
+                  <div class="col-lg-6 col-md-6 fwb">Department</div>
+                  <div class="col-lg-6 col-md-6">Custom</div>
+                </div>
+                <div class="row" style="padding:10px;">
+                  <div class="col-lg-6 col-md-6 fwb">Category</div>
+                  <div class="col-lg-6 col-md-6">{{singleProductData.categoryName}}</div>
+                </div>
+                <div class="row" style="padding:10px;">
+                  <div class="col-lg-6 col-md-6 fwb">Status</div>
+                  <div class="col-lg-6 col-md-6">{{singleProductData.isActive?'ACTIVE':'INACTIVE'}}</div>
+                </div>
+              </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

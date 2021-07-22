@@ -1,0 +1,460 @@
+ [
+
+
+      {
+        "name": "dashboard",
+        "route":"dashboard.home",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+      },
+
+      {
+        "name": "Online Order",
+        "route":"orders.onlineOrdersList",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+      },
+
+      {
+        "name": "CMS",
+        "route":"cms.cmslist",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+      },
+
+      {
+        "name": "Procurement",
+        "route":"procurement.procurementlist",
+        "roles": "SUPERADMIN BRANCHADMIN"
+      },
+
+
+      {
+        "name": "Offers & Coupons",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR",
+        "submenu":[{
+          "name":"Coupons",
+          "route":"coupons.couponslist",
+          "roles": "SUPERADMIN" 
+        },
+        {
+          "name":"Refer & Earn",
+          "route":"",
+          "roles": "SUPERADMIN"
+        }
+        ]
+      },
+
+
+
+      {
+        "name": "company",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR",
+        "submenu":[{
+         "name":"Company",
+         "route":"company.companylist",
+          "roles": "SUPERADMIN" 
+        },
+        {
+          "name":"Company Branch",
+          "route":"company.companybranchlist",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name":"Company Branch Users",
+          "route":"company.companybranchuserlist",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+        }
+            ]
+        },
+
+    {
+        "name": "subscription",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER",
+        "submenu" :[
+            {
+                "name" : "Subscription",
+                "route":"subscription.subscriptionlist",
+                "roles": "SUPERADMIN" 
+            },
+            {
+                "name" : "Branch Product Subscription",
+                "route":"subscription.branchproductsubscriptionlist",
+                "roles": "SUPERADMIN" 
+            },
+            {
+                "name" : "Branch Subscription Type",
+                "route":"subscription.branchsubscriptiontypelist",
+                "roles": "SUPERADMIN" 
+            }
+        ]
+    },
+
+      {
+         "name":"parties",
+         "roles": "SUPERADMIN",
+         "submenu":[{
+          "name":"supplier",
+          "route":"parties.supplier",
+          "roles": "SUPERADMIN"
+         },
+         {
+          "name":"customer",
+          "route":"parties.customer",
+          "roles": "SUPERADMIN"
+         }
+       ]
+          
+      },
+
+      {
+        "name": "catalogue",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER",
+        "submenu":[
+
+        {
+          "name":"Category",
+          "route":"catalogue.categorylist",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+        },
+        {
+          "name":"Brand",
+          "route":"catalogue.brandlist",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+        },
+        {
+         "name":"Product",
+         "route":"catalogue.productlist" ,
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+        },
+        {
+         "name":"Price",
+         "route":"catalogue.productprice" ,
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+        }
+        ]
+      },
+
+      {
+        "name": "inventory",
+        "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER",
+        "submenu":[
+        {
+          "name":"Stock",
+          "route":"inventory.stock",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+        },
+        {
+          "name":"Stock Point",
+          "route":"inventory.stockpointlist",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+        },
+        {
+          "name":"Stock Transfer",
+         "route":"inventory.stocktransfer" ,
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR USER"
+        },
+        {
+          "name":"Stock Movement",
+         "route":"inventory.stockmovementlist" ,
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+        },
+        {
+          "name":"Stock Conversion",
+          "route":"inventory.stockconversion",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+        },
+        {
+          "name":"Stock Return",
+          "route" :"inventory.stockreturnlist",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+        },
+        {
+          "name":"Batch",
+          "route" :"inventory.batch",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+        },
+        {
+          "name":"purchase Order",
+          "route":"purchase.purchaseorder",
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+        },
+        {
+          "name":"purchase Return",
+          "route":"purchase.purchaseorderreturn",
+          "roles": "SUPERADMIN"
+        },
+        {
+         "name":"Goods-Receipt Invoice",
+         "route":"inventory.grn" ,
+          "roles": "SUPERADMIN BRANCHADMIN SUPERVISOR"
+        }
+        
+        ]
+       
+      },
+      
+      {
+        "name": "sale",
+        "roles": "SUPERADMIN",
+       "submenu":[
+        {
+         "name":"Estimation",
+         "route":"sale.estimationlist" ,
+          "roles": "SUPERADMIN"
+        },
+         {
+          "name":"Sale Order",
+          "route":"sale.saleorder",
+          "roles": "SUPERADMIN"
+        },
+        {
+         "name":"Sale Invoice",
+         "route":"sale.saleinvoicelist" ,
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name":"Sale Return",
+          "route":"sale.salereturn",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name":"Delivery Challans",
+          "route":"sale.deliverychallan",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name":"Daily Logs",
+          "route":"sale.dailylogs",
+          "roles": "SUPERADMIN"
+        }
+        ]
+        
+      },
+
+      {
+            "name" :"payment",
+        "roles": "SUPERADMIN",
+            "submenu" : [{
+                "name":"All Payments",
+                "route" :"payment.allpayment",
+          "roles": "SUPERADMIN"
+                },{
+                    "name":"Payment In",
+                    "route":"payment.paymentin" ,
+          "roles": "SUPERADMIN"
+                },{
+                    "name":"Payment Out",
+                    "route":"payment.paymentout" ,
+          "roles": "SUPERADMIN"
+                },{
+                "name":"Payment Methods",
+                "route":"payment.paymentMethod" ,
+          "roles": "SUPERADMIN"
+                }
+            ]
+        },
+      
+      
+        {
+
+        "name": "Expenses",
+        "roles": "SUPERADMIN",
+        "submenu" : [
+          {
+              "name":"List",
+              "route" :"expenses.list",
+              "roles": "SUPERADMIN"
+            },
+            {
+              "name":"Types",
+              "route" :"expenses.types",
+              "roles": "SUPERADMIN"
+            }
+        ]
+
+        },
+
+        {
+        "name":"Cash & Bank",
+        "route":"cash",
+          "roles": "SUPERADMIN"
+      },
+
+        {
+            "name" :"Offer",
+        "roles": "SUPERADMIN",
+            "submenu" : [
+              {
+                "name":"Offers",
+                "route" :"offer.offerlist",
+          "roles": "SUPERADMIN"
+              },
+              {
+                "name":"Offer Config",
+                "route":"offer.offerconfiglist" ,
+          "roles": "SUPERADMIN"
+              },
+              {
+                "name":"Offer Include / Exclude",
+                "route":"offer.assortment" ,
+          "roles": "SUPERADMIN"
+              }
+
+            ]
+        },
+
+        
+
+        
+
+
+
+
+      
+      {
+        "name" : "Reports",
+        "roles": "SUPERADMIN",
+        "submenu" : [
+          {
+              "name":"Daily List",
+              "route" :"reports.list",
+              "roles": "SUPERADMIN"
+            },
+            {
+              "name":"Taxes",
+              "route" :"reports.taxes",
+              "roles": "SUPERADMIN"
+            },
+            {
+              "name":"Analytics",
+              "route" :"reports.analytics",
+              "roles": "SUPERADMIN"
+            }
+
+        ]
+      },
+      {
+        "name" :"Users & Permissions",
+        "roles": "SUPERADMIN",
+        "submenu" : [
+          {
+              "name":"Users",
+              "route" :"users.users",
+          "roles": "SUPERADMIN"
+            },
+          {
+              "name":"Roles",
+              "route" :"users.roles",
+          "roles": "SUPERADMIN"
+            },
+            
+            {
+              "name":"User Roles",
+              "route" :"users.userroles",
+          "roles": "SUPERADMIN"
+            }
+        ]
+      },
+      {
+        "name" :"Settings",
+        "roles": "SUPERADMIN",
+        "submenu" : [{
+          "name":"State/City/Area",
+          "route" :"settings.stateCityAreas",
+          "roles": "SUPERADMIN"
+        },
+        {
+            "name":"Taxes",
+            "route" :"settings.taxes",
+          "roles": "SUPERADMIN"
+        },{
+          "name" : "Denominations",
+          "route" :"settings.denominations",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" : "Unit Of Measurement",
+          "route" :"settings.unitofmeasurement",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name":"ExpenseType",
+          "route":"settings.expenseType",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Department",
+          "route":"settings.department",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Timing Slots",
+          "route":"settings.timingSlots",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Delivery Slot",
+          "route":"settings.deliverySlot",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Product Sku Delivery Slots",
+          "route":"settings.productSkuDeliverySlot",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Branch Deliverable Area",
+          "route":"settings.branchDeliverableArea",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Order stock point",
+          "route":"settings.orderStockPoint",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Wallet",
+          "route":"settings.wallet",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name" :"Version",
+          "route":"settings.versions",
+          "roles": "SUPERADMIN"
+        }
+      ]
+    },
+      {
+        "name":"Promotions",
+        "route":"promotions",
+          "roles": "SUPERADMIN"
+      },
+
+
+
+      {
+        "name": "Request",
+        "roles": "SUPERADMIN",
+        "submenu":[{
+         "name":"Request Header Type",
+         "route":"request.requestheadertypelist" ,
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name":"Requests",
+          "route":"request.requestlist",
+          "roles": "SUPERADMIN"
+        },
+        {
+          "name":"Request Status",
+          "route":"request.requeststatuslist",
+          "roles": "SUPERADMIN"
+        }
+        ]
+      },
+
+
+      {
+        "name" : "utilities",
+        "route":"utilities",
+          "roles": "SUPERADMIN"
+      }
+]

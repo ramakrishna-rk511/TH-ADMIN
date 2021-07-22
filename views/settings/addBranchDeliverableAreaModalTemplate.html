@@ -1,0 +1,65 @@
+<div class="inmodal">
+       <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title bgc8">
+                    <h5 class="fc1">Order Stock point <span ng-if="!branchDeliverableArea.id">Creation</span><span ng-if="branchDeliverableArea.id">Update</span></h5>
+                   <a ng-click="close()" class="pull-right fc1"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="ibox-content" ng-init="getcompanyBranchList()">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="orderStockForm">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 text-center control-label ">Branch Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb" ng-model="branchDeliverableArea.companyBranchId" required>
+                                            <option ng-repeat="cl in companyBranchList" value="{{cl.id}}">{{cl.entityName}}</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 text-center control-label ">Area Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" ng-model="branchDeliverableArea.areaName" name="areaName" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 text-center control-label ">Status <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb" ng-model="branchDeliverableArea.isActive" required>
+                                            <option>ACTIVE</option>
+                                            <option>INACTIVE</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="orderStockForm.$invalid" ng-click="createOrUpdateBranchDeliverableArea(branchDeliverableArea)"><span ng-if="!branchDeliverableArea.id" >Save</span><span ng-if="branchDeliverableArea.id">Update</span></button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                            </div>
+                            <!-- <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="expenseTypeForm.$invalid" ng-click="createOrUpdateTimimgslot(timingSlotData)"><span ng-if="!expensesTypeData.id" >Save</span><span ng-if="expensesTypeData.id">Update</span></button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                            </div> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style type="text/css">
+    .clockpicker-popover{
+        z-index: 99999;
+    }
+</style>

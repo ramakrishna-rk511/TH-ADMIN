@@ -1,0 +1,681 @@
+
+<div ng-controller="dashboardController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8 mg0">
+        <div class="col-lg-4">
+            <h4 class="page_heading_title fc1 fwb">Dashboard</h4>
+        </div>
+        <!-- <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input type="text" name="daterange" class="form-control input_form ng-valid ng-touched ng-dirty ng-valid-parse active" ng-model="feedbackData.dateRange" placeholder="Select Date..">
+            </div>
+        </div> -->
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="input-daterange input-group col-lg-12 col-md-12 col-sm-12" id="datepicker">
+                <span class="input-group-addon">Datepicker</span>
+                <input type="text" placeholder="enter date" class="form-control-sm form-control bgc7" id="dashboard-date" name="daterange" ng-model="invoiceFilter.dateobj">
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pd0">
+            <div class="form-group">
+                <label class="col-lg-3 text-center control-label m-t-sm">Source</label>
+                <div class="col-lg-8">
+                    <select class="form-control" ng-model="invoiceFilter.source" required>
+                        <option value="">select Source</option>
+                        <option value="OFFLINE">OFFLINE</option>
+                        <option value="ONLINE">ONLINE</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 pd0">
+            <button type="button" data-toggle="modal" ng-click="dashboardDateChange(invoiceFilter)" class="btn btn-warning btn-sm ttu w100">APPLY</button>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content pd0" wrapper-height>
+        <div class="row bgc1 mg0">
+            <div class="col-lg-3 pd0">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <!-- <span class="label label-info pull-right">Annual</span> -->
+                        <h5>Total Sale</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{dashboard.saleObj.saleAmount | number:2}}</h1>
+                        <!-- <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div> -->
+                        <small>{{dashboard.saleObj.transactions}} Transactions</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 pd0">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <!-- <span class="label label-success pull-right">Monthly</span> -->
+                        <h5>Avg. Bills</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{dashboard.saleObj.avgBillValue | number:2}}</h1>
+                        <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
+                        <small>{{dashboard.saleObj.noOFBills}} Bills</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 pd0" ui-sref="users.users" style="cursor: pointer;">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <!-- <span class="label label-success pull-right">Monthly</span> -->
+                        <h5>New Customers</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{dashboard.newcustomerObj.newCustomer}}</h1>
+                        <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
+                        <small>Customers</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 pd0">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <!-- <span class="label label-primary pull-right">Today</span> -->
+                        <h5>Returns</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{dashboard.returnObj.saleAmount}}</h1>
+                        <!-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> -->
+                        <small>{{dashboard.returnObj.transactions}} Returns</small>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-4 pd0">
+            <div class="ibox float-e-margins bdr1 mg10">
+                <div class="ibox-title br_n">
+                    <span class="label label-info pull-right">Annual</span>
+                    <h5>Sale Report</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">275,800</h1>
+                    <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+                    <small>Total orders</small>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 pd0">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <span class="label label-primary pull-right">Today</span>
+                        <h5>Sale Invoice</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">106,120</h1>
+                        <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                        <small>Total visits</small>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="col-lg-3 pd0">
+            <div class="ibox float-e-margins bdr1 mg10">
+                <div class="ibox-title br_n">
+                    <span class="label label-danger pull-right">Low value</span>
+                    <h5>User activity</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">80,600</h1>
+
+                    <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+                    <small>In first month</small>
+                </div>
+            </div>
+            </div> -->
+        </div>
+        <div class="row bgc1 mg0">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pd0">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <!-- <span class="label label-success pull-right">Monthly</span> -->
+                        <h5>Mode of Payment</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto"></div>
+                        <div id="labelOverlay" style="position: absolute;top: 51%;left: 38%;">
+                            <p>Total</p>
+                            <p class="used-size">{{dashboard.salePaymentsByPaymentMethods.total}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pd0" ng-if="productObj">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <!-- <span class="label label-success pull-right">Monthly</span> -->
+                        <h5>Top performing products</h5>
+                    </div>
+                    <div class="ibox-content" style="padding: 15px;padding-top: 0px;">
+                        <div class="row bgc7">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <h4 class="f5 fwb pd10 mg0">Product Name ( Brand )</h4>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <h4 class="f5 fwb pd10 mg0">Barcode</h4>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h4 class="f5 fwb pd10 mg0">Qty</h4>
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="prolist in productObj">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <p class="f5 pd10 mg0">{{prolist.productName}} ({{ prolist.brandName }})</p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="f5 pd10 mg0">{{prolist.barcode}}</p>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <p class="f5 pd10 mg0">{{prolist.units}}{{prolist.unitName}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bgc1 mg0" ng-if="lessStockDataRep">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd0">
+                <div class="ibox float-e-margins bdr1 mg10">
+                    <div class="ibox-title br_n">
+                        <div class="row pdt15">
+                            <!-- <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label fwb mgt10">Branch :</label>
+                                    <div class="col-lg-8 pos_rel">
+                                        <select placeholder="Company Branch name" class="form-control bgc7 fwb" ng-model="lessStockData.branch" required >
+                                            <option value="" ng-selected>SELECT BRANCH</option>
+                                            <option ng-repeat="cbl in companyBranchList" value="{{cbl.id}}" ng-selected="stockConversionkData.companyBranchId==cbl.id">{{cbl.entityName}}</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label fwb">Barcode :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control fwb bgc7" placeholder="Barcoe.." ng-model="lessStockData.barcode" ng-required="true">
+                                        <div ng-show="productForm.$submitted || productForm.name.$touched">
+                                            <div ng-show="productForm.name.$error.required" class="text-danger">Name is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label fwb">Brand :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb bgc7 m-b-xs" name="brand" ng-model="lessStockData.brand" required="">
+                                            <option value='' selected="">Select Brand</option>
+                                            <option value="{{brandObj.id}}" ng-repeat="brandObj in brandArray">{{brandObj.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label fwb">Category :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb bgc7 m-b-xs" name="category" ng-model="lessStockData.category" required="">
+                                            <option value='' selected="">Select Category</option>
+                                            <option value="{{catObj.id}}" ng-repeat="catObj in categoryArray">{{catObj.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-6">
+                                <h4>
+                                    Less Stock
+                                </h4>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <!-- <label class="col-lg-4 control-label fwb">Stock :</label> -->
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb bgc7 m-b-xs" name="category" ng-model="lessStockData.stockLessThan" ng-change="lessStock(lessStockData)" required="">
+                                            <!-- <option value='' selected="">Select Category</option> -->
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-3">
+                                <div class="form-group">
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb bgc7 m-b-xs" name="category" ng-model="lessStockData.stockLessThan" ng-change="lessStock(lessStockData)" required="">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-lg-2">
+                                <button type="button" data-toggle="modal" ng-click="lessStock(lessStockData)" class="btn btn-warning btn-sm ttu w100">APPLY</button>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="ibox-content" style="padding: 15px;padding-top: 0px;">
+                        <div class="row bgc7">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <h4 class="f5 fwb pd10 mg0">Product Name ( Brand )</h4>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <h4 class="f5 fwb pd10 mg0">Barcode</h4>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h4 class="f5 fwb pd10 mg0">Qty</h4>
+                            </div>
+                        </div>
+                        <div style="height: 500px;overflow-y: scroll;">
+                            <div class="row mg0" ng-repeat="lessprolist in lessStockDataRep" ng-class="{'text-danger': lessprolist.units <= 0}">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <p class="f5 pd10 mg0">{{lessprolist.productSkuName}} ({{ lessprolist.brandName }})</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <p class="f5 pd10 mg0">{{lessprolist.barcode}}</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p class="f5 pd10 mg0">{{lessprolist.units | number:2}}{{lessprolist.uomShortName}}</p>
+                                </div>
+                            </div>    
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Orders</h5>
+
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-xs btn-white active">Today</button>
+                                <button type="button" class="btn btn-xs btn-white">Monthly</button>
+                                <button type="button" class="btn btn-xs btn-white">Annual</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="flot-chart" ng-controller="dashboardFlotTwo as chart">
+                                    <div flot class="flot-chart-content" dataset="chart.flotData" options="chart.flotOptions"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <ul class="stat-list">
+                                    <li>
+                                        <h2 class="no-margins">2,346</h2>
+                                        <small>Total orders in period</small>
+                                        <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
+                                        <div class="progress progress-mini">
+                                            <div style="width: 48%;" class="progress-bar"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h2 class="no-margins ">4,422</h2>
+                                        <small>Orders in last month</small>
+                                        <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i></div>
+                                        <div class="progress progress-mini">
+                                            <div style="width: 60%;" class="progress-bar"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h2 class="no-margins ">9,180</h2>
+                                        <small>Monthly income from orders</small>
+                                        <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
+                                        <div class="progress progress-mini">
+                                            <div style="width: 22%;" class="progress-bar"></div>
+                                        </div>
+                                    </li>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Messages</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content ibox-heading">
+                        <h3><i class="fa fa-envelope-o"></i> New messages</h3>
+                        <small><i class="fa fa-tim"></i> You have 22 new messages and 16 waiting in draft folder.</small>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="feed-activity-list">
+
+                            <div class="feed-element">
+                                <div>
+                                    <small class="pull-right text-navy">1m ago</small>
+                                    <strong>Monica Smith</strong>
+
+                                    <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</div>
+                                    <small class="text-muted">Today 5:60 pm - 12.06.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="feed-element">
+                                <div>
+                                    <small class="pull-right">2m ago</small>
+                                    <strong>Jogn Angel</strong>
+
+                                    <div>There are many variations of passages of Lorem Ipsum available</div>
+                                    <small class="text-muted">Today 2:23 pm - 11.06.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="feed-element">
+                                <div>
+                                    <small class="pull-right">5m ago</small>
+                                    <strong>Jesica Ocean</strong>
+
+                                    <div>Contrary to popular belief, Lorem Ipsum</div>
+                                    <small class="text-muted">Today 1:00 pm - 08.06.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="feed-element">
+                                <div>
+                                    <small class="pull-right">5m ago</small>
+                                    <strong>Monica Jackson</strong>
+
+                                    <div>The generated Lorem Ipsum is therefore</div>
+                                    <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
+                                </div>
+                            </div>
+
+
+                            <div class="feed-element">
+                                <div>
+                                    <small class="pull-right">5m ago</small>
+                                    <strong>Anna Legend</strong>
+
+                                    <div>All the Lorem Ipsum generators on the Internet tend to repeat</div>
+                                    <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
+                                </div>
+                            </div>
+                            <div class="feed-element">
+                                <div>
+                                    <small class="pull-right">5m ago</small>
+                                    <strong>Damian Nowak</strong>
+
+                                    <div>The standard chunk of Lorem Ipsum used</div>
+                                    <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
+                                </div>
+                            </div>
+                            <div class="feed-element">
+                                <div>
+                                    <small class="pull-right">5m ago</small>
+                                    <strong>Gary Smith</strong>
+
+                                    <div>200 Latin words, combined with a handful</div>
+                                    <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>User project list</h5>
+                                <div ibox-tools></div>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-hover no-margins">
+                                    <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>User</th>
+                                        <th>Value</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <small>Pending...</small>
+                                        </td>
+                                        <td><i class="fa fa-clock-o"></i> 11:20pm</td>
+                                        <td>Samantha</td>
+                                        <td class="text-navy"><i class="fa fa-level-up"></i> 24%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label label-warning">Canceled</span></td>
+                                        <td><i class="fa fa-clock-o"></i> 10:40am</td>
+                                        <td>Monica</td>
+                                        <td class="text-navy"><i class="fa fa-level-up"></i> 66%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <small>Pending...</small>
+                                        </td>
+                                        <td><i class="fa fa-clock-o"></i> 01:30pm</td>
+                                        <td>John</td>
+                                        <td class="text-navy"><i class="fa fa-level-up"></i> 54%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <small>Pending...</small>
+                                        </td>
+                                        <td><i class="fa fa-clock-o"></i> 02:20pm</td>
+                                        <td>Agnes</td>
+                                        <td class="text-navy"><i class="fa fa-level-up"></i> 12%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label label-primary">Completed</span></td>
+                                        <td><i class="fa fa-clock-o"></i> 04:10am</td>
+                                        <td>Amelia</td>
+                                        <td class="text-navy"><i class="fa fa-level-up"></i> 66%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <small>Pending...</small>
+                                        </td>
+                                        <td><i class="fa fa-clock-o"></i> 12:08am</td>
+                                        <td>Damian</td>
+                                        <td class="text-navy"><i class="fa fa-level-up"></i> 23%</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5>Small todo list</h5>
+                                <div ibox-tools></div>
+                            </div>
+                            <div class="ibox-content">
+                                <ul class="todo-list m-t small-list">
+                                    <li>
+                                        <checkbox ng-model="main.checkOne"></checkbox>
+                                        <span class="m-l-xs">Buy a milk</span>
+                                    </li>
+                                    <li>
+                                        <checkbox ng-model="check1"></checkbox>
+                                        <span class="m-l-xs">Go to shop and find some products.</span>
+
+                                    </li>
+                                    <li>
+                                        <checkbox ng-model="check2"></checkbox>
+                                        <span class="m-l-xs">Send documents to Mike</span>
+                                        <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 mins</small>
+                                    </li>
+                                    <li>
+                                        <checkbox ng-model="main.checkTwo"></checkbox>
+                                        <span class="m-l-xs">Go to the doctor dr Smith</span>
+                                    </li>
+                                    <li>
+                                        <checkbox ng-model="check4"></checkbox>
+                                        <span class="m-l-xs">Plan vacation</span>
+                                    </li>
+                                    <li>
+                                        <checkbox ng-model="check5"></checkbox>
+                                        <span class="m-l-xs">Create new stuff</span>
+                                    </li>
+                                    <li>
+                                        <checkbox ng-model="check6"></checkbox>
+                                        <span class="m-l-xs">Call to Anna for dinner</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Transactions worldwide</h5>
+                                <div ibox-tools></div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <table class="table table-hover margin bottom">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 1%" class="text-center">No.</th>
+                                                    <th>Transaction</th>
+                                                    <th class="text-center">Date</th>
+                                                    <th class="text-center">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td> Security doors
+                                                        
+                                                    </td>
+                                                    <td class="text-center small">16 Jun 2014</td>
+                                                    <td class="text-center"><span class="label label-primary">$483.00</span></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2</td>
+                                                    <td> Wardrobes
+                                                    </td>
+                                                    <td class="text-center small">10 Jun 2014</td>
+                                                    <td class="text-center"><span class="label label-primary">$327.00</span></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3</td>
+                                                    <td> Set of tools
+                                                    </td>
+                                                    <td class="text-center small">12 Jun 2014</td>
+                                                    <td class="text-center"><span class="label label-warning">$125.00</span></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4</td>
+                                                    <td> Panoramic pictures</td>
+                                                    <td class="text-center small">22 Jun 2013</td>
+                                                    <td class="text-center"><span class="label label-primary">$344.00</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">5</td>
+                                                    <td>Phones</td>
+                                                    <td class="text-center small">24 Jun 2013</td>
+                                                    <td class="text-center"><span class="label label-primary">$235.00</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">6</td>
+                                                    <td>Monitors</td>
+                                                    <td class="text-center small">26 Jun 2013</td>
+                                                    <td class="text-center"><span class="label label-primary">$100.00</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div> -->
+    </div>
+</div>
+
+<script type="text/javascript">
+function daterange(data) {
+    $('input[name="daterange"]').daterangepicker({
+        autoUpdateInput: true,
+        locale: {
+            format: 'DD-MM-YYYY',
+            // format: 'YYYY-MM-DD',
+            // "minDate": -7
+        },
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'),
+                moment().subtract(1, 'days')
+            ],
+            'Last 7 Days': [moment().subtract(6, 'days'),
+                moment()
+            ],
+            'Last 30 Days': [moment().subtract(29, 'days'),
+                moment()
+            ],
+            'This Month': [moment().startOf('month'),
+                moment().endOf('month')
+            ],
+            'Last Month': [
+                moment().subtract(1, 'month').startOf('month'),
+                moment().subtract(1, 'month').endOf('month')
+            ]
+        }
+    });
+    $('input[name="daterange"]').on(
+        'apply.daterangepicker',
+        function(ev, picker) {
+            localStorage.setItem("startDate", '')
+            localStorage.setItem("endDate", '')
+            localStorage.setItem("startDate", picker.startDate
+                .format('YYYY-MM-DD'));
+            localStorage.setItem("endDate", picker.endDate
+                .format('YYYY-MM-DD'));
+            $(this).val(
+                ' From ' + picker.startDate.format('YYYY-MM-DD') +
+                ' To ' +
+                picker.endDate.format('YYYY-MM-DD'));
+        });
+    $('input[name="daterange"]').on('cancel.daterangepicker',
+        function(ev, picker) {
+            $(this).val('');
+            daterange()
+        });
+}
+
+
+$(function() {
+    daterange();
+});
+</script>
+<!-- </div> -->

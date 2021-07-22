@@ -1,0 +1,66 @@
+Payments
+============
+
+We do have Payments from parties, to parties and Expenses
+
+From Parties
+=-------------
+As distributors we will be getting payments periodically
+
+--We create payment for a particular invoice that has been delivered before or right at the moment
+--We also track payments if payment method of an invoice is COD from the invoice to payments
+
+To Parties
+------------
+
+As we have suppliers or vendors in our application, 
+
+We do payments for purchase order here
+
+-- We create Payment for a particular purchase order that has been received before or right at the moment
+
+
+Expenses
+--------
+
+We also create payment for expenses, 
+We create expenses for a branch selecting expense type
+Here why we seperate payments and expenses is we might do multiple payments for a single expense.
+
+
+
+payments
+--------
+id
+payment_type(credit or debit)
+payment_for(For Sale Order,Purchase Order,expense...etc)
+invoice_id
+purchase_order_id
+payment_method
+expense_id
+payment_mode
+amount
+payment_particulars
+payment_ref_no
+ref_doc_path
+description
+user_created
+user_verified
+
+
+Note:
+=====
+We will have option like other in payment_for field and should write desc regarding the payment.
+paymentIn PaymentOut option in payments screen
+
+Expense
+-------
+id
+expense_type
+created_date
+user_created
+user_approved
+status
+approval_status
+amount
+remarks

@@ -1,0 +1,157 @@
+Inventory
+
+Stock in 
+Stock out
+Stock conversion
+Stock Transfer
+Stock Disposal
+Stock Return
+
+
+Stock in
+========
+We will be having a screen where we can select a purchase order that we have raised already, There by the items will be populated automatically in the screen along with the information of personnel who is handling that. Where we can also have to enter all the quantities of items ordered and received.We also have that provision to upload images of received product regarding damages etc,.
+
+Note: If there is no any purchase order created, User has to enter all the items that are received. 
+
+After sucessfull submission of all the information in the above screen, that received items will taken in to the stock with a new batch number assigned for that particular branch where we received the stock. That batch number will be having such information like date, etc,. 
+
+Question: What about the role of user and approvals pipeline.
+
+
+We will be having another screen to handle this stock in, which is an opening stock which is very much useful at the time of application registration, there by we will take every item as purchase order which we discussed above.
+
+
+Stock out
+=========
+
+For this module , we wont be having any screens to handle this. The sale is nothing but the stock out either through the retail POS screen or Distribution Sale screen.
+
+Stock Conversion
+================
+
+If we would like to split a 50kg Cashew to individual 100 gms packets, there this module screens will help us.
+
+Here in this screen, we can select a particular batch(lets say BATCH10) of a single item(single barcode) and split into multiple items there by a new batch will be created as a child under the BATCH10. 
+
+We can also merge multiple items to a single unit which in turn follows the same pattern as the above.
+
+Ques: What if we want to merge different batched items.
+
+Stock Transfer
+===============
+
+If we would like to transfer a batch of products to another branch. We use this screen providing the information like item along with the batch , quantity, from branch, to branch and obviously handling personals from both sides.
+
+We also maintain the information regarding challans or bills of that delivery or transit.
+
+Stock Disposal
+==============
+Here we can dispose the stock selecting any reson for the damage, there by the stock quantity will get reduced.Here we can also send the stock for cleaning status, there by we can get stock in for any reason.
+
+
+Stock Return
+=============
+If any damage or wastage happened at sale or transfer, we could take back in to stock or send for cleaning or disposal
+
+
+
+Stock Adjustment
+=================
+We can also adjust the stock quantity for any reason, Here we can increase  or reduce the quantity of stock.
+
+Stock_Sku_Branch_Batch
+======================
+We maintain the stock for any kind of product with respect to Item sku, batch , branch, status
+
+Primary fields for stock
+item_sku	batch 		branch 		  status 	quantity    	
+------------------------------------------------------------	
+p1			B10          KP           STOCKIN  		100          
+p1			B11          KP           STOCKIN  		100          
+p1			B12          KP           STOCKIN  		100          
+p1			B13          KP           STOCKIN  		100          
+
+
+Stock
+======
+item_sku  branch 	status 		qty 	unit_of_measurement 	retail_visibility   warehouse_visibility 	ecomm_visibility	
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Stock_logs
+===========
+
+fields
+-------
+
+item_sku
+from_batch
+to_batch(we will use only for conversion product)
+from_sku
+to_sku
+from_sku_qty
+to_sku_qty
+from_sku_uom
+to_sku_uom
+status
+quantity
+unit_of_measurement
+user_created
+user_approved
+approval_status
+purchase_orderid(used for stock purchase or stock return)
+invoice_id(sale stock return)
+to_branch(used for transfer status only)
+from_branch(used for transfer status only)
+ref_doc_path
+ref_no
+ref_desc
+
+
+from_sku,to_sku,from_sku_qty,to_sku_qty,from_sku_uom,to_sku_uom 
+================================================================
+
+The aabove mentioned field to Converting the product from one type to another type like
+200kg of rice is going to convert like below different products 
+1)convert to 50kg of rava 
+2)convert to 50kg of rice flour
+3)convert to 25kg of rice to 5kg packets
+4)convert to 25kg of rice to 2kg packets
+
+
+Note By Sai anna
+===================
+
+POS Stock Points
+================
+Shelf Stock Point 
+Sellable Stock Point
+
+
+Distributor
+===========
+WareHouse Stock Point
+
+ 
+Sellable 
+
+
+
+
+Note(06/06/2020):
+=================
+
+Add Stock Point at product List level in stock transfer Creation page
+Branch Wise filter in stock
+
+
+
+
+
+
+
+
+
+
+

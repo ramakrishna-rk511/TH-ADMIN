@@ -1,0 +1,18 @@
+Unit Of Meassurement 
+---------------------
+id		unit_name  		parent_unit_name		conversion		is_fixed		short_name		company_id
+u1		piece			null					1				Y				piece 			
+u2		kg				null					1				N 				kilogram
+u3		gm				u2						1000			N 				gram
+u4		foot			null					1				N 				foot
+u5		inch			u4						12		 		N	            inchese
+
+
+Note:
+-----
+We need two screens 
+we will create unit of measurement screen at globally and
+we will give option to create unit of measurement at product creation level.
+
+
+

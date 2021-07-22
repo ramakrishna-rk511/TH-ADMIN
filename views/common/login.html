@@ -1,0 +1,136 @@
+<!-- <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div>
+            <h1 class="logo-name">FARMER'S BEST</h1>
+        </div>
+        <h3>Welcome to IM-POS</h3>
+        <form class="m-t" role="form" action="#">
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Mobile Number" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required="">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+        </form>
+    </div>
+</div> -->
+
+<div class="loginheight bgc7" ng-controller="loginController">
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 text-center" style="margin-top: 150px;">
+            <div class="bgc3 pd20 inner">
+                <img src="./img/logo.jpg" width="75%" /> 
+                <div class="middle-box pd0" > 
+                    <h3>Welcome to ADMIN PANEL</h3>
+                    <div ng-if="showLogin">
+                        <form class="m-t">
+                            <div class="form-group">
+                                <input type="number" class="form-control bgc7" placeholder="Mobile Number" required="" ng-model="userObj.username" ng-pattern="/^\d{10}$/" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control bgc7" placeholder="Password" required="" ng-model="userObj.password"/>
+                            </div>
+                            <button type="submit" class="btn btn-info block full-width m-b" ng-click="userLogin()" ng-disabled="userObj.usernam && userObj.password">Login</button>
+                        </form>
+                        <div class="pdb25">
+                            <!-- <form>
+                                <input type="checkbox" id="save me" name="Save Me" class="pull-left" value="Save Me">
+                                <label for="saveme" class="pull-left" style="padding-left: 10px;padding-top: 2px;"> Save Me</label>
+                            </form> -->
+                            <a ng-click="getForget('Login')" class="pull-right">Forget Password</a>
+                        </div>
+                    </div>
+                    <div ng-if="!showLogin">
+                        <h5>FORGET PASSWORD</h5>
+                        <form class="m-t">
+                            <div class="form-group">
+                                <input type="number" class="form-control bgc7" placeholder="Mobile Number" required="" ng-model="userObj.username" disabled="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control bgc7" placeholder="Password" required="" ng-model="userObj.newPassword"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control bgc7" placeholder="Confirm Password" required="" ng-model="userObj.confirmPassword"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control bgc7" placeholder="OTP" required="" ng-model="userObj.otp"/>
+                            </div>
+                            <button type="submit" class="btn btn-info block full-width m-b" ng-click="userForgetPassword()" ng-disabled="!userObj.confirmPassword && !userObj.newPassword&& !userObj.otp">SUBMIT</button>
+                        </form>
+                        <div class="pdb25">
+                            <!-- <form>
+                                <input type="checkbox" id="save me" name="Save Me" class="pull-left" value="Save Me">
+                                <label for="saveme" class="pull-left" style="padding-left: 10px;padding-top: 2px;"> Save Me</label>
+                            </form> -->
+                            <a ng-click="getForget('Forgot')" class="pull-right">Login</a>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4"></div>
+    </div>
+
+    <!-- <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+        <img src="./img/fblogo1.png" width="100%" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12  tac" >
+        <div class="middle-box"> 
+            <h3>Welcome to IM-POS</h3>
+            <form class="m-t">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Mobile Number" required="" ng-model="userObj.username" ng-pattern="/^\d{10}$/" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" required="" ng-model="userObj.password"/>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b" ng-click="userLogin()" ng-disabled="userObj.usernam && userObj.password">Login</button>
+            </form>
+        </div>
+    </div> -->
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.loginheight').css('height', $(window).height() +"px");
+    });
+</script>
+
+
+
+<style type="text/css">
+    .outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+/*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{
+    background-color: #5fb046;
+    border-color: #5fb046;
+}
+.btn-primary{
+    background-color: #5fb046;
+    border-color: #5fb046;
+}*/
+</style>

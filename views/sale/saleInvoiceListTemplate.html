@@ -1,0 +1,261 @@
+
+<div class="wrapper wrapper-content pd0" ng-controller="saleInvoiceListController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-6">
+            <h4 class="page_heading_title fc1 fwb">SaleInvoice</h4>
+            <ol class="breadcrumb fc1">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <strong>SaleInvoice List</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-6">
+            <div class="row m-t-xs">
+                <div class="col-lg-6"> 
+                    <div class="form-group" id="data_3">
+                        <label class="font-noraml fc1 ">Date Range</label>
+
+                        <div class="input-group date">
+                           <input date-range-picker class="form-control date-picker" type="text" ng-model="app.daterange" />
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group" id="data_3">
+                        <label class="font-noraml fc1">Sale For</label>
+
+                        <div class="input-group ">
+                           <select class="form-control m-b" name="account">
+                                            <option>All Firms</option>
+                                            <option>Farmers Best</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                        </select> 
+                            <span class="input-group-addon"><i class="fa fa-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrapper wrapper-content animated fadeInRight pd0">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        
+                        <h5>PAID AMOUNT</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">40 886,200</h1>
+
+                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+                        <small>Total Amount</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        
+                        <h5>UNPAID AMOUNT</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">275,800</h1>
+
+                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+                        <small>Pending Amount</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <a class="label label-danger pull-right" ng-click="getAllNextDueAmountList()">View All</a>
+                        <h5>OVERDUE AMOUNT</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">106,120</h1>
+
+                        <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                        <small>paid amount</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        
+                        <h5>TOTAL AMOUNT</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">80,600</h1>
+
+                        <div class="stat-percent font-bold text-danger">01/10/2020 <i class="fa fa-level-down"></i></div>
+                        <small>Total Amount</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <!-- <div class="ibox-title">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h3>SaleInvoice List</h3>
+                            </div>
+                            <div class="col-sm-2">
+                                 <button type="button" ui-sref="sale.salecreation" class="btn btn-primary btn-sm pull-right ttu"><i class="fa fa-plus m-r-xs"></i>Add Sale</button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="ibox-content">
+                        <table datatable="" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                            <tr>
+                                <th>DATE</th>
+                                <th>INVOICE No</th>
+                                <th>PARTY NAME</th>
+                                <th>PAYMENT TYPE</th>
+                                <th>AMOUNT</th>
+                                <th>BALANCE DUE</th>
+                                <th>DUE DATE</th>
+                                <th>STATUS</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="gradeX">
+                                <td>26/04/2020</td>
+                                <td>FB_INV_100</td>
+                                <td>Fruit mart</td>
+                                <td>Cash</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td>26/05/2020</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn-primary btn btn-xs" ui-sref="sale.saleview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>26/04/2020</td>
+                                <td>FB_INV_100</td>
+                                <td>Fruit mart</td>
+                                <td>Cash</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td>26/05/2020</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn-primary btn btn-xs" ui-sref="sale.saleview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>26/04/2020</td>
+                                <td>FB_INV_100</td>
+                                <td>Fruit mart</td>
+                                <td>Cash</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td>26/05/2020</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn-primary btn btn-xs" ui-sref="sale.saleview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>26/04/2020</td>
+                                <td>FB_INV_100</td>
+                                <td>Fruit mart</td>
+                                <td>Cash</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td>26/05/2020</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn-primary btn btn-xs" ui-sref="sale.saleview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>26/04/2020</td>
+                                <td>FB_INV_100</td>
+                                <td>Fruit mart</td>
+                                <td>Cash</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td>26/05/2020</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn-primary btn btn-xs" ui-sref="sale.saleview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>26/04/2020</td>
+                                <td>FB_INV_100</td>
+                                <td>Fruit mart</td>
+                                <td>Cash</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td>26/05/2020</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn-primary btn btn-xs" ui-sref="sale.saleview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>26/04/2020</td>
+                                <td>FB_INV_100</td>
+                                <td>Fruit mart</td>
+                                <td>Cash</td>
+                                <td>2000</td>
+                                <td>500</td>
+                                <td>26/05/2020</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn-primary btn btn-xs" ui-sref="sale.saleview">View</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

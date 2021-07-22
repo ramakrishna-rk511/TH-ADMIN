@@ -1,0 +1,405 @@
+<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+    <div class="col-lg-10">
+        <h4 class="page_heading_title fc1 fwb">Offer Creation</h4>
+        <ol class="breadcrumb fc1">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">
+                <strong>Offer Creation</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+        
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="OfferFullfillmentCreationController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <!-- <div class="ibox-title">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>Offer Creation</h3>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="ibox-content">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="productForm"> -->
+                        <!-- <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Name :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="offer name" class="form-control" ng-model="offerNewObj.name"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Code :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="code" class="form-control" name="code" ng-model="offerNewObj.code"> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Towards:</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="towards" ng-model="offerNewObj.towards" >
+                                            <option>Select Towards</option>
+                                            <option value="INVOICE">INVOICE</option>
+                                            <option value="CATALOGUE">CATALOGUE</option>
+                                            <option value="BXGY">BXGY</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" ng-if="offerNewObj.towards != 'INVOICE'">
+                               <div class="form-group">
+                                   <label class="col-lg-4 control-label">Buy Min Order QTY :</label>
+                                   <div class="col-lg-8">
+                                       <input type="text" class="form-control" name="minOrderQty" ng-model="offerNewObj.buyMinOrderQuantity" name="buyMinOrderQuantity" /> 
+                                   </div>
+                               </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Discount Type :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="discountType" ng-model="offerNewObj.discountType" >
+                                            <option>Select Discount Type</option>
+                                            <option value="PERCENTAGE ">PERCENTAGE </option>
+                                            <option value="FIXED">FIXED</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Discount :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="discount" ng-model="offerNewObj.discount" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Buy Min Order Amount:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Min Order amount" class="form-control" ng-model="offerNewObj.buyMinOrderAmount" name="buyMinOrderAmount" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">UOM:</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="uomId" ng-model="offerNewObj.buyMinUom" >
+                                            <option>Select UOM</option>
+                                            <option value="{{uomObj.id}}" ng-repeat="uomObj in uomArray">{{uomObj.unitName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Get Order QTY :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" ng-model="offerNewObj.getOrderQuantity" placeholder="getOrderQuantity" class="form-control" name="getOrderQuantity">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Get Order Amount :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="amount" class="form-control" ng-model="offerNewObj.getOrderAmount" name="getOrderAmount"> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="row border-bottom">
+                            <div class="col-sm-9"><h4 class="pull-left font-bold">Config Model</h4></div>
+                            <div class="col-sm-3 text-right">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="addConfig()">Add Config</button>
+                            </div> 
+                        </div> -->
+                        <!-- <div class="row m-t-md border-bottom" ng-repeat="configObj in varientsArray track by $index">
+                            <div class="row cust_block mg10">
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Name :</label>
+                                        <input type="text" placeholder="" class="form-control" ng-model="configObj.name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Priority Code</label>
+                                        <input type="text" placeholder="" class="form-control" ng-model="configObj.priorityCode">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Towords :</label>
+                                        <input type="text" placeholder="" class="form-control" ng-model="configObj.towards">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Cupon Code</label>
+                                        <input type="text" placeholder="" class="form-control" ng-model="configObj.couponCodes">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Max Users Per Customer :</label>
+                                        <input type="text" placeholder="" class="form-control" ng-model="configObj.maxUsesPerCustomer">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="form-group p-lr-10">
+                                        <label>Max Uses</label>
+                                        <input type="text" placeholder="" class="form-control" ng-model="configObj.maxUses">
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="col-sm-12 text-center" ng-if="$index != 0 ">
+                                        <button class="btn btn-sm" type="button" ng-click="removeConfig($index)"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <div class="row cust_block mg10" ng-repeat="childObj in configObj.child track by $index">
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Buy Level Type :</label>
+                                        <input type="text" placeholder="" class="form-control" ng-model="varientObj">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Buy Level Name</label>
+                                        <input type="text" placeholder="level name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Get Level type :</label>
+                                        <input type="text" placeholder="level type" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Get Level name</label>
+                                        <input type="text" placeholder="level name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Is Active :</label>
+                                        <select class="form-control m-b-xs" name="isActive" ng-model="offerNewObj.isActive" >
+                                            <option>Select status</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">InActive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-2">
+                                    <div class="col-sm-12 text-center">
+                                        <button class="btn btn-sm" type="button" ng-if="$index == 0" ng-click="adLevel(configObj)"><i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-sm" type="button" ng-if="$index != 0" ng-click="removeChild($parent.$parent.$index,$index)"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                       <!--  <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="button" ng-click="getOfferFullmentCreate(offerNewObj)">Save</button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
+                <div class="ibox-content">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="offerFullfillForm">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Name :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="offer name" class="form-control" ng-model="offerNewObj.name" required=""/> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Code :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="code" class="form-control" name="code" ng-model="offerNewObj.code" required=""/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Is Active:</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="isActive" ng-model="offerNewObj.isActive"  required="">
+                                            <option value="" ng-selected="">Select Status</option>
+                                            <option value="TRUE">TRUE</option>
+                                            <option value="FALSE">FALSE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-6">
+                               <div class="form-group">
+                                   <label class="col-lg-4 control-label">Towards :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="towards" ng-model="offerNewObj.towards"  required="">
+                                            <option value="" ng-selected="">SELECT TOWARDS</option>
+                                            <option value="INVOICE">INVOICE</option>
+                                            <option value="CATALOGUE">CATALOGUE</option>
+                                            <option value="BXGY">BXGY</option>
+                                        </select>
+                                    </div>
+                               </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group" ng-if="offerNewObj.towards != 'INVOICE'">
+                                    <label class="col-lg-4 control-label">Buy Min Order Qunatity:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Buy Min Order Quantity" class="form-control" ng-model="offerNewObj.buyMinOrderQuantity" name="buyMinOrderQuantity" required=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Buy Minimum Order Amount :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Buy Minimum Order Amount" ng-model="offerNewObj.buyMinOrderAmount" class="form-control" required=""/>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group" ng-if="offerNewObj.towards != 'INVOICE'">
+                                    <label class="col-lg-4 control-label">UOM:</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="uomId" ng-model="offerNewObj.buyMinUom">
+                                            <option value="" ng-selected="">Select UOM</option>
+                                            <option value="{{uomObj.id}}" ng-repeat="uomObj in uomArray">{{uomObj.unitName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--   required="" -->
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Discount Type:</label>
+                                    <div class="col-lg-8">
+                                        <!-- <input type="text" placeholder="Discount Type" class="form-control" ng-model="offerNewObj.buyMinOrderAmount" name="buyMinOrderAmount" /> -->
+                                        <select class="form-control m-b-xs" name="uomId" ng-model="offerNewObj.discountType" required="" >
+                                            <option value="" ng-selected="">Select Discount type</option>
+                                            <option value="PERCENTAGE">PERCENTAGE</option>
+                                            <option value="RUPEES">RUPEES</option>
+                                            <option value="FIXED">FIXED</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Discount:</label>
+                                    <div class="col-lg-8">
+                                        <!-- <select class="form-control m-b-xs" name="uomId" ng-model="offerNewObj.discount" required="">
+                                            <option value="" ng-selected="">Select UOM</option>
+                                            <option value="{{uomObj.id}}" ng-repeat="uomObj in uomArray">{{uomObj.unitName}}</option>
+                                        </select> -->
+                                        <input type="text" placeholder="Discount" ng-model="offerNewObj.discount" class="form-control" required=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Get Discount Type:</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="uomId" ng-model="offerNewObj.getDiscountType" required="">
+                                            <option value="" ng-selected="">Select Discount type</option>
+                                            <option value="DIRECT">DIRECT</option>
+                                            <option value="CASHBACK">CASHBACK</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Max Discount:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Get Max Discount" class="form-control" ng-model="offerNewObj.maxDiscount" name="maxDiscount" required=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="offerNewObj.towards == 'BXGY'">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Get Order Amount:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Get Order Amount" class="form-control" ng-model="offerNewObj.getOrderAmount" name="getOrderAmount" required=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Get Order Quantity:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Get Order Quantity" class="form-control" ng-model="offerNewObj.getOrderQuantity" name="getOrderQuantity" required=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Discount Amount Type:</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b-xs" name="uomId" ng-model="offerNewObj.discountAmountType" required="">
+                                            <option value="" ng-selected="">Select Discount Amount type</option>
+                                            <option value="DIRECT">DIRECT</option>
+                                            <option value="CASHBACK">CASHBACK</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group m-t-xl">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="button" ng-click="getOfferFullmentCreate(offerNewObj)" ng-disabled="offerFullfillForm.$invalid">Save</button>
+                                <button class="btn btn-white" ng-click="goBack()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

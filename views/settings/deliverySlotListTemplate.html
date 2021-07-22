@@ -1,0 +1,181 @@
+<div class="wrapper wrapper-content pd0" ng-controller="deliverySlotController">
+	<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+		<div class="col-lg-10">
+			<h4 class="page_heading_title fc1 fwb">Home</h4>
+			<ol class="breadcrumb fc1">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li class="active">
+					<strong>Delivery Slots List</strong>
+				</li>
+			</ol>
+		</div>
+		<div class="col-lg-2 text-right">
+			<button type="button" ng-click="addOrUpdateDeliverySlot()" class="btn btn-w-m btn-warning m-t-sm ttu"><i class="fa fa-plus m-r-xs"></i> Add</button>
+		</div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight pd0">
+		<div class="row" ng-init="getDeliverySlotList()">
+			<div class="col-lg-12 pd0">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id="deliverySlotList">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Delivery Days</th>
+									<th>Days Prior To Order</th>
+									<th>Hours Prior To Order</th>
+									<th>Start Time</th>
+									<th>End Time</th>
+									<th>Cutoff Time</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addDeliverySlotModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-md">
+		  <div class="modal-content">
+				<div class="modal-header bgc8">
+				  <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+				  <div class="row">
+					<div class="col-sm-11 text-center">
+					  <label class="control-label fc1 ttu fwb"> <h5>Delivery Slot <span ng-if="!deliverySlotData.id">Creation</span><span ng-if="deliverySlotData.id">Update</span></h5> </label>
+					</div>
+				  </div>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal ng-pristine ng-valid ng-submitted" name="stateForm">
+						<div class="row">
+							<div class="col-lg-12">
+							  <div class="form-group">
+								<label class="col-lg-4 text-center control-label ">Name <span class="text-danger">*</span> :</label>
+								<div class="col-lg-8">
+									<input type="text" placeholder="Name.." class="form-control" ng-model="deliverySlotData.name" required>
+									<div ng-show="stateForm.$submitted || stateForm.name.$touched">
+										<div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+									</div>
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label class="col-lg-4 control-label">Is Specific To slot <span class="text-danger">*</span> :</label>
+								<div class="col-lg-8">
+									<select class="form-control" ng-model="deliverySlotData.isSpecificToSlots" required="">
+										<option value="">Select Is Specific To slot</option>
+										<option value="true" >TRUE</option>
+										<option value="false" >FALSE</option>
+									</select>
+									</div>
+								</div>
+							</div>
+						  <div class="form-group" ng-if="deliverySlotData.isSpecificToSlots">
+								<label class="col-lg-4 text-center control-label ">Days Delivery <span class="text-danger">*</span> :</label>
+								<div class="col-lg-8">
+									<input type="text" placeholder="Days Delivery" class="form-control" ng-model="deliverySlotData.daysDelivery" required>
+									<select class="chosen form-control" ng-model="deliverySlotData.daysDelivery" required="" multiple="" chosen>
+										<option value="">Select Is Specific To slot</option>
+										<option value="MONDAY" >MONDAY</option>
+										<option value="TUESDAY" >TUESDAY</option>
+										<option value="WEDNESDAY" >WEDNESDAY</option>
+										<option value="THURSDAY" >THURSDAY</option>
+										<option value="FRIDAY" >FRIDAY</option>
+										<option value="SATURDAY" >SATURDAY</option>
+									</select>
+									<div ng-show="stateForm.$submitted || stateForm.name.$touched">
+										<div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+									</div>
+								</div>
+						  </div>
+							<div class="form-group">
+								<label class="col-lg-4 text-center control-label ">Days Prior To order <span class="text-danger">*</span> :</label>
+								<div class="col-lg-8">
+									<input type="text" placeholder="Days Prior To Order" class="form-control" ng-model="deliverySlotData.daysPriorToOrder" required>
+									<div ng-show="stateForm.$submitted || stateForm.name.$touched">
+										<div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-4 text-center control-label ">Hours Prior To order <span class="text-danger">*</span> :</label>
+								<div class="col-lg-8">
+									<input type="text" placeholder="Hours Prior To Order" class="form-control" ng-model="deliverySlotData.hoursPriorToOrder" required>
+									<div ng-show="stateForm.$submitted || stateForm.name.$touched">
+										<div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+									</div>
+								</div>
+							</div>
+						  <div class="form-group pt20">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"> Specific Time to CutOff : </label>
+								<div class="col-lg-8 input-group" style="width: 64%;padding-left: 15px;" clock-picker data-autoclose="true" ng-class="{'has-error':timingForm.specificHourCutOff.$invalid &amp;&amp; !timingForm.specificHourCutOff.$pristine}">
+									<input type="text" class="form-control fs12" ng-model="deliverySlotData.specificHourCutOff" ng-pattern="/^\d{0,9}(\:\d{1,9})?$/" placeholder="SELECT TIME" name="specificHourCutOff" required disabled  />
+									<span class="input-group-addon input-group-btn">
+										<span class="glyphicon glyphicon-time"></span>
+									</span>
+								</div>
+							</div>
+							  <!-- <div class="col-lg-12"> -->
+							<div class="form-group">
+								<label class="col-lg-4 control-label">Company Branch <span class="text-danger">*</span> :</label>
+								<div class="col-lg-8">
+									<select class="form-control" ng-model="deliverySlotData.companyBranchId" required="">
+										<option value="">Select Company Branch...</option>
+										<option value="{{cb.id}}" ng-repeat="cb in companyBranchList" ng-selected="cb.id==cityData['areasModels'][0]['companyBranchId']">{{cb.entityName}}</option>
+									</select>
+								</div>
+							</div>
+							<!-- </div> -->
+							   <!-- <div class="col-lg-12"> -->
+											<!--  -->
+							<div class="form-group pt20">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"> Start Time : </label>
+								<div class="col-lg-8 input-group" style="width: 64%;padding-left: 15px;" clock-picker data-autoclose="true" ng-class="{'has-error':timingForm.startTime.$invalid &amp;&amp; !timingForm.startTime.$pristine}">
+									<input type="text" class="form-control fs12" ng-model="deliverySlotData.startTime" ng-pattern="/^\d{0,9}(\:\d{1,9})?$/" placeholder="SELECT END TIME" name="startTime" required disabled  />
+									<span class="input-group-addon input-group-btn">
+										<span class="glyphicon glyphicon-time"></span>
+									</span>
+								</div>
+							</div>
+										<!-- </div> -->
+										<!-- <div class="col-lg-12"> -->
+							<div class="form-group pt20">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"> End Time : </label>
+								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 input-group" style="width: 64%;padding-left: 15px;" clock-picker data-autoclose="true" ng-class="{'has-error':timingForm.endTime.$invalid &amp;&amp; !timingForm.endTime.$pristine}">
+									<input type="text" class="form-control fs12" ng-model="deliverySlotData.endTime" ng-pattern="/^\d{0,9}(\:\d{1,9})?$/" placeholder="SELECT END TIME" name="endTime" required disabled  />
+									<span class="input-group-addon input-group-btn">
+										<span class="glyphicon glyphicon-time"></span>
+									</span>
+								</div>
+							</div>
+										<!-- </div> -->
+							<!-- </div>
+							<div class="col-lg-12"> -->
+							  
+							</div>
+						<!-- </div> -->
+					</form>
+				</div>
+				<div class="modal-footer">
+				  <div class="form-group">
+					  <div class="col-sm-12 text-center">
+						  <button class="btn btn-primary" type="submit" ng-disabled="stateForm.$invalid" ng-click="createOrUpdateDeliverySlot(deliverySlotData)"><span ng-if="!deliverySlotData.id" >Save</span><span ng-if="deliverySlotData.id">Update</span></button>
+						  <button class="btn btn-white" data-dismiss="modal">Cancel</button>
+					  </div>
+				  </div>
+				</div>
+		  </div>
+		</div>
+  </div>
+</div>
+
+
+<style type="text/css">
+	.clockpicker-popover{
+		z-index: 99999;
+	}
+</style>

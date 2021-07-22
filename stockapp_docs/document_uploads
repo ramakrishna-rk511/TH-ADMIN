@@ -1,0 +1,11 @@
+Documents_uploads
+
+documnet_upload
+----------------
+
+id		name				company_id 		desc 									document_path
+1		pan					c1				pan Card 								./document/path
+2		aadhar				c1				aadhaar Card
+3		registration 		c1 				Company Registration Certificate
+4		pan					c2				pan Card
+5 		aadhaar 			c2				aadhaar CCard of company2

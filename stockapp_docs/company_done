@@ -1,0 +1,15 @@
+company
+=======
+
+
+company
+-------
+
+id 		name 	 entity_name	area 	state		country	  status	
+
+
+
+company_branch
+---------------
+
+id 		name 		company_id  	billing_address 	 gst	entity_name		status 	   

@@ -1,0 +1,258 @@
+<div class="row" ng-controller="OfferConfigViewController">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title bb">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn pl30">
+				<h5 class="text-uppercase fontpro text-danger">{{offerConfigName}}</h5>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn">
+				<div class="ibox-tools  text-center">
+    			<ol class="breadcrumb">
+    				<li>
+      				<a href="./#/home/dashboard">Home</a>
+    				</li>
+        			<li>
+          			<a ui-sref="offers.offersConfigList">Offers Config List</a>
+        			</li>
+            	<li class="active">
+              	<strong> Offer Type</strong>
+            	</li>
+          </ol>
+    		</div>
+    	</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12 pn pr25">
+				<div class="pull-right pr30">
+          <a ui-sref="offers.offersConfigList">
+              <i class="fa fa-chevron-left text-danger" aria-hidden="true"></i>
+              <span class="text-danger"> Offers List</span>
+          </a>
+        </div>
+      </div>
+		</div>
+		<div class="row" ng-init="setInitialData()">
+  		<div>
+    		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+      		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 p-none">
+      		<div class="ibox-content dt mt20  pt10 pb8">
+          	<form class="form-horizontal form-bordered">
+          	<div class="m-b-sm bb m-l-xs">
+									<h5><b>OfferConfig Details</b></h5>
+								</div>
+				<!-- 			<div class="row"> -->
+							<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs1 p-none2"> <b>offerName :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].offerName" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].offerName}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Offer Type :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<div class="form-control-static">{{offerConfigDetails['properties'].offerType}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Offer Threshold Amout :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].offerThreshold" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].offerThreshold}}</div>
+									</div>
+								</div>
+						<!-- 	</div>
+							<div class="row"> -->
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Measures :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].unitOfMeasurement" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].unitOfMeasurement}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Amount Type :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].amountType" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].amountType}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Lessthan Threshold Amount :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].lessThanThreshold" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].lessThanThreshold}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Graterthan Threshold Amount :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].greaterThanThreshold" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].greaterThanThreshold}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Coupon Code :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].couponCode" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].couponCode}}</div>
+									</div>
+								</div>
+								<!-- <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Graterthan Threshold Delivery Charges :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].deliveryGreaterThanThreshold" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].deliveryGreaterThanThreshold}}</div>
+									</div>
+								</div> -->
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Max Uses per Customer :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].maxUsesPerCustomer" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].maxUsesPerCustomer}}</div>
+									</div>
+								</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12" p-none> <b>offerShortDescription :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].offerShortDescription" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].offerShortDescription}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>offerLongDescription :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].offerLongDescription" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].offerLongDescription}}</div>
+									</div>
+								</div>
+								<div class="m-b-sm bb m-l-xs col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<h5><b>OfferConfig Contribution</b></h5>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>contributionAmountType :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].contributionAmountType" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].contributionAmountType}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>thirdPartyContributionAmount:</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].thirdPartyContributionAmount" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].thirdPartyContributionAmount}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>bnvContributionAmount :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].bnvContributionAmount" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].bnvContributionAmount}}</div>
+									</div>
+								</div>
+							
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>amountType :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].amountType" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].amountType}}</div>
+									</div>
+								</div>
+								
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>orderType :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].orderType" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].orderType}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>levelType :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].levelType" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].levelType}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>startDate :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].startDate" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].startDate}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>endDate :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].endDate" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].endDate}}</div>
+									</div>
+								</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12" p-none> <b>maxUses :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].maxUses" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].maxUses}}</div>
+									</div>
+								</div>	
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>isStandalone :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].isStandalone" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].isStandalone}}</div>
+									</div>
+								</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12" p-none> <b>discountType :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].discountType" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].discountType}}</div>
+									</div>
+								</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12" p-none> <b>isPreorder :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" class="form-control" ng-hide="editOfferConfig" ng-model="offerConfigDetails['properties'].isPreorder" disabled />
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].isPreorder}}</div>
+									</div>
+								</div>
+								<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none">
+									<label class="control-label col-lg-6 col-md-6 col-sm-6 col-xs-6 fs12 p-none"> <b>Status :</b> </label>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+										<select class="select2_demo_2 form-control" ng-model="offerConfigDetails['properties'].status" ng-hide="editOfferConfig">
+											<option value="ACTIVE">Active</option>
+											<option value="INACTIVE">Inactive</option>
+										</select>
+										<div class="form-control-static" ng-show="editOfferConfig">{{offerConfigDetails['properties'].status}}</div>
+									</div>
+								</div>
+							<!-- </div> -->
+						</form>
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+										<a  ng-click="offerConfigEdit(offerConfigDetails)" class="btn btn-outline btn-primary text-center" ng-show="editOfferConfig">EDIT
+										</a>
+										<a ng-if="offerConfigDetails['properties'].offerAppliedStatus=='NOTAPPLIED'"  ng-click="getOfferConfigApply(offerConfigDetails)" class="btn btn-danger text-center" ng-show="editOfferConfig">APPLY OFFER
+										</a>
+										<a ng-if="offerConfigDetails['properties'].offerAppliedStatus=='REMOVED'"   class="btn btn-danger text-center" ng-show="editOfferConfig">REMOVED OFFER
+										</a>
+										<a ng-if="offerConfigDetails['properties'].offerAppliedStatus=='APPLIED'"  ng-click="getOfferConfigRemove(offerConfigDetails)" class="btn btn-primary text-center" ng-show="editOfferConfig">REMOVE OFFER
+										</a>
+										<a ui-sref="offers.offersConfigList" class="btn btn-outline btn-danger no_edit text-center" ng-show="editOfferConfig">Close
+										</a>
+										<!-- <button class="btn btn-outline btn-primary" ng-if="offerConfigDetails['properties'].publishable =='true'" ng-show="editOfferConfig">Publish</button> -->
+										<button type="submit" class="btn btn-outline btn-success" style="margin-left:15px;" ng-hide="editOfferConfig" ng-click="getUpdateOfferConfigDetails(offerConfigDetails)">Save</button>
+										<a class="btn btn-outline btn-danger" ng-click="cancelEdit(offerConfigDetails)" ng-hide="editOfferConfig">Cancel</a>
+									</div>
+								</div>
+							</div>
+						</div>
+          			</div>
+        		</div>
+        		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+      		</div>
+    	</div>
+	</div>
+</div>
+
+

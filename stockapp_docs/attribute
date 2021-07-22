@@ -1,0 +1,8 @@
+Attribute
+
+id		name		value	type		is_active	
+a1		size		xl		variant			1
+a2		size		l		variant			1
+a3		size		small	variant			1
+a4		color		grey	attribute 		1
+a5		color		red		attribute 		1

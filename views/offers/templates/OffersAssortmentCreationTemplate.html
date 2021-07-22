@@ -1,0 +1,278 @@
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="OfferAssortmentCreationController">
+
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">Offer Assortment</h4>
+            <ol class="breadcrumb fc1">
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a ui-sref="offer.assortment">Offers Assortment List</a>
+                </li>
+                <li class="active">
+                    <strong>Offer Assortment Creation</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+               <!--  <div class="ibox-title">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>Offer Assortment Creation</h3>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="ibox-content">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="offerAssortmentForm">
+                        
+                        <div class="row border-bottom">
+                            <div class="col-sm-4">
+                                    <div class="control-label form-group">
+                                        <label class="control-label p-r-sm p-t-none">Offer Config :</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <select class="form-control m-b-xs" name="configname" ng-model="offerassortment.id">
+                                            <option value="" ng-selected>select config..</option>
+                                            <option value="{{oco.id}}" ng-repeat="oco in offerconfigObj">{{oco.name}}</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                        </div>
+
+
+                        <div class="row border-bottom">
+                            <div class="col-sm-9"><h4 class="pull-left font-bold">Assortment Include Model</h4></div>
+                        </div>
+                
+                        
+                        <div class="row m-t-md border-bottom">
+                            <!-- Variant Blocks -->
+                            <div class="row cust_block mg10" ng-repeat="configInObj in configInArray">
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Buy Level Type :</label>
+                                        <select class="form-control m-b-xs" name="buyleveltype" ng-model="configInObj.buyLevelType">
+                                            <option value="" ng-selected="">select Buy Level Type..</option>
+                                            <option value="CITY">CITY</option>
+                                            <option value="CATEGORY">CATEGORY</option>
+                                            <option value="BRAND">BRAND</option>
+                                            <option value="PRODUCT">PRODUCT</option>
+                                            <option value="STATE">STATE</option>
+                                            <option value="USER">USER</option>
+                                            <!-- <option value="DAY">DAY</option> -->
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" ng-if="configInObj.buyLevelType">
+                                    <div class="form-group p-lr-10">
+                                        <label>Buy Level Name :</label>
+                                        <select class="form-control m-b-xs" name="buylevelname" ng-model="configInObj.buyLevelName" ng-if="configInObj.buyLevelType=='CITY'">
+                                            <option value="" ng-selected="">select city..</option>
+                                            <option value="{{co.id+'-'+co.name}}" ng-repeat="co in citiesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="buylevelname" ng-model="configInObj.buyLevelName" ng-if="configInObj.buyLevelType=='CATEGORY'">
+                                            <option value="" ng-selected="">select category..</option>
+                                            <option value="{{co.id}}" ng-repeat="co in categoriesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="buylevelname" ng-model="configInObj.buyLevelName" ng-if="configInObj.buyLevelType=='BRAND'">
+                                            <option value="" ng-selected="">select brand..</option>
+                                            <option value="{{blo.id}}" ng-repeat="blo in brandsListObj">{{blo.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="buylevelname" ng-model="configInObj.buyLevelName" ng-if="configInObj.buyLevelType=='PRODUCT'">
+                                            <option value="" ng-selected="">select product..</option>
+                                            <option value="{{po.id}}" ng-repeat="po in productsObj">{{po.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="buylevelname" ng-model="configInObj.buyLevelName" ng-if="configInObj.buyLevelType=='STATE'">
+                                            <option value="" ng-selected="">select state..</option>
+                                            <option value="{{so.id}}" ng-repeat="so in stateListObj">{{so.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="buylevelname" ng-model="configInObj.buyLevelName" ng-if="configInObj.buyLevelType=='USER'">
+                                            <option value="" ng-selected="">select user..</option>
+                                            <option value="{{ulo.id}}" ng-repeat="ulo in usersListObj">{{ulo.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <!-- <select class="form-control m-b-xs" name="buylevelname" ng-if="configInObj.buyLevelType=='DAY'">
+                                            <option value="" ng-selected="">select day..</option>
+                                            <option value="{{co.id}}" ng-repeat="co in citiesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select>  -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Get Level Type :</label>
+                                        <!-- <input type="text" placeholder="" class="form-control" name="getleveltype" /> -->
+                                        <select class="form-control m-b-xs" name="getleveltype" ng-model="configInObj.getLevelType">
+                                            <option value="" ng-selected="">select Get Level Type..</option>
+                                            <option value="CITY">CITY</option>
+                                            <option value="CATEGORY">CATEGORY</option>
+                                            <option value="BRAND">BRAND</option>
+                                            <option value="PRODUCT">PRODUCT</option>
+                                            <option value="STATE">STATE</option>
+                                            <option value="USER">USER</option>
+                                            <!-- <option value="DAY">DAY</option> -->
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" ng-if="configInObj.getLevelType">
+                                    <div class="form-group p-lr-10">
+                                        <label>Get Level Name</label>
+                                        <!-- <input type="text" placeholder="" class="form-control" name="getlevelname" /> -->
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configInObj.getLevelName" ng-if="configInObj.getLevelType=='CITY'">
+                                            <option value="" ng-selected="">select city..</option>
+                                            <option value="{{co.id}}" ng-repeat="co in citiesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configInObj.getLevelName" ng-if="configInObj.getLevelType=='CATEGORY'">
+                                            <option value="" ng-selected="">select category..</option>
+                                            <option value="{{co.id}}" ng-repeat="co in categoriesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configInObj.getLevelName" ng-if="configInObj.getLevelType=='BRAND'">
+                                            <option value="" ng-selected="">select brand..</option>
+                                            <option value="{{blo.id}}" ng-repeat="blo in brandsListObj">{{blo.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configInObj.getLevelName" ng-if="configInObj.getLevelType=='PRODUCT'">
+                                            <option value="" ng-selected="">select product..</option>
+                                            <option value="{{po.id}}" ng-repeat="po in productsObj">{{po.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configInObj.getLevelName" ng-if="configInObj.getLevelType=='STATE'">
+                                            <option value="" ng-selected="">select state..</option>
+                                            <option value="{{so.id}}" ng-repeat="so in stateListObj">{{so.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configInObj.getLevelName" ng-if="configInObj.getLevelType=='USER'">
+                                            <option value="" ng-selected="">select user..</option>
+                                            <option value="{{ulo.id}}" ng-repeat="ulo in usersListObj">{{ulo.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <!-- <select class="form-control m-b-xs" name="buylevelname" ng-if="configInObj.buyLevelType=='DAY'">
+                                            <option value="" ng-selected="">select day..</option>
+                                            <option value="{{co.id}}" ng-repeat="co in citiesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select>  -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Is Active :</label>
+                                        <select class="form-control m-b-xs" name="status" ng-model="configInObj.isActive">
+                                            <option value="" ng-selected="">select..</option>
+                                            <option value="true">TRUE</option>
+                                            <option value="false">FALSE</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-2">
+                                    <div class="col-sm-12 text-center">
+                                        <button class="btn btn-sm m-t-md"  ng-if="$index == 0" ng-click="conInclude()"><i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-sm m-t-md"  ng-if="$index != 0" ng-click="removeconiclude($parent.$index,$index)"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="row border-bottom">
+                            <div class="col-sm-9"><h4 class="pull-left font-bold">Config Exclude Model</h4></div>
+                            <!-- <div class="col-sm-3">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="conExclude()">Add Ex-Config</button>
+                            </div>  -->
+                        </div>
+
+                        <div class="row m-t-md border-bottom">
+                            <!-- Variant Blocks -->
+                            <div class="row cust_block mg10" ng-repeat="configEnObj in configExArray track by $index">
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Level Type :</label>
+                                        <select class="form-control m-b-xs" name="leveltype" ng-model="configEnObj.levelType">
+                                            <option value="" ng-selected="">select Level Type </option>
+                                            <option value="CITY">CITY</option>
+                                            <option value="CATEGORY">CATEGORY</option>
+                                            <option value="BRAND">BRAND</option>
+                                            <option value="PRODUCT">PRODUCT</option>
+                                            <option value="USER">USER</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" ng-if="configEnObj.levelType">
+                                    <div class="form-group p-lr-10">
+                                        <label>Level Name :</label>
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configEnObj.LevelName" ng-if="configEnObj.levelType=='CITY'">
+                                            <option value="" ng-selected="">select city..</option>
+                                            <option value="{{co.id}}" ng-repeat="co in citiesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configEnObj.LevelName" ng-if="configEnObj.levelType=='CATEGORY'">
+                                            <option value="" ng-selected="">select category..</option>
+                                            <option value="{{co.id}}" ng-repeat="co in categoriesObj">{{co.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configEnObj.LevelName" ng-if="configEnObj.levelType=='BRAND'">
+                                            <option value="" ng-selected="">select brand..</option>
+                                            <option value="{{blo.id}}" ng-repeat="blo in brandsListObj">{{blo.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configEnObj.LevelName" ng-if="configEnObj.levelType=='PRODUCT'">
+                                            <option value="" ng-selected="">select product..</option>
+                                            <option value="{{po.id}}" ng-repeat="po in productsObj">{{po.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configEnObj.LevelName" ng-if="configEnObj.levelType=='STATE'">
+                                            <option value="" ng-selected="">select state..</option>
+                                            <option value="{{so.id}}" ng-repeat="so in stateListObj">{{so.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                        <select class="form-control m-b-xs" name="getlevelname" ng-model="configEnObj.LevelName" ng-if="configEnObj.levelType=='USER'">
+                                            <option value="" ng-selected="">select user..</option>
+                                            <option value="{{ulo.id}}" ng-repeat="ulo in usersListObj">{{ulo.name}}</option>
+                                            <option value="ALL">ALL</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group p-lr-10">
+                                        <label>Is Active :</label>
+                                        <select class="form-control m-b-xs" name="status" ng-model="configEnObj.isActive">
+                                            <option value="" ng-selected="">select..</option>
+                                            <option value="true">TRUE</option>
+                                            <option value="false">FALSE</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-2">
+                                    <div class="col-sm-12 text-center">
+                                        <button class="btn btn-sm m-t-md" ng-if="$index == 0" ng-click="conExclude(configObj)"><i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-sm m-t-md" ng-if="$index != 0" ng-click="removeconexclude($parent.$index,$index)"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+
+
+                        <div class="form-group m-t-sm">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="offerAssortForm.$invalid" ng-click="assortmentSave(offerassortment)">Save</button>
+                                <button class="btn btn-white" ng-click="goBack()">Cancel</button>
+                            </div>
+                        </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+							

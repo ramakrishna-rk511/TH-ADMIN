@@ -1,0 +1,145 @@
+<!--
+* thapp - Responsive Admin Theme
+* Version 2.2
+*
+-->
+<!DOCTYPE html>
+<html ng-app="thapp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Main thapp CSS files -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link id="loadBefore" href="css/style.css" rel="stylesheet">
+    <link id="loadBefore" href="css/style1.css" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;515;600;700&display=swap" rel="stylesheet"> -->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="icon" href="img/logo_fb.png" type="image/png" sizes="48x48" />
+    <script>
+    $(function() {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+    });
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });
+    </script>
+</head>
+<!-- ControllerAs syntax -->
+<!-- Main controller with serveral data used in thapp theme on diferent view ng-controller="MainCtrl as main" -->
+
+<body ng-controller="MainCtrl as main" class="{{$state.current.data.specialClass}} bgc3" landing-scrollspy id="page-top">
+    <!-- Main view  -->
+    <div ui-view></div>
+    <!-- jQuery and Bootstrap -->
+    <!-- <script src="js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="js/plugins/jquery-ui/jquery-ui.js"></script> -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- MetsiMenu -->
+    <!-- <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script> -->
+    <!-- SlimScroll -->
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Peace JS -->
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <!-- <script src="js/thapp.js"></script> -->
+    <!-- Main Angular scripts-->
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="js/angular-translate/angular-translate.min.js"></script>
+    <script src="js/ui-router/angular-ui-router.min.js"></script>
+    <script src="js/bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="js/plugins/angular-idle/angular-idle.js"></script>
+
+
+        <script src="js/plugins/sockjs/sockjs.js"></script>
+        <script src="js/plugins/sockjs/stomp.js"></script>
+    <!-- <script src="js/plugins/angular-drag-n-drop.js"></script> -->
+    <!--
+ You need to include this script on any page that has a Google Map.
+ When using Google Maps on your own site you MUST signup for your own API key at:
+ https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+ After your sign up replace the key in the URL below..
+-->
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script> -->
+    <!-- Anglar App Script -->
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="views/settings/controllers/departmentController.js"></script>
+    <script src="views/settings/controllers/denominationController.js"></script>
+    <script src="views/settings/controllers/taxController.js"></script>
+    <script src="views/settings/controllers/cityStateAreasController.js"></script>
+    <script src="views/settings/controllers/expensesTypeController.js"></script>
+    <script src="views/settings/controllers/unitOfMeasurementController.js"></script>
+    <script src="views/settings/controllers/timingSlotController.js"></script>
+    <script src="views/settings/controllers/deliverySlotController.js"></script>
+    <script src="views/settings/controllers/deliveryChargesController.js"></script>
+    <script src="views/settings/controllers/productSkuDeliverySlotController.js"></script>
+    <script src="views/settings/controllers/branchDeliverableAreaController.js"></script>
+    <script src="views/settings/controllers/orderStockPointController.js"></script>
+    <script src="views/settings/controllers/stockPointController.js"></script>
+    <script src="views/settings/controllers/walletController.js"></script>
+    <script src="views/settings/controllers/versionController.js"></script>
+    <script src="views/parties/controller/supplierController.js"></script>
+    <script src="views/product/controller/categoryController.js"></script>
+    <script src="views/product/controller/brandController.js"></script>
+    <script src="views/product/controller/productController.js"></script>
+    <script src="views/company/controller/companyController.js"></script>
+    <script src="views/payment/controller/paymentMethodController.js"></script>
+    <script src="views/offers/controllers/offersController.js"></script>
+    <script src="views/inventory/controllers/inventoryController.js"></script>
+    <script src="views/purchase/controller/purchaseController.js"></script>
+    <script src="views/users/controller/userController.js"></script>
+    <script src="views/parties/controller/supplierController.js"></script>
+    <script src="views/sale/controller/salecontroller.js"></script>
+    <script src="views/cms/controller/cmsController.js"></script>
+    <script src="views/procurement/controller/procurementController.js"></script>
+    <script src="views/request/controller/requestController.js"></script>
+    <script src="views/reports/controller/reportsController.js"></script>
+    <script src="views/orders/controller/ordersController.js"></script>
+    <script src="views/coupons/controller/couponController.js"></script>
+    <script src="views/subscription/controller/subscriptionController.js"></script>
+    <!-- <script src="views/subscription/controller/branchProductSubscriptionController.js"></script> -->
+
+    <script type="text/javascript">
+
+        function showNotification(){
+            const notification = new Notification("New message",{
+                body: 'Thanks for joining with us.'
+            })
+        }
+
+
+        if (Notification.permission === "granted") {
+            showNotification();
+        }else if(Notification.permission !== "denied"){
+            Notification.requestPermission().then(function(permission){
+                if (permission === "granted") {
+                    showNotification();
+                }
+            })
+        }else if(Notification.permission == "denied"){
+            Notification.requestPermission().then(function(permission){
+                if (permission === "granted") {
+                    showNotification();
+                }
+            })
+        }
+    </script>
+
+</body>
+
+</html>

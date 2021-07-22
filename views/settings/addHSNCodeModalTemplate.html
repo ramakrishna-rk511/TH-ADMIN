@@ -1,0 +1,52 @@
+<div class="inmodal">
+    <div class="row" ng-controller="denominationController">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>HSN Code <span ng-if="!hsnCodeData.id">Creation</span><span ng-if="hsnCodeData.id">Update</span></h5>
+                   <a ng-click="close()" class="pull-right"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="ibox-content">
+                    <form name="hsnCodeForm" class="form-horizontal" novalidate >
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>HSN Code<span class="text-danger">*</span> :</label>
+                                    <input type="text" class="form-control" ng-model="hsnCodeData.hsncode" name="name" required>
+                                    <div ng-show="hsnCodeForm.$submitted || hsnCodeForm.hsncode.$touched">
+                                        <div ng-show="hsnCodeForm.hsncode.$error.required" class="text-danger">HSN Code is required!</div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Tax Group<span class="text-danger">*</span> :</label>
+                                    <select class="form-control m-b" name="tax" ng-model="hsnCodeData.taxGroupId">
+                                    <option value="">select Tax Group...</option>
+                                        <option value="{{taxGrp.id}}" ng-repeat="taxGrp in taxGrpArray" selected="hsnCodeData.taxGroupId">{{taxGrp.taxGroupName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Status<span class="text-danger">*</span> :</label>
+                                    <select class="form-control m-b" name="status" ng-model="hsnCodeData.isActive">
+                                    <option value="">select status...</option>
+                                        <option value="true">Active</option>
+                                        <option value="false">InActive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-primary" ng-disabled="hsnCodeForm.$invalid" ng-click="createOrUpdateHsnCode(hsnCodeData)"><span ng-if="!hsnCodeData.id" >Save</span><span ng-if="hsnCodeData.id">Update</span></button>
+                                <button class="btn btn-white" id="deptClose" ng-click="cancel()">Cancel</button>      
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>  
+  </div>  

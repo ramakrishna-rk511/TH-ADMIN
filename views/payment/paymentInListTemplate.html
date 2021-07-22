@@ -1,0 +1,198 @@
+   
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="paymentInController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-6">
+            <h4 class="page_heading_title fc1 fwb">PaymentIn</h4>
+            <ol class="breadcrumb fc1">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <strong>PaymentIn List</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-6">
+            <div class="row m-t-xs">
+                <div class="col-lg-6"> 
+                    <div class="form-group" id="data_3">
+                        <label class="font-noraml fc1">Date Range</label>
+
+                        <div class="input-group date">
+                           <input date-range-picker class="form-control date-picker" type="text" ng-model="app.daterange" />
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                      <div class="form-group" id="data_3">
+                        <label class="font-noraml fc1">PaymentIn Of</label>
+
+                        <div class="input-group ">
+                           <select class="form-control m-b" name="account">
+                                <option>All Transactions</option>
+                                <option>Sale</option>
+                                <option>Purchase</option>
+                                <option>CreditNote</option>
+                                <option>Debit Note</option>
+                                <option>Sale Order</option>
+                                <option>Purchase Order</option>
+                                <option>Estimate</option>
+                                <option>Delivery Challan</option>
+                                <option>Expense</option>
+                            </select> 
+                            <span class="input-group-addon"><i class="fa fa-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h3>PaymentIn List</h3>
+                            </div>
+                            <div class="col-sm-2">
+                                 <button type="button" ng-click="addPaymentInModalTemplate()" class="btn btn-w-m btn-primary ttu">Add PaymentIn</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table datatable="" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Ref No</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Total</th>
+                                <th>Received</th>
+                                <th>Balance</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="gradeX">
+                                <td>02/05/2021</td>
+                                <td>985632323</td>
+                                <td>RamRaju</td>
+                                <td>Payment In</td>
+                                <td>10000</td>
+                                <td>1000</td>
+                                <td>9000</td>
+                                <td>Unused</td>
+                                <td class="center text-center"><button class="btn btn-xs btn-primary ttu" ui-sref="brand.brandview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>02/05/2021</td>
+                                <td>985632323</td>
+                                <td>RamRaju</td>
+                                <td>Payment In</td>
+                                <td>10000</td>
+                                <td>1000</td>
+                                <td>9000</td>
+                                <td>Unused</td>
+                                <td class="center text-center"><button class="btn btn-xs btn-primary ttu" ui-sref="brand.brandview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>02/05/2021</td>
+                                <td>985632323</td>
+                                <td>RamRaju</td>
+                                <td>Payment In</td>
+                                <td>10000</td>
+                                <td>1000</td>
+                                <td>9000</td>
+                                <td>paid</td>
+                                <td class="center text-center"><button class="btn btn-xs btn-primary ttu" ui-sref="brand.brandview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>02/05/2021</td>
+                                <td>985632323</td>
+                                <td>RamRaju</td>
+                                <td>Payment In</td>
+                                <td>10000</td>
+                                <td>1000</td>
+                                <td>9000</td>
+                                <td>Unused</td>
+                                <td class="center text-center"><button class="btn btn-xs btn-primary ttu" ui-sref="brand.brandview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>02/05/2021</td>
+                                <td>985632323</td>
+                                <td>RamRaju</td>
+                                <td>Payment In</td>
+                                <td>10000</td>
+                                <td>1000</td>
+                                <td>9000</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn btn-xs btn-primary ttu" ui-sref="brand.brandview">View</button></td>
+                            </tr>
+
+
+                            <tr class="gradeX">
+                                <td>02/05/2021</td>
+                                <td>985632323</td>
+                                <td>RamRaju</td>
+                                <td>Payment In</td>
+                                <td>10000</td>
+                                <td>1000</td>
+                                <td>9000</td>
+                                <td>Paid</td>
+                                <td class="center text-center"><button class="btn btn-xs btn-primary ttu" ui-sref="brand.brandview">View</button></td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

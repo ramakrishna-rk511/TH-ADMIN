@@ -1,0 +1,322 @@
+<div class="wrapper wrapper-content pd0" ng-controller="orderController">
+    <!-- <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-5">
+            <h4 class="page_heading_title fc1 fwb f2">Online Orders</h4>
+        </div>
+        <div class="col-lg-1">
+        	@
+        </div>
+    </div> -->
+    <div class="wrapper wrapper-content animated fadeInRight pd0">
+        <!-- <div class="row">
+            <div class="col-lg-12 pd0">
+                <div class="ibox float-e-margins">
+                    <div class="wrapper wrapper-content pos_rel pdb0 bgc7">
+                        <div class="animated fadeInRight"> -->
+                            <div class="row mg0">
+                                <div class="col-lg-6 col-md-6 pd0">
+                                	<div class="row wrapper border-bottom white-bg page_heading1 bgc8 mg0">
+        								<div class="col-lg-10">
+            								<h4 class="page_heading_title fc1 fwb f2">Online Orders</h4>
+        								</div>
+        								<div class="col-lg-2 text-center">
+        									<i class="fa fa-refresh" aria-hidden="true" ng-click="getOrdersList(tab_status)" style="background-color: #f45252;color: #fff;padding: 10px;border-radius: 3px;cursor: pointer;"></i>
+        								</div>
+    								</div>
+                                    <div class="ibox float-e-margins mgb0">
+                                        <div class="ibox-content pos_rel pd0 online_order_height" cat-left-section>
+                                            <ul class="nav nav-tabs profileNav orderNav pdr0 col-lg-12">
+                                                <li ng-repeat="os in orderStatus" ng-class="{'active': selectedOrderStatus == os.name }" ng-click="getOrdersList(os.name)">
+                                                    <a data-toggle="tab" data-target="#{{os.name}}">{{os.name}} - {{os.count?os.count:'0'}}</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="{{os.name}}" class="tab-pane fade in" ng-repeat="os in orderStatus" ng-class="{'active': $first}">
+                                                    <div ng-repeat="(key,value) in statusOrders">
+                                                        <table class="table table-striped table-hover margin bottom mgb0">
+                                                            <thead class="bgc8">
+                                                                <tr class="row">
+                                                                    <th class="col-lg-6 fc1">{{selectedOrderStatus}} Order Details</th>
+                                                                    <th class="text-center col-lg-4 fc1">{{key}}</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                        <div class="row order_list cp" ng-repeat="orders in value" ng-click="getSingleOrder(orders.orderId)" style="border: 1px solid #dcdcdc;margin: 5px;border-radius: 3px;">
+                                                            <div class="col-lg-6 col-md-4 pd10">
+                                                                <p class="mg0 f5">#{{orders.orderCode}} - <b>{{orders.paymentMode}}</b></p>
+                                                                <p class="mg0 f5">Delivery : {{orders.deliveryTime}}</p>
+                                                                <p class="mg0 f5"><b>{{orders.deliveryBoyName}} {{orders.deliveryBoyNo}}</b></p>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-4 text-center pd10">
+                                                                <p class="mg0 f5">{{orders.contactPerson}} </p>
+                                                                <p class="mg0 f5">{{orders.contactNumber}}</p>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-4 text-center pd10">
+                                                                <p class="mg0 f5">{{orders.totalPrice}}/</p>
+                                                                <p class="mg0 f5">{{orders.area}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="!statusOrders" class="text-center" style="padding-top: 100px;">
+                                                    	<img src="img/no-orders.png" width="50%" alt="No Orders" />
+                                                    	<h4>No Ordres</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="singleOrderView.length=0">
+                                	<p>No Orders</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 pd0 bdr1" ng-if="singleOrderView.models">
+                                    <div class="row bgc7 mg0">
+                                        <div class="col-lg-6 col-md-3 col-sm-3 col-xs-3">
+                                        	<h1 class="f2 fwb mg0 pd15 ">Order View</h1>
+                                        </div>
+                                        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8 pd5" ng-if="singleOrderView.status == 'PLACED'" ng-click="changeOrderStatus(singleOrderView,'CONFIRMED')">
+                                        	<button type="button" class="btn btn-w-m btn-info btn-block">CONFIRMED</button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8 pd5" ng-if="singleOrderView.status == 'CONFIRMED'" ng-click="changeOrderStatus(singleOrderView,'PACKED')">
+                                            <button type="button" class="btn btn-w-m btn-info btn-block">PACKED</button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8 pd5" ng-if="singleOrderView.status == 'PACKED'" ng-click="changeOrderStatus(singleOrderView,'SHIPPED')">
+                                            <button type="button" class="btn btn-w-m btn-info btn-block">SHIPPED</button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8 pd5" ng-if="singleOrderView.status == 'SHIPPED'" ng-click="changeOrderStatus(singleOrderView,'DELIVERED')">
+                                            <button type="button" class="btn btn-w-m btn-info btn-block">DELIVERED</button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-8 pd5" ng-if="singleOrderView.status == 'PENDING'" ng-click="changeOrderStatus(singleOrderView,'PLACED')">
+                                            <button type="button" class="btn btn-w-m btn-info btn-block">PLACED</button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 pd5" ng-if="singleOrderView.status == 'PLACED' || singleOrderView.status == 'CONFIRMED' || singleOrderView.status == 'PENDING' || singleOrderView.status == 'PACKED' || singleOrderView.status == 'SHIPPED'" ng-click="changeOrderStatus(singleOrderView,'CANCELLED')">
+                                            <button type="button" class="btn btn-w-m btn-danger btn-block">CANCELLED</button>
+                                        </div>
+                                    </div>
+                                    <div class="ibox float-e-margins mgb0">
+                                        <div class="ibox-content pos_rel" cat-left-section>
+                                            <div class="row mg0">
+
+                                                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-7 pd0">
+                                                    <p class="f5"><strong>Placed Date : </strong> {{singleOrderView.placedTime}}</p>
+                                                    <p><strong>Delivery Time : </strong>{{singleOrderView.deliveryDate}} ({{singleOrderView.deliveryTimes.split(':::')[0]}} - {{singleOrderView.deliveryTimes.split(':::')[1]}})</p>
+                                                    <address>
+                                                        <strong><u>SHIPPING ADDRESS :</u></strong><br>
+                                                        <p class="mg0 pdt7">{{singleOrderView.deliveryAddress.contactPerson}}</p>
+                                                        <p class="mg0">{{singleOrderView.deliveryAddress.houseNo}},</p>
+                                                        <p class="mg0">{{singleOrderView.deliveryAddress.landMark}},</p>
+                                                        <p class="mg0">{{singleOrderView.deliveryAddress.area}},</p>
+                                                        <p class="mg0">{{singleOrderView.deliveryAddress.city}} - {{singleOrderView.deliveryAddress.pincode}}.</p>
+                                                        <p class="mg0">{{singleOrderView.deliveryAddress.contactNo}}.</p>
+                                                    </address>
+                                                </div>
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 no-padding">
+                                                    <h5 class="tal">
+                                                        <span>Order No :</span>
+                                                        <span class="fwn">{{singleOrderView.code}}</span>
+                                                    </h5>
+                                                    <h5 class="tal">
+                                                        <span>Order Status :</span>
+                                                        <span class="fcgr fwn">{{singleOrderView.status}}</span>
+                                                    </h5>
+                                                    <h5 class="tal">
+                                                        <span>Sub Total :</span>
+                                                        <span class="fwn">{{singleOrderView.subTotal}}/-</span>
+                                                    </h5>
+                                                    <h5 class="tal ng-scope">
+                                                        <span>Charges :</span>
+                                                        <span class="fwn">{{singleOrderView.chargesAmount? singleOrderView.chargesAmount : '0'}}/-</span>
+                                                    </h5>
+                                                    <h5 class="tal ng-scope">
+                                                        <span>Taxes :</span>
+                                                        <span class="fwn">{{singleOrderView.taxes? singleOrderView.taxes : '0'}}/-</span>
+                                                    </h5>
+                                                    <h5 class="tal ng-scope">
+                                                        <span>Wallet Amount :</span>
+                                                        <span class="fwn">{{singleOrderView.walletAmount?singleOrderView.walletAmount : '0'}}/-</span>
+                                                    </h5>
+                                                    <h5 class="tal">
+                                                        <span>Total Amount :</span>
+                                                        <span class="fwn">{{ singleOrderView.paymentMode == 'COD'? singleOrderView.codPayableAmount : singleOrderView.totalAmount}}/-</span>
+                                                    </h5>
+                                                    <h5 class="tal">
+                                                        <span>Payment Mode :</span>
+                                                        <span class="fwn">{{singleOrderView.paymentMode}}</span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="row pd10 bgc7">
+                                                <div class="col-lg-7 col-sm-7 col-md-7 col-xs-7 fwb">
+                                                    Product Name
+                                                </div>
+                                                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 fwb">
+                                                    Qty
+                                                </div>
+                                                <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 fwb">
+                                                    Price
+                                                </div>
+                                            </div>
+                                            <div class="pd10 online_order_single_product" style="overflow-y: scroll;overflow-x: hidden;">
+                                                <div class="row pd5" ng-repeat="singleorder in singleOrderView.models">
+                                                    <div class="col-lg-7 col-sm-7 col-md-7 col-xs-7">
+                                                        {{singleorder.productSkuName}}
+                                                        <div class="f5"><b>( {{singleorder.brandName}} )</b> -- {{singleorder.status}}</div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                                        {{singleorder.quantity}} {{singleorder.measurementUnitName}} - {{singleorder.units}}
+                                                    </div>
+                                                    <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                        {{singleorder.sellingprice}}/-
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row invoice_position mg0 pos_rel">
+                                                
+                                                
+                                                <div ng-if="deliveryBoysList.length>0 && showDeliveryList" class="animated fadeInLeft delivery_orders">
+                                                    <div style="padding: 10px;border-bottom: 1px solid #ddd;">
+                                                        <h3>Delivery boys list</h3>
+                                                    </div>
+                                                    <ul>
+                                                        <li ng-repeat="dbl in deliveryBoysList"> <input type="radio" name="radio" ng-model="dbl.selected" ng-change="changeDelivery(dbl)" /> {{dbl.userName}} - {{dbl.phoneNo}}</li>
+                                                    </ul>
+                                                    <!--  style="bottom: 0;position: absolute;padding: 0;" -->
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="col-lg-3 col-md-3" ng-click="closeWindow()"><button type="button" class="btn btn-danger btn-block"><i class="fa fa-times"></i></button></div>
+                                                        <div class="col-lg-9 col-md-9" ng-click="renderOrderStatus('SHIPPED')"><button type="button" class="btn btn-info btn-block">SUBMIT</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+<!-- DISCOUNT WINDOW END -->
+<style type="text/css">
+.search_input {
+    position: relative;
+}
+
+.search_result {
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    width: 120% !important;
+    background: #fff;
+    top: 52px;
+    left: 0px;
+    z-index: 10;
+    height: 660px;
+    overflow-x: hidden;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+.category_view {
+    /*overflow-y: scroll;*/
+    padding: 15px 0px 15px 20px !important;
+    /*margin-right: 0px;*/
+}
+
+.num_list {
+    background: #fff;
+    width: 50%;
+    height: auto;
+    box-shadow: 2px 1px 16px 6px #cbcbcb;
+    z-index: 1;
+}
+
+.num_list>div {
+    padding: 5px;
+}
+
+.min_height_billing,
+table>thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.nav-pills .nav-link {
+    padding: 10px 50px;
+    background: #f5f5dc;
+}
+
+.nav-link.active {
+    background: #ffc107;
+}
+
+.product_text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.modal-body {
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
+    padding: 20px 20px 20px 20px;
+}
+
+.nav-tabs>li>a {
+    font-size: 11px !important;
+    padding: 10px !important;
+}
+
+.delivery_orders {
+    text-align: center;
+    z-index: 2001;
+    position: absolute;
+    height: 300px;
+    width: 360px;
+    /*right: -14px;*/
+    top: -300px;
+    background: #fff;
+    transition: all 0.5s;
+    box-shadow: 1px 3px 15px #ddd;
+}
+
+.delivery_orders ul {
+    list-style-type: none;
+    padding: 10px;
+    height: 200px;
+    overflow-y: scroll;
+}
+.online_order_height{
+	overflow-y: scroll;
+}
+.online_order_single_product{
+	overflow-y: scroll;
+}
+
+
+/* .box_prod{
+		box-shadow: 0px 12px 78px -20px rgba(0, 0, 0, 0.5);
+	}*/
+</style>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script type="text/javascript">
+$(document).ready(function() {
+    if (document.querySelector('.search_input')) {
+        $(".search_result").css("width", document.querySelector('.search_input')["offsetWidth"]);
+    }
+    $(".search_result").css("height", $(window).height() - 170);
+    $(".online_order_height").css("height", $(window).height() - 60);
+    $(".online_order_single_product").css("height", $(window).height() - 325);
+    // $(".min_height").css("height", $(window).height() - 72 + "px");
+    // $(".category_view").css("height", $(window).height() - 170 + "px");
+    // alert('k');
+    $(".min_height_billing").css("height", $(window).height() - 230 + "px");
+});
+
+// $(document).ready(function(){
+//     $("#showInfo").click(function(){
+//         $("#showInfos").hide();
+//     });
+// });
+</script>

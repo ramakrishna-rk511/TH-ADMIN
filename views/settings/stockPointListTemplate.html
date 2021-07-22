@@ -1,0 +1,111 @@
+<div class="wrapper wrapper-content pd0" ng-controller="stockPointController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">Stock Point</h4>
+            <ol class="breadcrumb fc1">
+                <li>
+                    <a href="index.html"><strong>Home</strong></a>
+                </li>
+                <li class="active">
+                    <strong>Stock Point List</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2 text-right">
+            <button type="button" ng-click="addOrUpdateStockPoint()" class="btn btn-warning m-t-sm ttu"><i class="fa fa-plus m-r-xs"></i> Add</button>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight pd0">
+        <div class="row" ng-init="getStockPointList()">
+            <div class="col-lg-12 pd0">
+                <div class="ibox float-e-margins">
+                    <!-- <div class="ibox-title">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h3>Order Stock Point List</h3>
+                            </div>
+                            <div class="col-sm-2">
+                                
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="ibox-content">
+                        <table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id="timingSlotList">
+                            <thead>
+                                <tr>
+                                    <th>Company Branch Name</th>
+                                    <th>Stock point</th>
+                                    <th>Order type</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="addStockPointModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="ibox-title bgc8">
+                    <h5 class="fc1">Stock point <span ng-if="!stockData.id">Creation</span><span ng-if="stockData.id">Update</span></h5>
+                   <!-- <a ng-click="close()" class="pull-right fc1" data-dismiss="modal"><i class="fa fa-times"></i></a> -->
+                   <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="ibox-content" ng-init="getcompanyBranchList()">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="orderStockForm">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 text-center control-label ">Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Name.." class="form-control" ng-model="stockData.name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 text-center control-label ">Description <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Enter Description" class="form-control" ng-model="stockData.description" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 text-center control-label ">Branch Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb" ng-model="orderStockData.companyBranchId" name="entityName" required>
+                                            <option ng-repeat="cl in companyBranchList" value="{{cl.id}}">{{cl.entityName}}</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 text-center control-label ">Order Type <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control fwb" ng-model="stockData.orderType" required>
+                                            <option value="POS">IM-POS</option>
+                                            <option value="ECOMMERCE">E-COMMERCE</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="orderStockForm.$invalid" ng-click="createOrUpdateStockPoint(stockData)"><span ng-if="!stockData.id" >Save</span><span ng-if="stockData.id">Update</span></button>
+                                <button class="btn btn-white" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

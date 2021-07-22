@@ -1,0 +1,214 @@
+<div class="wrapper wrapper-content" ng-controller="stockMovementCreationController">
+	<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+    	<div class="col-lg-6">
+        	<h4 class="page_heading_title fc1 fwb">Stock Movement Creation</h4>
+        	<ol class="breadcrumb p-t-xs p-b-xs fc1">
+            	<li>
+                    <a href="index.html">Home</a>
+                </li>
+	            <li >
+	                <a ui-sref="inventory.stockmovementlist">Stock Movement List</a>
+	            </li>
+	            <li class="active">
+	                <strong>Stock Movement Creation</strong>
+	            </li>
+        	</ol>
+    	</div>
+	    <div class="col-lg-6">
+	    	<div class="col-sm-12 text-right m-t-md">
+			        <button class="btn btn-w-m btn-warning" type="submit" ng-click="saveConversion()">Save</button>
+			        <button class="btn btn-w-m btn-warning" type="submit" ng-click="goBack()">Cancel</button>
+			        <!-- <button class="btn btn-white" ng-click="cancel()">Cancel</button> -->
+		      </div> 
+	     	<!-- <button class="btn btn-primary btn-w-m" ng-click="saveConversion()">Save</button> -->
+			<!-- <button class="btn btn-w-m btn-warning" type="submit" ng-click="goBack()">Cancel</button> -->
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight" >
+		<div class="row">
+			<div class="col-lg-12 ibox-content" ng-repeat="(key,value) in movementListArr">
+				<!-- <div class="ibox float-e-margins"> -->
+					<!-- <div class="ibox-title">
+						<div class="row">
+							<div class="col-sm-10">
+								<h3>Existng Stock</h3>
+							</div>
+						</div>
+					</div> -->
+					<!-- <div class=""> -->
+					<div class="remove_conver" ng-click="removeRow($index)"><a><i class="fa fa-trash"></i></a></div>
+						<div class="col-lg-12 border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;">
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From BatchNo</div>
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">From Branch</div> -->
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From SKU</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From SKU QTY</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From SKU UOM</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">Stock Point</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From Unit</div>
+						</div>
+						<div class="col-lg-12 bg-default m-t-xs p-xs" style="background: #a9a9a914;">
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.fromBatch" placeholder="Select Batch">
+									<option ng-repeat="scb in stockMovementBatches" value="{{scb.id}}">{{scb.name}}</option>  
+								</select>
+							</div>
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" ng-model="value.fromBranch"/>
+							</div> -->
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.fromSku" placeholder="Select Products">
+									<option ng-repeat="scp in stockMovementProducts" value="{{scp.id}}">{{scp.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" placeholder="Enter Product Quantity" ng-model="value.fromSkuQty" />
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.fromSkuUom" placeholder="Select UOM">
+									<option ng-repeat="scu in stockMovementUOMs" value="{{scu.id}}">{{scu.unitName}} - {{scu.shortName}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.fromStockPoint" placeholder="Select Stock Point">
+									<option ng-repeat="scsp in stockMovementStockPoint" value="{{scsp.id}}">{{scsp.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" placeholder="Enter Units" ng-model="value.fromUnits" />
+							</div>
+						</div>
+						<!-- <div class="row">
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label>Quantity</label> 
+									<input type="text"  class="form-control">
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label>Unit of Measurement</label> 
+									<input type="text"  class="form-control">
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label>Batch No</label> 
+									<input type="text"  class="form-control">
+								</div>
+							</div>
+						</div> -->
+						<!-- <div class="row border-bottom">
+							<div class="col-sm-12"><h4 class="pull-left font-bold">Conversion Product</h4></div> 
+						</div> -->
+						<div class="col-lg-12 border-bottom p-xs fw100 m-t-sm" style="font-weight: 600;">
+							<div class="col-lg-2 p-r-xxs p-l-xxs">To BatchNo</div>
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">To Branch</div> -->
+							<div class="col-lg-2 p-r-xxs p-l-xxs">To SKU</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">To SKU QTY</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">To SKU UOM</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">Stock Point</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">From Unit</div><!-- 
+							<div class="col-lg-1 p-r-xxs p-l-xxs">Tax/unit</div>
+							<div class="col-lg-1 p-r-xxs p-l-xxs">Total Amount</div> -->
+						</div>
+
+						<div class="col-lg-12 p-xs bg-default m-t-xs" style="background: #a9a9a914;">
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.toBatch" placeholder="Select Batch">
+									<option ng-repeat="scb in stockConversionBatches" value="{{scb.id}}">{{scb.name}}</option>  
+								</select>
+							</div>
+							<!-- <div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" ng-model="value.toBranch"/>
+							</div> -->
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.toSku" placeholder="Select Products">
+									<option ng-repeat="scp in stockConversionProducts" value="{{scp.id}}">{{scp.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" placeholder="Enter Product Quantity" ng-model="value.toSkuQty" />
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.toSkuUom" placeholder="Select UOM">
+									<option ng-repeat="scu in stockConversionUOMs" value="{{scu.id}}">{{scu.unitName}} - {{scu.shortName}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<select class="form-control" ng-model="value.toStockPoint" placeholder="Select Stock Point">
+									<option ng-repeat="scsp in stockConversionStockPoint" value="{{scsp.id}}">{{scsp.name}}</option>  
+								</select>
+							</div>
+							<div class="col-lg-2 p-r-xxs p-l-xxs">
+								<input type="text" class="form-control" placeholder="Enter Units" ng-model="value.toUnits" />
+							</div>
+							<!-- <div class="col-lg-1 p-r-xxs p-l-xxs">
+								<div class="col-lg-10 p-r-xxs p-l-xxs"><input type="text" name="" class="form-control"></div>
+								<div class="col-lg-2 p-r-xxs p-l-xxs c-p"><i class="fa fa-trash-o icon-mid"></i></div>
+							</div> -->
+						</div>
+						<!-- <div class="row">
+							<div class="col-sm-12 text-center m-t-lg m-b-lg">
+							
+							</div>
+						</div>  -->              	            	
+					<!-- </div> -->
+				<!-- </div> -->
+			</div>
+
+			<div class="col-lg-12 m-t-xs p-l-xxs p-r-xxs">
+				<div class="col-lg-4">
+					<button class="btn btn-sm btn-primary" ng-click="newRowAdded()"><i class="fa fa-plus m-r-xs"></i>Add Row</button>
+				</div>
+				<!-- <div class="col-lg-2 font-bold">Total</div>
+				<div class="col-lg-2 font-bold text-left">0</div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2 font-bold text-left">0</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+
+ <style type="text/css">
+	.remove_conver{
+		position: absolute;
+		right: 10px;
+		width: 4%;    
+		text-align: center;
+	    font-size: 18px;
+	    top: 5px;
+		padding: 2px 20px;
+	    background: #fff;
+	    border-radius: 33px;
+	    box-shadow: 1px 1px 6px -1px #000;
+	    cursor: pointer;
+	}
+	.remove_conver i{
+		color: #F44336;
+	}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

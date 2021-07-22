@@ -1,0 +1,368 @@
+<div class="wrapper wrapper-content pd0" ng-controller="cityStateAreasController">
+<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+  <div class="col-lg-10">
+      <h4 class="page_heading_title fwb fc1">State - City - Areas</h4>
+      <ol class="breadcrumb fc1">
+          <li>
+              <a href="index.html">Home</a>
+          </li>
+          <li class="active">
+              <strong>State - City - Areas</strong>
+          </li>
+      </ol>
+  </div>
+  <div class="col-lg-2"></div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ng-scope pd0">
+  <div class="row">
+    <div class="col-lg-12 pd0">
+      <div class="ibox float-e-margins">
+              <!-- <div class="ibox-title">
+                  <h5>State - City - Areas</h5>
+              </div> -->
+        <div class="ibox-content">
+          <div class="tabs-container">
+            <tabset>
+              <tab heading="State">
+                <div class="panel-body" ng-init="getStateList()">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                        <div class="row">
+                          <div class="col-sm-5 m-b-xs"></div>
+                          <div class="col-sm-4 m-b-xs"></div>
+                          <div class="col-sm-3">
+                            <div class="input-group pull-right" >
+                              <button type="button" ng-click="addOrUpdateState()" class="btn btn-sm  btn-primary ttu"> Add State</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="">
+                          <table class="table table-striped table-bordered table-hover dataTables-example" data-table="" id="stateTable">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Short Name</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+              <tab heading="City">
+                <div class="panel-body" ng-init="getCityList()">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                        <div class="row">
+                          <div class="col-sm-5 m-b-xs"></div>
+                          <div class="col-sm-4 m-b-xs"></div>
+                          <div class="col-sm-3">
+                            <div class="input-group pull-right" >
+                                <button type="button" ng-click="addOrUpdateCity()" class="btn btn-sm  btn-primary"> Add City</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="">
+                          <table class="table table-striped table-bordered table-hover dataTables-example" data-table="" id="cityTable">
+                            <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>State Name</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+              <tab heading="Areas">
+                <div class="panel-body" ng-init="getAreaList()">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                        <div class="row">
+                          <div class="col-sm-5 m-b-xs"></div>
+                          <div class="col-sm-4 m-b-xs"></div>
+                          <div class="col-sm-3">
+                            <div class="input-group pull-right" >
+                                <button type="button" ng-click="addOrUpdateArea()" class="btn btn-sm  btn-primary"> Add Area</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="">
+                        	<table class="table table-striped table-bordered table-hover dataTables-example" data-table="" id="areaTable">
+                            <thead>
+                              <tr>
+                                <th>Area Name</th>
+                                <th>City</th>
+                                <th>isPickup</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                					</table>
+            						</div>
+                  		</div>
+                    </div>
+                  </div>
+              	</div>
+          		</tab>
+            </tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="addStateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bgc8">
+          <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <label class="control-label fc1 ttu fwb"> <h5>State <span ng-if="!stateData.id">Creation</span><span ng-if="stateData.id">Update</span></h5> </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+        	<form class="form-horizontal ng-pristine ng-valid ng-submitted" name="stateForm">
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="col-lg-4 text-center control-label ">Name <span class="text-danger">*</span> :</label>
+                    <div class="col-lg-8">
+                        <input type="text" placeholder="Name.." class="form-control" ng-model="stateData.name" required>
+                        <div ng-show="stateForm.$submitted || stateForm.name.$touched">
+                            <div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-4 text-center control-label ">Short Name <span class="text-danger">*</span> :</label>
+                    <div class="col-lg-8">
+                        <input type="text" placeholder="short Name.." class="form-control" ng-model="stateData.shortName" required>
+                        <div ng-show="stateForm.$submitted || stateForm.name.$touched">
+                            <div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+                        </div>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label class="col-lg-4 text-center control-label ">Description <span class="text-danger">*</span> :</label>
+                    <div class="col-lg-8">
+                        <input type="text" placeholder="Description" class="form-control" ng-model="stateData.description" required>
+                        <div ng-show="stateForm.$submitted || stateForm.name.$touched">
+                            <div ng-show="stateForm.name.$error.required" class="text-danger">Name is required!</div>
+                        </div>
+                    </div>
+                  </div>
+                <!-- </div>
+                <div class="col-lg-12"> -->
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Status <span class="text-danger">*</span> :</label>
+                    <div class="col-lg-8">
+                        <select class="form-control" ng-model="stateData.isActive" required="">
+                            <option value="">select...</option>
+                            <option value="true">Active</option>
+                            <option value="false">InActive</option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        	</form>
+        </div>
+        <div class="modal-footer">
+          <div class="form-group">
+              <div class="col-sm-12 text-center">
+                  <button class="btn btn-primary" type="submit" ng-disabled="stateForm.$invalid" ng-click="createUpdateState(stateData)"><span ng-if="!stateData.id" >Save</span><span ng-if="stateData.id">Update</span></button>
+                  <button class="btn btn-white" ng-click="close()" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="addCityModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bgc8">
+          <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <label class="control-label fc1 ttu fwb"> <h5>City <span ng-if="!cityData.id">Creation</span><span ng-if="cityData.id">Update</span></h5> </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+        	<form class="form-horizontal ng-pristine ng-valid ng-submitted" name="cityForm">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">State <span class="text-danger">*</span> :</label>
+                    <div class="col-lg-8">
+                        <select class="form-control" ng-model="cityData.stateId" required="">
+                            <option value="" ng-selected>Select State...</option>
+                            <option value="{{sl.id}}" ng-repeat="sl in statesList">{{sl.name}} - {{sl.shortName}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Company Branch <span class="text-danger">*</span> :</label>
+                    <div class="col-lg-8">
+                        <select class="form-control" ng-model="cityData.companyBranchId" required="">
+                            <option value="">Select Company Branch...</option>
+                            <option value="{{cb.id}}" ng-repeat="cb in companyBranchData" ng-selected="cb.id==cityData['areasModels'][0]['companyBranchId']">{{cb.entityName}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="col-lg-4 text-center control-label ">Name <span class="text-danger">*</span> :</label>
+                        <div class="col-lg-8">
+                            <input type="text" placeholder="Name.." class="form-control" ng-model="cityData.name" required>
+                            <div ng-show="cityForm.$submitted || cityForm.name.$touched">
+                                <div ng-show="cityForm.name.$error.required" class="text-danger">Name is required!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Status <span class="text-danger">*</span> :</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" ng-model="cityData.isActive" required="">
+                                <option value="" ng-selected>select...</option>
+                                <option value="true">Active</option>
+                                <option value="false">InActive</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>        	
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <div class="col-sm-12 text-center">
+              <button class="btn btn-primary" type="submit" ng-disabled="cityForm.$invalid" ng-click="createUpdateCity(cityData)"><span ng-if="!cityData.id" >Save</span><span ng-if="cityData.id">Update</span></button>
+                <button class="btn btn-white" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="addAreasModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bgc8">
+          <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+          <div class="row">
+            <div class="col-sm-11 text-center">
+              <label class="control-label fc1 ttu fwb"> <h5>Area <span ng-if="!areaData.id">Creation</span><span ng-if="areaData.id">Update</span></h5> </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+        	<form class="form-horizontal ng-pristine ng-valid ng-submitted" name="areaForm">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label class="col-lg-4 text-center control-label ">Name <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-8">
+                      <input type="text" placeholder="Name.." class="form-control" ng-model="areaData.name" required>
+                      <div ng-show="areaForm.$submitted || areaForm.name.$touched">
+                          <div ng-show="areaForm.name.$error.required" class="text-danger">Name is required!</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">City <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-8">
+                    <select class="form-control" ng-model="areaData.cityId">
+                      <option value="" ng-selected>select City...</option>
+                      <option value="{{cities.id}}" ng-repeat="cities in citiesList">{{cities.name}}</option>
+                    </select>
+                 	</div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Company Branch <span class="text-danger">*</span> :</label>
+                    <div class="col-lg-8">
+                        <select class="form-control" ng-model="cityData.companyBranchId" required="">
+                            <option value="">select Company Branch...</option>
+                            <option value="{{cm.id}}" ng-repeat="cm in companyBranchData" ng-selected="cm.id==cityData.companyBranchId">{{cm.entityName}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                <div class="form-group">
+                  <label class="col-lg-4 text-center control-label ">Pincode <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-8">
+                      <input type="text" placeholder="Enter Pincode.." class="form-control" ng-model="areaData.pincode" required>
+                      <div ng-show="areaForm.$submitted || areaForm.name.$touched">
+                          <div ng-show="areaForm.name.$error.required" class="text-danger">Name is required!</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">isPickup <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-8">
+                    <select class="form-control" ng-model="areaData.isPickUp">
+                      <option value="">select isPickup...</option>
+                      <option value="true" ng-selected="areaData.isPickUp==true">True</option>
+                      <option value="false" ng-selected="areaData.isPickUp==false">False</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">Status <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-8">
+                    <select class="form-control" ng-model="areaData.isActive">
+                      <option value="" ng-selected>select Status...</option>
+                      <option value="true">Active</option>
+                      <option value="false">InActive</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+        	</form>
+        </div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <div class="col-sm-12 text-center">
+              <button class="btn btn-primary" type="submit" ng-disabled="areaForm.$invalid" ng-click="createUpdateArea(areaData)"><span ng-if="!areaData.id" >Save</span><span ng-if="areaData.id">Update</span></button>
+              <button class="btn btn-white" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

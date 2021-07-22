@@ -1,0 +1,59 @@
+<div class="inmodal">
+    <div class="row" ng-controller="taxController">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title bgc8 fc1">
+                    <h5>Tax Rate <span ng-if="!taxRateData.id">Creation</span><span ng-if="taxRateData.id">Update</span></h5>
+                    <a ng-click="close()" class="pull-right"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="taxRateForm">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 text-center control-label ">Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Name.." class="form-control" ng-model="taxRateData.name" required>
+                                        <div ng-show="taxRateForm.$submitted || taxRateForm.name.$touched">
+                                            <div ng-show="taxRateForm.name.$error.required" class="text-danger">Name is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 text-center control-label">Rate <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Rate" class="form-control" ng-model="taxRateData.rate" required> 
+                                        <div ng-show="taxRateForm.$submitted || taxRateForm.rate.$touched">
+                                            <div ng-show="taxRateForm.rate.$error.required" class="text-danger">Name is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Status <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control" ng-model="taxRateData.isActive">
+                                            <option value="">select...</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">InActive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="taxRateForm.$invalid" ng-click="createUpdateTaxRate(taxRateData)"><span ng-if="!taxRateData.id" >Save</span><span ng-if="taxRateData.id">Update</span></button>
+                                <button class="btn btn-white" ng-click="close()">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

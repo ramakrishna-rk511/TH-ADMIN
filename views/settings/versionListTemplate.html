@@ -1,0 +1,204 @@
+
+<div class="wrapper wrapper-content pd0" ng-controller="versionListController">
+	<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+	    <div class="col-lg-10">
+	        <h4 class="page_heading_title fc1 f2 mg0 fwb">Version</h4>
+	        <ol class="breadcrumb m-t-sm">
+	            <li class="fc1">
+	                        <a href="index.html">Home</a>
+	                    </li>
+	            <li class="active fc1">
+	                <strong>Version List</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+            <button type="button" data-toggle="modal" ng-click="addOrUpdateVersion()" class="btn btn-w-m btn-warning m-t-sm ttu">Add Version</button>
+        </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight pd0">  
+		<div class="row">
+			<div class="col-lg-12 pd0">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<table class="table table-striped table-bordered table-hover dataTables-example" id="versionTable">
+							<thead>
+								<tr>
+								    <th>Name</th>
+								    <th>Device</th>
+								    <th>Version No.</th>
+								    <th>Latest</th>
+								    <th>Mandatory</th>
+								    <th>RemindMe</th>
+								    <th>Skip</th>
+								    <!-- <th>Status</th> -->
+								    <th>Action</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="addVersionModal" class="modal fade" role="dialog">
+	    <div class="modal-dialog modal-lg"">
+	        <!-- Modal content-->
+	        <div class="modal-content">
+	            <div class="modal-header bgc8">
+	                <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+	                <div class="row">
+	                    <div class="col-sm-11 text-center">
+	                        <label class="control-label fc1 ttu fwb"> Version </label>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-body">
+	                <form class="form-horizontal" name="versionForm">
+	                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb"> Name</label>
+		                            <div class="col-lg-8 pos_rel">
+		                                <input type="text" class="form-control bgc7 fwb" ng-model="versionCreationObj.title" required /> 
+		                            </div>
+		                        </div>
+		                    </div>
+	                    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb"> Version No</label>
+		                            <div class="col-lg-8 pos_rel">
+		                                <input type="text" class="form-control bgc7 fwb" ng-model="versionCreationObj.versionNo" required /> 
+		                            </div>
+		                        </div>
+	                        </div>
+
+	                    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb">Device</label>
+		                            <div class="col-lg-8 pos_rel">
+		                            	<select class="form-control bgc7" ng-model="versionCreationObj.device" required>
+		                                    <option value="" ng-selected="">select..</option>
+		                                    <option value="ANDROID">ANDROID</option>
+		                                    <option value="IOS">IOS</option>
+		                                </select>
+		                            </div>
+		                        </div>
+	                        </div>
+	                    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb"> Latest</label>
+		                            <div class="col-lg-8 pos_rel">
+		                                <select class="form-control bgc7" ng-model="versionCreationObj.isLatest" required>
+		                                    <option value="" ng-selected="">select..</option>
+		                                    <option value="true" ng-selected="versionCreationObj.isLatest==true">True</option>
+		                                    <option value="false" ng-selected="versionCreationObj.isLatest==false">False</option>
+		                                </select>
+		                            </div>
+		                        </div>
+	                        </div>
+	                    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb"> Mandatory</label>
+		                            <div class="col-lg-8 pos_rel">
+		                                <select class="form-control bgc7" ng-model="versionCreationObj.isMandatory" required>
+		                                    <option value="" ng-selected="">select..</option>
+		                                    <option value="true" ng-selected="versionCreationObj.isMandatory==true">True</option>
+		                                    <option value="false" ng-selected="versionCreationObj.isMandatory==false">False</option>
+		                                </select>
+		                            </div>
+		                        </div>
+	                        </div>
+	                    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb"> RemindMe</label>
+		                            <div class="col-lg-8 pos_rel">
+		                                <select class="form-control bgc7" ng-model="versionCreationObj.remindMe" required>
+		                                    <option value="" ng-selected="">select..</option>
+		                                    <option value="true" ng-selected="versionCreationObj.remindMe==true">True</option>
+		                                    <option value="false" ng-selected="versionCreationObj.remindMe==false">False</option>
+		                                </select>
+		                            </div>
+		                        </div>
+	                        </div>
+	                    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb"> Skip</label>
+		                            <div class="col-lg-8 pos_rel">
+		                                <select class="form-control bgc7" ng-model="versionCreationObj.skip" required>
+		                                    <option value="" ng-selected="">select..</option>
+		                                    <option value="true" ng-selected="versionCreationObj.skip==true">True</option>
+		                                    <option value="false" ng-selected="versionCreationObj.skip==false">False</option>
+		                                </select>
+		                            </div>
+		                        </div>
+	                        </div>
+	                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                        <div class="form-group">
+		                            <label class="col-lg-4 control-label fwb"> Description</label>
+		                            <div class="col-lg-8 pos_rel">
+		                                <textarea placeholder="Description" class="form-control bgc7 fwb" ng-model="versionCreationObj.description" required> </textarea> 
+		                            </div>
+		                        </div>
+	                        </div>
+	                    </div>
+	                </form>
+	            </div>
+	            <div class="modal-footer">
+	                <div class="row">
+	                    <div class="col-sm-12">
+	                        <div class="text-center mgt10">
+	                            <button type="button" class="btn btn-w-m btn-primary" ng-disabled="versionForm.$invalid" ng-click="createOrUpdateVersion(versionCreationObj)">Proceed</button>
+	                        </div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<style type="text/css">
+    .modal-body{
+        max-height: calc(100% - 120px);
+        overflow-y: scroll;
+        padding: 20px 20px 20px 20px;
+    }
+</style>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

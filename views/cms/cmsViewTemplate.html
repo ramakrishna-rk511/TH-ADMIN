@@ -1,0 +1,332 @@
+<div ng-cloak="" ng-controller="cmsController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">CMS PAGE UPDATION</h4>
+            <ol class="breadcrumb">
+                <li class="fc1">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active fc1">
+                    <strong>CMS PAGE UPDATION</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row" ng-init="loadFiles('#cmsUpdationWizard','#cmsUpdationForm')">
+        <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"></div> -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 dt pn bdr1 mgt10 pd0">
+            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+                <div class="wizard">
+                    <form id="cmsUpdationForm" class="form-horizontal fs12" name="cmsForm">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border-b  form_top_bg">
+                            <!-- <h4 class="page_heading_title fc1 fwb">CMS CREATION</h4> -->
+                        </div>
+                        <div id="cmsUpdationWizard" class="wizard_form">
+                            <ul class="pd_l_20 fs12 bgc1">
+                                <li><a data-target="#page-update" class="text-center bdrd0" data-toggle="tab">1. PAGE</a></li>
+                                <li><a data-target="#page-update-block" class="text-center bdrd0" data-toggle="tab">2. BLOCK</a></li>
+                                <li><a data-target="#page-update-order" class="text-center bdrd0" data-toggle="tab">3. ORDERING</a></li>
+                            </ul>
+                            <div class="tab-content pd_t_20">
+                                <!-- Category Details -->
+                                <div class="tab-pane active" id="page-update">
+                                    <div class="row">
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="col-lg-3 text-center control-label ">Name :</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" placeholder="Page Name.." class="form-control" ng-model="page.name" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 text-center control-label ">Title :</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" placeholder="Title.." class="form-control" ng-model="page.title" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 text-center control-label">Description :</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" placeholder="Description" class="form-control" ng-model="page.description" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 text-center control-label ">Page Type :</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" ng-model="page.type" required>
+                                                        <option value="">select Pagetype</option>
+                                                        <option value="HOMEPAGE">HOMEPAGE</option>
+                                                        <option value="CUSTOMPAGE">CUSTOMPAGE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">Viewport :</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" ng-model="page.viewPort" required>
+                                                        <option value="">select Viewport</option>
+                                                        <option value="WEB">WEB</option>
+                                                        <option value="MOBILE">MOBILE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">Status :</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" ng-model="page.isActive" required>
+                                                        <option value="">select Status</option>
+                                                        <option value="true">TRUE</option>
+                                                        <option value="false">FALSE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="page-update-block">
+                                     <div class="panel-body">
+                                        <div class="row">
+                                            <!-- <div class="col-lg-5"></div> -->
+                                            <div class="col-sm-offset-10">
+                                                <!-- <div class="col-lg-2"> -->
+                                                    <div class="input-group">
+                                                        <button type="button" class="btn btn-w-m btn-warning m-t-sm ttu" ng-click="showBlockLayoutModal()">Add</button>
+                                                    </div>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                        <div ng-if="page.viewPort=='MOBILE'">
+                                            <!-- <ng-include class="pdb5" ng-repeat="b in blockList track by $index" id="sortable" src="'views/cms/'+b.blockType+'.html'"></ng-include>
+                                            <div class="col-lg-5"></div>
+                                            <div class="col-lg-2">
+                                                <div class="input-group" ng-if="blockList.length>0">
+                                                    <button type="button" class="btn btn-w-m btn-warning m-t-sm ttu" ng-click="cmsCreation(page)">Save</button>
+                                                </div>
+                                            </div> -->
+                                            <ng-include class="pdb5" ng-repeat="b in blockList track by $index" src="'views/cms/'+b.blockType+'.html'"></ng-include>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-w-m btn-warning m-t-sm ttu" ng-click="cmsEdit(page)">Save</button>
+                                            </div>
+                                            
+                                        </div>
+                                        <div ng-if="page.viewPort=='WEB'">
+                                            <ng-include class="pdb5" ng-repeat="b in blockList track by $index" src="'views/cms/'+b.blockType+'.html'"></ng-include>
+                                            <div class="col-lg-5"></div>
+                                            <div class="col-lg-2">
+                                                <div class="input-group" ng-if="blockList.length>0">
+                                                    <button type="button" class="btn btn-w-m btn-warning m-t-sm ttu" ng-click="cmsCreation(page)">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <p ng-repeat="catData in categoryData">{{catData.name}}</p> -->
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="page-update-order">
+                                    <div class="form-group m-t-xs col-lg-8 ng-scope" ng-repeat="sorts in blockList">
+                                        <label class="control-label col-lg-6 col-md-6">{{sorts.blockType}}</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            <input type="text" class="form-control" ng-model="sorts.place" required=""/>
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 p-xs"><span class="" ng-bind="sorts.orderOfPlace"></span></div>
+                                    </div>
+
+
+                                    <div class="text-center pd10">
+                                        <button type="button" class="btn btn-w-m btn-primary" ng-click="saveBlocksOrdering(blockList)">Save</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <ul class="pager wizard wizard_buttons pd_r_10">
+                                        <li class="next pull-right hide" ng-hide="next"><a>NEXT</a></li>
+                                        <li class="previous pull-right m-r-sm hide" ng-hide="previous"><a>PREVIOUS</a></li>
+                                        <li class="pull-right m-r-sm"><a href="#/cms/cmslist">CLOSE</a></li>
+                                        <!-- <li class="confirm hide" ng-hide="confirm"><button class="btn btn-danger" ng-click="createCategory(category)">CONFIRM</button></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+
+
+
+    <!-- SELECT block modal -->
+    <div id="addblock" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md"">
+            <div class=" modal-content">
+            <div class="modal-header bgc8">
+                <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+                <div class="row">
+                    <div class="col-sm-11 text-center">
+                        <label class="control-label fc1 ttu fwb">
+                            <h5>SELECT BLOCK </h5>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row pd10">
+                    <div class="col-sm-6 bdr1 pd10" ng-repeat="layout in pageBlockLayoutList">
+                        <input type="radio" ng-change="changeBlockType(layout.code)" id="{{layout.code}}" name="selectedModelType" ng-value="{{layout.code}}" ng-model="selectedModelType">
+                        <label for="{{layout.code}}" class="dis_con"><img src="img/{{layout.code}}.png" width="75%" /></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-12 text-center">
+                        <button class="btn btn-primary" ng-click="addBlockToPage(selectedModelType)">Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addOptionModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md"">
+            <div class=" modal-content">
+        <div class="modal-header bgc8">
+            <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+            <div class="row">
+                <div class="col-sm-11 text-center">
+                    <label class="control-label fc1 ttu fwb">
+                        <h5>BLOCK SETTING</h5>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="stateForm">
+                <div class="row">
+                    <!-- <div class="col-lg-3"></div> -->
+                    <div class="col-lg-11">
+                        <div class="form-group">
+                            <label class="col-lg-6 text-center control-label ">Name<span class="text-danger">*</span> :</label>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Enter Name" class="form-control" ng-model="cms.name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 text-center control-label ">Block Text<span class="text-danger">*</span> :</label>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Enter Block Text" class="form-control" ng-model="cms.blockText" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 text-center control-label ">Is Clickable<span class="text-danger">*</span> :</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" required="" ng-model="cms.clickable">
+                                    <option value="">select Clickable</option>
+                                    <option value="true">YES</option>
+                                    <option value="false">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="cms.clickable == 'true'">
+                            <label class="col-lg-6 text-center control-label ">On Click Target <span class="text-danger">*</span> :</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" required="" ng-model="cms.onClickTarget">
+                                    <option value="">select...</option>
+                                    <option value="CATEGORYPAGE">CATEGORY PAGE</option>
+                                    <option value="CUSTOMPAGE">CUSTOM page</option>
+                                    <option value="SINGLEPAGE">SINGLE PAGE</option>
+                                    <option value="HOMEPAGE">HOME PAGE</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="cms.onClickTarget=='CATEGORYPAGE'">
+                            <label class="col-lg-6 control-label">List Of Category <span class="text-danger">*</span> :</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" required="" ng-model="cms.category">
+                                    <option>Select Category</option>
+                                    <option value="CATEGORY:::{{catData.name}}:::{{catData.id}}" ng-repeat="catData in categoryData">{{catData.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="cms.onClickTarget=='CUSTOMPAGE'">
+                            <label class="col-lg-6 control-label">Page List <span class="text-danger">*</span> :</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" required="" ng-model="cms.category">
+                                    <option value="">Select Page List</option>
+                                    <option value="PAGE:::{{pgData.name}}:::{{pgData.id}}" ng-repeat="pgData in customPageData">{{pgData.name}}</option>(
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="cms.onClickTarget=='SINGLEPAGE'">
+                            <label class="col-lg-6 text-center control-label ">Single Page <span class="text-danger">*</span> :</label>
+                        <div class="col-lg-6">
+                            <input type="text" placeholder="Type Name..." id ="singleProductSearch" class="form-control" ng-keyup="singleProductSearch(spName)" ng-model="spName" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary" ng-click="updateBlockItemSetting(cms)">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+</div>
+
+
+    
+  <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  
+    
+    $('#blockItemCarousel').carousel({
+      interval: 2000
+    })
+</script>
+
+
+
+    <style type="text/css">
+    #categorywizard>ul>li {
+        width: 33% !important;
+    }
+
+    label.error {
+        display: block !important;
+        margin-bottom: 0px !important
+    }
+
+    .tab-pane {
+        padding: 10px;
+    }
+
+    .border {
+        border: 1px solid #1ab394;
+    }
+
+    .tag-list li a {
+        font-size: 15px;
+    }
+    </style>
+    <script>
+    // $(".select2_demo_1").select2({
+    //     placeholder: "PLEASE SELECT ...",
+    //     allowClear: true
+    // });
+
+    // $(".select2_demo_2").select2({
+    //     placeholder: "PLEASE SELECT ...",
+    //     allowClear: true
+    // });
+    </script>

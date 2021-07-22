@@ -1,0 +1,48 @@
+product
+-------
+
+product
+-------
+id			name		short_desc		long_desc		brand_id		cat_id 	 	company_id
+p1			tom_jeans	tom_jeans 		jeans 			tommy			jeans 		   
+
+
+product_sku
+-----------
+id 			product_id 		sku_code 		hsn_code 		bar_code 	tax 	prices
+ps1			p1 				120				0980			7023				will add later
+
+
+product_attributes
+------------------
+id 			product_sku_id 			attribute_id
+pa1				ps1						a1
+
+
+
+Note:
+
+Product creation screen with attributes and variants 
+
+variants are like 
+
+attr     values 	type 
+color 		grey	variant
+color		red		variant
+size		xl		attribute
+size		l 		attr
+size		s 		attr
+
+
+here we need to create product with six variant i.e, grey-xl,grey-l,grey-s,red-xl,red-l,red-s
+
+
+
+Example Screen Link
+
+https://console.gozwing.com/admin/product/add#general
+
+
+==> We need to discuss product price book
+i.e, Different product prices for different stores 
+note : the above two statements are not valid as said by sai anna

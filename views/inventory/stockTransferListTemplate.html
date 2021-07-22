@@ -1,0 +1,213 @@
+<div class="wrapper wrapper-content pd0" ng-controller="stockTransferController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">Stock Transfer</h4>
+            <ol class="breadcrumb fc1">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <strong>Stock Transfer List</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <!-- <div class="row m-t-xs">
+                <div class="col-lg-4"> 
+                    <div class="form-group" id="data_3">
+                        <label class="font-noraml fc1">Date Range</label>
+                        <div class="input-group date">
+                            <input date-range-picker class="form-control date-picker" type="text" ng-model="app.daterange" />
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group" id="data_3">
+                        <label class="font-noraml fc1">Stock-In From Supplier</label>
+                        <div class="input-group ">
+                            <select class="form-control m-b" name="account">
+                                <option>All Firms</option>
+                                <option>Farmers Best</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                            </select> 
+                            <span class="input-group-addon"><i class="fa fa-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 m-t-md text-center">
+                  <button type="button" class="btn btn-default dropdown-toggle m-r-md" data-toggle="dropdown">
+                      Bulk Upload 
+                      <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" style="right: auto;">
+                      <li><a data-toggle="modal" ng-click="bulkTransferUpload()">Upload File</a></li>
+                      <li><a href="./json/Product_sku_upload.xlsx">Download Template</a></li>
+                  </ul>
+                </div>
+            </div> -->
+            <button type="button" ui-sref="inventory.stocktransfercreation" class="btn btn-w-m btn-warning m-r-sm m-t-sm"><i class="fa fa-plus m-r-xs"></i>Add Stock Transfer</button>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight pd0" >  
+        <div class="row">
+            <div class="col-lg-12 pd0">
+                <!-- <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h3>Stock Transfer List</h3>
+                            </div>
+                            <div class="col-sm-2">
+                                
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="ibox-content">
+                        <table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id="stockTransferTable">
+                            <thead>
+                                <tr>
+                                    <th>Receipt No</th>
+                                    <th>From Branch</th>
+                                    <th>To Branch</th>
+                                    <th>Status</th>
+                                    <th>Items Count</th>
+                                    <th>Created date</th>
+                                    <th>Received date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+
+
+  <div id="transferUpload" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bgc8">
+          <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+          <div class="row">
+              <div class="col-sm-11 text-center">
+                  <label class="control-label fc1"> Upload File </label>
+              </div>
+          </div>
+        </div>
+        <div class="modal-body" style="height: 300px;">
+          <!-- <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="companyForm">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <label class="col-lg-2 control-label">Upload .xls / .xslx ( excel sheet )</label>
+                      <div class="col-lg-4 pos_rel">
+                          <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                      </div>
+                  </div>
+              </div>
+          </form> -->
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding: 20px;">
+              <form enctype="multipart/form-data">
+                <div class="drop-zone">
+                  <img src="./img/upload_img.PNG" width="25%" />
+                  <!-- <span class="drop-zone-prompt"> Drop file</span> -->
+                  <div class="drop-zone-thumb" data-label=""></div>
+                  <input type="file" name="myFile" class="drop-zone-input" on-file-change="'/bulkupload/productsku'" />
+                </div>
+                <div class="text-center">
+                    
+                   <input type="file" name="" placeholder="upload file" ng-model="productFiles" on-file-change="'/bulkupload/productsku'" class="select_file" />
+                 </div>
+                <!-- <div class="text-center" style="margin-top: 20px;">
+                  <button class="btn btn-w-m btn-primary"  ng-model="productFiles" on-file-change="dropExcel" id="product_upload">Browse Files</button>
+                </div> -->
+              </form>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <!-- <input type="file" name="" placeholder="upload file" ng-model="productFiles" on-file-change="dropExcel" id="product_upload" /> -->
+              <!-- <input type="file" name="" placeholder="upload file" ng-model="this" onchange="angular.element($('#product_upload')).scope().dropExcel(this,this.id)" id="product_upload" ng-change="dropExcel(this,this.id)" /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+<style>
+  .drop-zone{
+        border: 1px solid #dcdcdc;
+      padding: 20px;
+  }
+  .select_file{
+    color: #ffffff;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    padding: 5px 8px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    font-weight: 700;
+    /*line-height: 160px;*/
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #48d09b;
+  }
+  .drop-zone {
+    /*max-width: 350px;,.asset-upload
+    height: 200px;
+    padding: 20px;
+    border: 2px solid #aaaaaa;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .drop-zone-input{
+    display: none !important;
+  }
+  .drop-zone.drop-zone-over,.asset-upload.drop-zone-over{
+    border: 2px dashed #aaaaaa;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

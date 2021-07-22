@@ -1,0 +1,109 @@
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="dailyLogsController">
+  <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+      <div class="col-lg-10">
+          <h4 class="page_heading_title fwb fc1">Daily Logs</h4>
+          <ol class="breadcrumb fc1">
+               <li><a href="index.html">Home</a></li>
+              <li class="active">
+                  <strong>Daily Logs List</strong>
+              </li>
+          </ol>
+      </div>
+  </div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+          <div class="col-lg-2">
+              <div class="form-group pd10">
+                <label class="font-normal">From Date</label>
+                <div class="input-group input-daterange" id="datepickerefdate">
+                  <input type="text" class="form-control" ng-model="dailyObj.fd" name="datepickerefdate" required=""/>
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="form-group pd10">
+              <label class="font-normal">To Date</label>
+              <div class="input-group input-daterange" id="datepickeretdate">
+                <input type="text" class="form-control" ng-model="dailyObj.td" name="datepickeretdate" required=""/>
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              </div>
+            </div>
+          </div>
+        	<div class="col-lg-2">
+        		<div class="form-group pd10">
+        			<button type="button" class="btn btn-danger btn-sm" style="margin-top: 10px;" ng-click="submitDailyLogs(dailyObj)">SUBMIT</button>
+        		</div>
+        	</div>
+        </div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox-content">
+					<table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id='dailyLogsList'>
+						<thead>
+							<tr>
+								<th>Cashier Name</th>
+                <th>Open balance</th>
+								<th>Close balance</th>
+                <th>Difference</th>
+                <th>Open time</th>
+								<th>Close time</th>
+								<th>Adjustments</th>
+								<th></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('input[name="datepickerefdate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          minYear: 2010,
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, function(start, end, label) {
+            var years = moment().diff(start, 'years');
+            // alert("You are " + years + " years old!");
+        });
+	$('input[name="datepickeretdate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          minYear: 2010,
+          maxYear: parseInt(moment().format('YYYY'),10)
+        }, function(start, end, label) {
+            var years = moment().diff(start, 'years');
+            // alert("You are " + years + " years old!");
+        });
+</script>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

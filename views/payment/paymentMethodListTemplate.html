@@ -1,0 +1,116 @@
+
+<div class="wrapper wrapper-content animated fadeInRight pd0" ng-controller="paymentMethodController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">Payment Methods</h4>
+            <ol class="breadcrumb fc1">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <strong>Payment List</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <button type="button" ng-click="addOrUpdatePaymentMthdModal()" class="btn btn-w-m m-t-sm btn-warning">Add Payment Method</button>
+        </div>
+    </div>
+    <div class="animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12 pd0">
+                <!-- <div class="ibox float-e-margins"> -->
+                    <!-- <div class="ibox-title">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h3>Payment Methods List</h3>
+                            </div>
+                            <div class="col-sm-2">
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="ibox-content">
+                        <table datatable="" class="table table-striped table-bordered table-hover dataTables-example" id="payMethodtlist">
+                            <thead>
+                                <tr>
+                                    <th class="dt_thbg">Name</th>
+                                    <th class="dt_thbg">Type</th>
+                                    <th class="dt_thbg">Status</th>
+                                    <th class="dt_thbg">Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+    <div id="addPaymentMethodModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bgc8"> 
+                    <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+                    <div class="row">
+                        <div class="col-sm-11 text-center">
+                            <label class="control-label fc1 ttu fwb"> <h5 class="fc1">Payment Method <span ng-if="!paymethodData.id">Creation</span><span ng-if="paymethodData.id">Update</span></h5></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form name="payMthdForm" class="form-horizontal" novalidate>
+                        <div class="row mg0">
+                            <div class="col-lg-12 no-padding">
+                                <div class="col-lg-6">
+                                    <label>Name<span class="text-danger">*</span> :</label>
+                                    <input type="text" class="form-control" ng-model="paymethodData.name" name="name" required>
+                                    <div ng-show="payMthdForm.$submitted || payMthdForm.name.$touched">
+                                        <div ng-show="payMthdForm.name.$error.required" class="text-danger">Name is required!</div>
+                                    </div> 
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Payment Type<span class="text-danger">*</span> :</label>
+                                    <select class="form-control m-b" name="type" ng-model="paymethodData.type">
+                                        <option value="">select Type...</option>
+                                        <option value="WALLET">WALLET</option>
+                                        <option value="CARD">CARD</option>
+                                        <option value="CASH">CASH</option>
+                                        <option value="COD">COD</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 no-padding m-t-sm">
+                                <div class="col-lg-6">
+                                    <label>Image<span class="text-danger">*</span> :</label>
+                                    <input type="file" id="imageId" onchange="angular.element(this).scope().uploadPaymentMthdImage(this, this.id,'methodType')" class="form-control" name="payMthdImages"  class="fs12"/>
+                                        <p class="text-danger">Please Select Only 100*100 Size Images</p>
+                                </div>
+                                <div class="col-md-4 pull-right" ng-if="payMthdImages[0]" style="width:6%;height:40px;border:1px solid #ddd;right:100px;bottom: 60px;">
+                                    <img src="{{payMthdImages[0].imageFolder}}{{payMthdImages[0].imageName}}" class="img-responsive" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <!-- <div class=""> -->
+                                    <label>Status<span class="text-danger">*</span> :</label>
+                                    <select class="form-control m-b" name="status" ng-model="paymethodData.isActive">
+                                    <option value="">select status...</option>
+                                        <option value="true">Active</option>
+                                        <option value="false">InActive</option>
+                                    </select>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary" ng-disabled="payMthdForm.$invalid" ng-click="createOrUpdatePaymentMeth(paymethodData)"><span ng-if="!paymethodData.id" >Save</span><span ng-if="paymethodData.id">Update</span></button>
+                            <button class="btn btn-white" id="deptClose" data-dismiss="modal">Cancel</button>      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>  
+</div>

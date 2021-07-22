@@ -1,0 +1,159 @@
+
+<div class="wrapper wrapper-content pd0" ng-controller="requestListController">
+	<div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+	    <div class="col-lg-10">
+	        <h4 class="page_heading_title fc1 fwb">Request</h4>
+	        <ol class="breadcrumb">
+	            <li class="fc1">
+	                        <a href="index.html">Home</a>
+	                    </li>
+	            <li class="active fc1">
+	                <strong>Request List</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+            <button type="button" data-toggle="modal" ng-click="addOrUpdateRequest()" class="btn btn-w-m btn-warning m-t-sm ttu">Add</button>
+        </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight pd0">  
+		<div class="row">
+			<div class="col-lg-12 pd0">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<table class="table table-striped table-bordered table-hover dataTables-example" id="requestTable">
+							<thead>
+								<tr>
+								    <th>Request Header</th>
+								    <th>Request Ref File</th>
+								    <th>Created User Name</th>
+								    <th>Status</th>
+								    <th>Action</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="addRequestModal" class="modal fade" role="dialog">
+		    <div class="modal-dialog modal-lg">
+		        <!-- Modal content-->
+		        <div class="modal-content">
+		            <div class="modal-header bgc8">
+		                <button type="button" class="close fc1 opacityi" data-dismiss="modal">&times;</button>
+		                <div class="row">
+		                    <div class="col-sm-11 text-center">
+		                        <label class="control-label fc1 ttu fwb"> Request </label>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="modal-body">
+		                <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="requestHeaderTypeForm">
+		                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		                        <div class="form-group">
+		                            <label class="col-lg-2 control-label fwb">Request Header</label>
+		                            <div class="col-lg-4 pos_rel">
+		                                <input type="text" placeholder="Enter Request Header" class="form-control bgc7 fwb" ng-model="requestObj.requestHeader" required /> 
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <label class="col-lg-2 control-label fwb">Request Text</label>
+		                            <div class="col-lg-4 pos_rel">
+		                                <input type="text" placeholder="Enter Request Text" class="form-control bgc7 fwb" ng-model="requestObj.reguestText" required /> 
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <label class="col-lg-2 control-label fwb">requestRefFile</label>
+		                            <div class="col-lg-4 pos_rel">
+		                                <input type="text" placeholder="Enter Request File" class="form-control bgc7 fwb" ng-model="requestObj.requestRefFile" required /> 
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <label class="col-lg-2 control-label fwb">Owner Id</label>
+		                            <div class="col-lg-4 pos_rel">
+		                                <input type="text" placeholder="Description" class="form-control bgc7 fwb" ng-model="requestObj.ownerId" required /> 
+		                            </div>
+		                        </div>
+
+		                        <div class="form-group">
+		                            <label class="col-lg-2 control-label fwb"> Status</label>
+		                            <div class="col-lg-4 pos_rel">
+		                                <select class="form-control bgc7" ng-model="requestObj.status" required>
+		                                	<option>Select</option>
+		                                    <option value="PENDING">PENDING</option>
+		                                    <option value="CANCELLED">CANCELLED</option>
+		                                    <option value="REJECT">REJECT</option>
+		                                </select>
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <label class="col-lg-2 control-label fwb"> Active Status</label>
+		                            <div class="col-lg-4 pos_rel">
+		                                <select class="form-control bgc7" ng-model="requestObj.isActive" required>
+		                                	<option>Select</option>
+		                                    <option value="true">True</option>
+		                                    <option value="false">False</option>
+		                                </select>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </form>
+		            </div>
+		            <div class="modal-footer">
+		                <div class="row">
+		                    <div class="col-sm-12">
+		                        <div class="text-center mgt10">
+		                            <button type="button" class="btn btn-w-m btn-primary" ng-disabled="requestHeaderTypeForm.$invalid" ng-click="addRequest(requestObj)">Proceed</button>
+		                        </div>
+		                    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<style type="text/css">
+    .modal-body{
+        max-height: calc(100% - 120px);
+        overflow-y: scroll;
+        padding: 20px 20px 20px 20px;
+    }
+</style>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

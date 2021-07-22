@@ -1,0 +1,85 @@
+<div ng-controller="productPriceController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-10">
+            <h4 class="page_heading_title fc1 fwb">PRODUCT PRICE</h4>
+            <ol class="breadcrumb fc1">
+                <li><a href="index.html">Home</a></li>
+                <li><a>Products List</a></li>
+                <!-- <li class="active">
+                    <a href="./#/catalogue/productviewupdate/{{prodName}}/{{prodId}}"><strong>Product Single View</strong></a>
+                </li> -->
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <!-- <div class="col-lg-12 col-md-12 text-right" ng-if="productPriceFilterJSON.length>0"> -->
+            <button type="button" class="btn btn-block btn-danger m-t-sm" ng-click="applyPriceUpdate('cal')" ng-if="productPriceFilterJSON.length>0">Update</button>
+        <!-- </div> -->
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight pd0  invoice_height">
+        <div class="col-lg-12 col-md-12 m-t-sm mgb10">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <input type="text" placeholder="Product name" class="form-control h45 bgc7" name="mobile-search" ng-model="priceFilter.name"/>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <input type="text" class="form-control-sm form-control bgc7" name="barcode" placeholder="Barcode" ng-model="priceFilter.barcode" />
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+               <select ng-model="priceFilter.category" class="form-control" ng-change="">
+                   <option value="" ng-selected="">select category</option>
+                   <option value="{{pc.id}}" ng-repeat="pc in productcategoryArray">{{pc.name}}</option>
+               </select>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+               <select ng-model="priceFilter.brand" class="form-control" ng-change="">
+                   <option value="" ng-selected="">select brand</option>
+                   <option value="{{pb.id}}" ng-repeat="pb in productbrandArray">{{pb.name}}</option>
+               </select>
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <button type="button" class="btn btn-block btn-w-m btn-primary" ng-click="applyPriceFilter('cal')">Apply Filter</button>
+            </div>
+        </div>
+
+        <!-- <div></div> -->
+        <!-- <div class="row bgc3"> -->
+        <div class="col-lg-12 col-md-12 bgc7" ng-if="productPriceFilterJSON.length>0">
+            <div class="ibox float-e-margins ">
+                <div class="ibox-content box-shadow pd10 mgt10 invoice_list" ng-repeat="invl in productPriceFilterJSON">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mgb0 f3 fc4"><b>{{invl.productName}}</b> ( {{invl.measurableType}} )</p>
+                            <p class="mgb0 f3 pdt5 fwb ">{{invl.barcode}} - {{invl.brandName}}</p>
+                        </div>
+                        <div class="col-sm-5 text-left">
+                            <p class="mgb0 fc3 f3">Company Branch</p>
+                            <select ng-model="invl.branchIds" multiple chosen class="chosen-select form-control" ng-options="pbr.id as pbr.entityName for pbr in productBranchArray">
+                           </select>
+                        </div>
+                        <div class="col-sm-1 text-left">
+                            <p class="mgb0 fc3 f3">MRP</p>
+                            <input type="text" class="form-control-sm form-control bgc7" name="mrp" placeholder="MRP" ng-model="invl.mrp" />
+                        </div>
+                        <div class="col-sm-2 text-left">
+                            <p class="mgb0 fc3 f3">Selling Price</p>
+                            <input type="text" class="form-control-sm form-control bgc7" name="selling price" placeholder="selling price" ng-model="invl.sellingPrice" />
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        $(".invoice_height").css("height", $(window).height() - 90 + "px");
+        $(".invoice_height").css("min-height", $(window).height() - 90 + "px");
+        $(".invoice_height").css("overflow-y", "scroll");
+        $(".invoice_height").css("overflow-x", "hidden");
+    });
+</script>

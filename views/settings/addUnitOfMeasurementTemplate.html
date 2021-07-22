@@ -1,0 +1,86 @@
+<div class="inmodal">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title bgc8">
+                    <h5 class="fc1">Unit Of Measurement <span ng-if="!uomData.id">Creation</span><span ng-if="uomData.id">Update</span></h5>
+                   <a ng-click="close()" class="pull-right fc1"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal ng-pristine ng-valid ng-submitted" name="uomForm">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Unit Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" ng-model="uomData.unitName" name="unitName" required>
+                                        <div ng-show="uomForm.$submitted || uomForm.unitName.$touched">
+                                            <div ng-show="uomForm.unitName.$error.required" class="text-danger">Unit name is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Short Name <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" ng-model="uomData.shortName" name="shortName" required>
+                                        <div ng-show="uomForm.$submitted || uomForm.shortName.$touched">
+                                            <div ng-show="uomForm.shortName.$error.required" class="text-danger">Short name is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Parent Unit <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control" name="account" ng-model="uomData.parentUnitId">
+                                            <option value="">select parent unit...</option>
+                                            <option value="{{uoml.id}}" ng-repeat="uoml in unitOfMeasurementList">{{uoml.unitName}}</option>
+                                            <!-- <option value="false">False</option> -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Conversion Value <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" ng-model="uomData.conversionValue" name="conversionValue" required>
+                                        <div ng-show="uomForm.$submitted || uomForm.conversionValue.$touched">
+                                            <div ng-show="uomForm.conversionValue.$error.required" class="text-danger">Conversion is required!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Status <span class="text-danger">*</span> :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control m-b" name="status" ng-model="uomData.isActive" required>
+                                            <option value="">select status...</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">InActive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                  
+                        <div class="form-group m-t-xl">
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-primary" type="submit" ng-disabled="uomForm.$invalid" ng-click="createOrUpdateUom(uomData)"><span ng-if="!uomData.id" >Save</span><span ng-if="uomData.id">Update</span></button>
+                                <button class="btn btn-white" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </div>                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

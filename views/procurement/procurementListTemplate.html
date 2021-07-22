@@ -1,0 +1,106 @@
+<div class="wrapper wrapper-content pd0" ng-controller="procurementController">
+    <div class="row wrapper border-bottom white-bg page_heading1 bgc8">
+        <div class="col-lg-8">
+            <h4 class="page_heading_title fc1 fwb">PROCUREMENT</h4>
+            <ol class="breadcrumb">
+                <li class="fc1">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active fc1">
+                    <strong>PROCUREMENT LIST</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="animated fadeInRight pd0">
+        <!-- <div class="row"> -->
+            <div class="col-lg-12 pd0">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="row m-b-sm">
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <div class="form-group">
+                                    <label class="col-lg-3 text-center control-label m-t-sm">Name :</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" placeholder="Name.." class="form-control" ng-model="page.name" required>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12 pn mgt5">
+                                <label class=" fwb fc12 col-lg-4 col-md-4 col-sm-4 col-xs-12 p-t-sm ln2">Select Date:</label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 pn">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input class="form-control daterange" placeholder="Select Date" name="selecteddate" capitalize ng-model="procurementData.selecteddate" required="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <div class="form-group">
+                                    <label class="col-lg-3 text-center control-label m-t-sm">Status :</label>
+                                    <div class="col-lg-8">
+                                        <select class="form-control" ng-model="procurementData.status" required>
+                                            <option value="">select Status</option>
+                                            <option value="PLACED">PLACED</option>
+                                            <option value="CONFIRMED">CONFIRMED</option>
+                                            <option value="PACKKED">PACKKED</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-w-m btn-warning ttu" ng-click="getProcurementData(procurementData)">SUBMIT</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row table table-striped table-bordered mgt10">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <h4>PRODUCT NAME</h4>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h4>QTY(PACKS)</h4>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h4>QTY(PACKS)</h4>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h4>QTY(PACKS)</h4>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h4>REMARKS</h4>
+                            </div>
+                        </div> -->
+                        <div class="row table table-striped table-bordered" ng-repeat="(key, value) in proData">
+                            <div class="tac">
+                                <h4>{{key}}</h4>
+                            </div>
+                            <div ng-repeat="procProdData in value">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <p>{{procProdData.productName}} ({{procProdData.brandName}})</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p>{{procProdData.quantity}} {{(procProdData.unitName)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+</div>
+<script type="text/javascript">
+$(function() {
+    var minDate = new Date();
+    var dd = minDate.getDate()
+    var mm = minDate.getMonth() + 1;
+    var yy = minDate.getFullYear();
+    var currentDate = yy + '-' + mm + '-' + dd;
+    // options for viewing the date
+    $(".daterange").datepicker({ format: 'yyyy-mm-dd', autoclose: true, defaultViewDate: 'today' })
+    // ,startDate: currentDate
+    // setting current date
+    $(".daterange").datepicker("setDate", currentDate)
+});
+</script>
